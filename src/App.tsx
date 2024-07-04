@@ -1,13 +1,12 @@
-import "./App.css";
-import "./common.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./Header";
-import BoardApp from "./board/BoardApp";
-import BoardList from "./board/BoardList";
-import BoardForm from "./board/BoardForm";
-import BoardEdit from "./board/BoardEdit";
-import BoardReply from "./board/BoardReply";
-import BoardView from "./board/BoardView";
+import './App.css';
+import './common.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './Header';
+import BoardApp from './board/BoardApp';
+import BoardList from './board/BoardList';
+import BoardForm from './board/BoardForm';
+import BoardEdit from './board/BoardEdit';
+import BoardReply from './board/BoardReply';
 
 // temp로 써져있는거 삭제하기
 function App() {
@@ -22,7 +21,6 @@ function App() {
           <Route path="tempform" element={<BoardForm />} />
           <Route path="tempedit" element={<BoardEdit />} />
           <Route path="tempreply" element={<BoardReply />} />
-          <Route path="tempview" element={<BoardView/>} />
         </Routes>
       </BrowserRouter>
     </div>

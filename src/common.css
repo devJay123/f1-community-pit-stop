@@ -44,7 +44,13 @@
 .header_links li {
   margin-right: var(--base-margin);
 }
-
+.btn {
+  height: 30px;
+  margin: var(--base-margin);
+  /* background-color: ; */
+  text-align: center;
+  line-height: 30px;
+}
 
 .container {
   padding: var(--base-padding);
