@@ -41,6 +41,9 @@
   justify-content: center;
 }
 
+.header_links li {
+  margin-right: var(--base-margin);
+}
 .btn {
   height: 30px;
   margin: var(--base-margin);
