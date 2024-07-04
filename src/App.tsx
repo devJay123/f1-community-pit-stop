@@ -16,11 +16,11 @@ function App() {
         <Header />
         <Routes>
           <Route path="/community" element={<BoardApp />} />
-          <Route path="/community/list/:id" element={<BoardList />} />
-          <Route path="templist" element={<BoardList />} />
-          <Route path="tempform" element={<BoardForm />} />
-          <Route path="tempedit" element={<BoardEdit />} />
-          <Route path="tempreply" element={<BoardReply />} />
+          <Route path="/community/list/:teamnum" element={<BoardList />} />
+          <Route path="/templist" element={<BoardList />} />
+          <Route path="/tempform" element={<BoardForm />} />
+          <Route path="/tempedit" element={<BoardEdit />} />
+          <Route path="/tempreply" element={<BoardReply />} />
         </Routes>
       </BrowserRouter>
     </div>
