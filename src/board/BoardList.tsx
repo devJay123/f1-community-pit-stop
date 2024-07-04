@@ -8,5 +8,3 @@ export default function BoardList() {
     </div>
   );
 }
-
-// https://onethejay.tistory.com/195
