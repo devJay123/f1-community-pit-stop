@@ -8,6 +8,7 @@ import BoardForm from "./board/BoardForm";
 import BoardEdit from "./board/BoardEdit";
 import BoardReply from "./board/BoardReply";
 
+// temp로 써져있는거 삭제하기
 function App() {
   return (
     <div>

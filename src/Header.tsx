@@ -18,6 +18,7 @@ export default function Header() {
         <li>
           <Link to="/login">로그인/회원가입</Link>
         </li>
+
         <li>
           <Link to="/templist">임시[게시글 리스트]</Link>
         </li>
