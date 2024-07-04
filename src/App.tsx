@@ -1,5 +1,6 @@
 import "./App.css";
-import { BrowserRouter, Routes } from "react-router-dom";
+import "./common.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./Header";
 
 function App() {
@@ -7,7 +8,9 @@ function App() {
     <div>
       <BrowserRouter>
         <Header />
-        <Routes>{/* <Route path="/" /> */}</Routes>
+        <Routes>
+          <Route path="/home" />
+        </Routes>
       </BrowserRouter>
     </div>
   );

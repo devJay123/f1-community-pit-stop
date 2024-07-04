@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <div className="header">
-      <ul>
-        <li>
-          <Link to="/">LOGO</Link>
-        </li>
+    <div className="header container">
+      <Link to="/home">LOGO</Link>
+      <ul className="header_links">
         <li>
           <Link to="/community">커뮤니티</Link>
         </li>
@@ -21,6 +19,7 @@ export default function Header() {
           <Link to="/login">로그인/회원가입</Link>
         </li>
       </ul>
+      <button className="btn">등록</button>
     </div>
   );
 }
