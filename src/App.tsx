@@ -7,6 +7,7 @@ import BoardList from "./board/BoardList";
 import BoardForm from "./board/BoardForm";
 import BoardEdit from "./board/BoardEdit";
 import BoardReply from "./board/BoardReply";
+import BoardView from "./board/BoardView";
 
 // temp로 써져있는거 삭제하기
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="tempform" element={<BoardForm />} />
           <Route path="tempedit" element={<BoardEdit />} />
           <Route path="tempreply" element={<BoardReply />} />
+          <Route path="tempview" element={<BoardView/>} />
         </Routes>
       </BrowserRouter>
     </div>

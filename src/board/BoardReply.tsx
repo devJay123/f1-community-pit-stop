@@ -1,5 +1,16 @@
 import React from "react";
+import {Form, Container, Row, Col} from "react-bootstrap";
+
+
 
 export default function BoardReply() {
-  return <div>댓글</div>;
+
+
+  return (
+    <div>
+    <Form>
+
+    </Form>
+    </div>
+    );
 }
