@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 
 export default function BoardList() {
   return (
@@ -7,3 +8,5 @@ export default function BoardList() {
     </div>
   );
 }
+
+// https://onethejay.tistory.com/195
