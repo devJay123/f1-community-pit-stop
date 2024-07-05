@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Badge from "react-bootstrap/Badge";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { ListGroup, Row, Col, Container, Pagination } from "react-bootstrap";
 
 import axios from "../lib/axiosCreate";
@@ -112,7 +112,9 @@ export default function BoardList() {
                     <div className="">{list.id}</div>
                   </Col>
                   <Col md={4} className="text-center">
-                    <div className="fw-bold">{list.title}</div>
+                    <Link to={`/boards/${list.id}`}>
+                      <div className="fw-bold">{list.title}</div>
+                    </Link>
                   </Col>
                   <Col md={2} className="text-center">
                     <div className="">{list.userid}</div>
