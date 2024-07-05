@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -32,7 +32,6 @@ export default function Header() {
           <Link to="/boards/1">임시[게시글 댓글]</Link>
         </li>
       </ul>
-      <button className="btn">등록</button>
     </div>
   );
 }
