@@ -78,7 +78,6 @@ export default function BoardList() {
   return (
     <Container>
       <h1>boardList</h1>
-
       <Row>
         <Col md={1} className="text-center">
           번호

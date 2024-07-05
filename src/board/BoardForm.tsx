@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Row, Col, Button } from 'react-bootstrap';
+import { Form, Row, Col, Button, Container } from 'react-bootstrap';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import axios from '../lib/axiosCreate.js';
@@ -15,12 +15,14 @@ interface FormValues {
   content: string;
 }
 
-export default function BoardForm(props: any) {
+export default function BoardForm() {
   const formik = useFormik<FormValues>({
     initialValues: { userid: '', title: '', content: '' },
     validationSchema: Yup.object({
       userid: Yup.string().required('작성자를 입력하세요'),
-      title: Yup.string().required('제목을 입력하세요'),
+      title: Yup.string()
+        .max(30, '30자 이하로 작성해주세요')
+        .required('제목을 입력하세요'),
       content: Yup.string().required('내용을 입력하세요'),
     }),
     onSubmit: async (values) => {
@@ -49,9 +51,9 @@ export default function BoardForm(props: any) {
   });
 
   return (
-    <div>
+    <Container>
       <Row>
-        <Col className="p-3 mx-auto" md={6}>
+        <Col className="p-3 mx-auto" md={8}>
           <Form onSubmit={formik.handleSubmit}>
             <Form.Group className="my-2">
               <Form.Label>제 목</Form.Label>
@@ -111,6 +113,6 @@ export default function BoardForm(props: any) {
           </Form>
         </Col>
       </Row>
-    </div>
+    </Container>
   );
 }
