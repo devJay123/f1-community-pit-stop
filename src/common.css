@@ -9,21 +9,21 @@
 }
 
 @font-face {
-  font-family: 'KoPub_Bold';
-  src: url(./assets/KoPubWorld_Dotum_Bold.ttf) format('truetype');
+  font-family: "KoPub_Bold";
+  src: url(./assets/KoPubWorld_Dotum_Bold.ttf) format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'KoPub_Medium';
-  src: url(./assets/KoPubWorld_Dotum_Medium.ttf) format('truetype');
+  font-family: "KoPub_Medium";
+  src: url(./assets/KoPubWorld_Dotum_Medium.ttf) format("truetype");
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
-  font-family: 'KoPub_Light';
-  src: url(./assets/KoPubWorld_Dotum_Light.ttf) format('truetype');
+  font-family: "KoPub_Light";
+  src: url(./assets/KoPubWorld_Dotum_Light.ttf) format("truetype");
   font-weight: 300;
   font-style: normal;
 }
@@ -32,7 +32,7 @@
   display: flex;
   justify-content: space-between;
   font-size: var(--base-font-size);
-  font-family: 'KoPub_Bold';
+  font-family: "KoPub_Bold";
   text-align: center;
 }
 
@@ -43,6 +43,13 @@
 
 .header_links li {
   margin-right: var(--base-margin);
+}
+.btn {
+  height: 30px;
+  margin: var(--base-margin);
+  /* background-color: ; */
+  text-align: center;
+  line-height: 30px;
 }
 
 .container {
