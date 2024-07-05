@@ -34,7 +34,7 @@ export default function BoardForm() {
 
       try {
         const response: AxiosResponse = await axios.post(
-          '/api/board',
+          '/api/boards',
           postData
         );
 

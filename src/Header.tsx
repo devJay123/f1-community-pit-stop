@@ -29,7 +29,7 @@ export default function Header() {
           <Link to="/tempedit">임시[게시글 수정]</Link>
         </li>
         <li>
-          <Link to="/tempreply">임시[게시글 댓글]</Link>
+          <Link to="/boards/1">임시[게시글 댓글]</Link>
         </li>
       </ul>
       <button className="btn">등록</button>
