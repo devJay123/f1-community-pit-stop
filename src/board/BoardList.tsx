@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Badge from "react-bootstrap/Badge";
 import { useLocation } from "react-router-dom";
-import { ListGroup, Row, Col, Container } from "react-bootstrap";
+import { ListGroup, Row, Col, Container, Pagination } from "react-bootstrap";
+
 import axios from "../lib/axiosCreate";
 
 interface IBoardList {
@@ -13,17 +14,46 @@ interface IBoardList {
   teamnum: number;
 }
 
+interface IStateType {
+  data: IBoardList[];
+  limit: number;
+  activePage: number;
+  listLength: number;
+}
+
 export default function BoardList() {
-  const [boardList, getBoardList] = useState<IBoardList[]>([]);
-
+  //const [boardList, getBoardList] = useState<IBoardList[]>([]);
   const location = useLocation();
-  console.log(location);
 
-  const getList = async () => {
+  const [state, setState] = useState<IStateType>({
+    data: [],
+    limit: 2,
+    activePage: 1,
+    listLength: 0,
+  });
+
+  // 전에 안되었던 이유
+  // 커뮤니티 메인에서 해당 팀의 탭 메뉴 클릭 으로 들어가는 경우 ->
+  // state가 기록이 되면서 넘어가짐
+  // 절차상 /community/list/teamnum 으로 state에 기록이 됨
+  const teamNum: number = location.state?.teamnum;
+
+  const getList = async (page: number) => {
     try {
-      const response = await axios.get<IBoardList[]>(`/api/boardlist/1`);
-      // console.log(JSON.stringify(response.data));
-      getBoardList(response.data.result);
+      const response = await axios.get<IBoardList[]>(
+        `/api/boardlist/${teamNum ?? 0}`
+      );
+      const { data } = response;
+      const startIndex = (page - 1) * state.limit;
+      const endIndex = page * state.limit;
+      const paginatedData = data.slice(startIndex, endIndex);
+
+      setState((prev) => ({
+        ...prev,
+        data: paginatedData,
+        listLength: data.length,
+        activePage: page,
+      }));
     } catch (err: unknown) {
       console.log(
         "ERROR:",
@@ -32,12 +62,18 @@ export default function BoardList() {
     }
   };
 
+  const handlePageChange = (pageNumber: number) => {
+    setState((prev) => ({ ...prev, activePage: pageNumber }));
+  };
+
+  const totalPages = Math.ceil(state.listLength / state.limit);
+
   useEffect(() => {
     const fetchData = async () => {
-      await getList();
+      await getList(state.activePage);
     };
     fetchData();
-  }, []);
+  }, [teamNum, state.activePage]);
 
   return (
     <Container>
@@ -48,7 +84,7 @@ export default function BoardList() {
           번호
         </Col>
         <Col md={1} className="text-center">
-          게시글 번호
+          글 번호
         </Col>
         <Col md={4} className="text-center">
           제목
@@ -63,8 +99,8 @@ export default function BoardList() {
           조회수
         </Col>
         <Row>
-          {boardList.length > 0 &&
-            boardList.map((list, i) => (
+          {state.data.length > 0 &&
+            state.data.map((list, i) => (
               <ListGroup as="ul" key={i}>
                 <ListGroup.Item
                   as="li"
@@ -85,15 +121,31 @@ export default function BoardList() {
                   <Col md={2} className="text-center">
                     <div className="">{list.wdate}</div>
                   </Col>
-                  <div className="ms-2 me-auto"></div>
-                  <Badge bg="primary" pill>
-                    {list.readnum}
-                  </Badge>
+
+                  <Col md={1} className="text-center">
+                    <Badge bg="primary" pill>
+                      {list.readnum}
+                    </Badge>
+                  </Col>
                 </ListGroup.Item>
               </ListGroup>
             ))}
         </Row>
       </Row>
+
+      <Pagination>
+        <Pagination.Prev />
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+          <Pagination.Item
+            onClick={() => handlePageChange(page)}
+            key={page}
+            disabled={state.activePage === page}
+          >
+            {page}
+          </Pagination.Item>
+        ))}
+        <Pagination.Next />
+      </Pagination>
     </Container>
   );
 }

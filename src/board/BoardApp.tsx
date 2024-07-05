@@ -8,7 +8,7 @@ export default function BoardApp() {
       <ul>
         {Array.from({ length: 10 }).map((_, i) => (
           <li key={i}>
-            <Link to={`/community/list/${i}`} state={{ teamIndex: i }}>
+            <Link to={`/community/list/${i}`} state={{ teamnum: i }}>
               팀
             </Link>
           </li>
