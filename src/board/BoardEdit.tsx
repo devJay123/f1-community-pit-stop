@@ -26,7 +26,7 @@ export default function BoardEdit() {
   });
 
   const onSubmit = async (data: any) => {
-    const response = await axios.put(`/api/board/${boardId}`, data);
+    const response = await axios.put(`/api/boards/${boardId}`, data);
     if (response.data.result === 'success') {
       window.location.href = '/';
     } else {
@@ -36,7 +36,7 @@ export default function BoardEdit() {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios.get(`/api/board/${boardId}`);
+      const response = await axios.get(`/api/boards/${boardId}`);
       const responseData = response.data[0];
 
       if (responseData.result === 'fail') {
