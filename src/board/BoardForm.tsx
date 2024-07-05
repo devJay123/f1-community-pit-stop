@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Row, Col, Button } from 'react-bootstrap';
+import { Form, Row, Col, Button, Container } from 'react-bootstrap';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import axios from '../lib/axiosCreate.js';
@@ -51,9 +51,9 @@ export default function BoardForm() {
   });
 
   return (
-    <div>
+    <Container>
       <Row>
-        <Col className="p-3 mx-auto" md={7}>
+        <Col className="p-3 mx-auto" md={8}>
           <Form onSubmit={formik.handleSubmit}>
             <Form.Group className="my-2">
               <Form.Label>제 목</Form.Label>
@@ -113,6 +113,6 @@ export default function BoardForm() {
           </Form>
         </Col>
       </Row>
-    </div>
+    </Container>
   );
 }

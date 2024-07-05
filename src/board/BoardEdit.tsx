@@ -56,9 +56,9 @@ export default function BoardEdit() {
   return (
     <Container>
       <Row>
-        <Col md={8}>
+        <Col className="p-3 mx-auto" md={8}>
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <Form.Group>
+            <Form.Group className="my-2">
               <Form.Label>제목</Form.Label>
               <Form.Control
                 {...register('title')}
@@ -70,7 +70,7 @@ export default function BoardEdit() {
                 <p className="text-danger">{errors.title.message}</p>
               )}
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="my-2">
               <Form.Label>작성자</Form.Label>
               <Form.Control
                 {...register('userid')}
@@ -78,8 +78,11 @@ export default function BoardEdit() {
                 name="userid"
                 placeholder="작성자를 입력하세요"
               />
+              {errors.userid && (
+                <p className="text-danger">{errors.userid.message}</p>
+              )}
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="my-2">
               <Form.Label>내용</Form.Label>
               <Form.Control
                 {...register('content')}
@@ -88,11 +91,14 @@ export default function BoardEdit() {
                 name="content"
                 placeholder="내용을 입력하세요"
               />
+              {errors.content && (
+                <p className="text-danger">{errors.content.message}</p>
+              )}
               <div className="text-center">
-                <Button type="submit" variant="success">
+                <Button className="mx-1" type="submit" variant="success">
                   글쓰기
                 </Button>
-                <Button type="reset" variant="warning">
+                <Button className="mx-1" type="reset" variant="warning">
                   다시쓰기
                 </Button>
               </div>
