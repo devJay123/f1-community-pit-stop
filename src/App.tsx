@@ -1,14 +1,14 @@
-import "./App.css";
-import "./common.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./Header";
-import BoardApp from "./board/BoardApp";
-import BoardList from "./board/BoardList";
-import BoardForm from "./board/BoardForm";
-import BoardEdit from "./board/BoardEdit";
+import './App.css';
+import './common.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './Header';
+import BoardApp from './board/BoardApp';
+import BoardList from './board/BoardList';
+import BoardForm from './board/BoardForm';
+import BoardEdit from './board/BoardEdit';
 // import BoardReply from './board/BoardReply';
-import BoardView from "./board/BoardView";
-import Home from "./pages/Home";
+import BoardView from './board/BoardView';
+import Home from './pages/Home';
 
 // temp로 써져있는거 삭제하기
 function App() {
