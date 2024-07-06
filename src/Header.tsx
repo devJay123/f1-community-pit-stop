@@ -1,10 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
-    <div className="header container">
-      <Link to="/home">LOGO</Link>
+    <div className="header">
+      <Link to="/">
+        <div className="logo_box">
+          <img src="./src/assets/f1_logo_red.svg" alt="" />
+        </div>
+      </Link>
       <ul className="header_links">
         <li>
           <Link to="/community">커뮤니티</Link>
@@ -17,19 +21,6 @@ export default function Header() {
         </li>
         <li>
           <Link to="/login">로그인/회원가입</Link>
-        </li>
-
-        <li>
-          <Link to="/templist">임시[게시글 리스트]</Link>
-        </li>
-        <li>
-          <Link to="/tempform">임시[게시글 작성]</Link>
-        </li>
-        <li>
-          <Link to="/tempedit">임시[게시글 수정]</Link>
-        </li>
-        <li>
-          <Link to="/boards/1">임시[게시글 댓글]</Link>
         </li>
       </ul>
     </div>

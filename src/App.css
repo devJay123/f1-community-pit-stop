@@ -1,0 +1,26 @@
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  height: 110px;
+  background-color: #000;
+  font-size: 18px;
+  font-family: 'KoPub_Bold';
+}
+.header a {
+  color: #fff;
+}
+.header .logo_box img {
+  width: 150px;
+}
+
+.header_links {
+  display: flex;
+  justify-content: center;
+}
+
+.header_links li {
+  margin-left: 40px;
+}

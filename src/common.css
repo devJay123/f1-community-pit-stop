@@ -1,5 +1,3 @@
-/* button, a, font-size */
-
 :root {
   /* 게시글 내용, 게시글 리스트 제목, 댓글 사이즈,  */
   --base-font-size: 14px;
@@ -8,13 +6,13 @@
   --base-margin: 10px;
 }
 
+/* font-face */
 @font-face {
   font-family: 'KoPub_Bold';
   src: url(./assets/KoPubWorld_Dotum_Bold.ttf) format('truetype');
   font-weight: bold;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'KoPub_Medium';
   src: url(./assets/KoPubWorld_Dotum_Medium.ttf) format('truetype');
@@ -26,29 +24,4 @@
   src: url(./assets/KoPubWorld_Dotum_Light.ttf) format('truetype');
   font-weight: 300;
   font-style: normal;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  font-size: var(--base-font-size);
-  font-family: 'KoPub_Bold';
-  text-align: center;
-}
-
-.header_links {
-  display: flex;
-  justify-content: center;
-}
-
-.header_links li {
-  margin-right: var(--base-margin);
-}
-<<<<<<< HEAD
-=======
-
->>>>>>> bdd0c3aaaa486c9d367a9a96a8bd38b7eb1820bd
-
-.container {
-  padding: var(--base-padding);
 }
