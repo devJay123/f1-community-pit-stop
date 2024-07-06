@@ -1,6 +1,6 @@
 import React from 'react';
 import './home.css';
-import { Carousel, Container } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 export default function Hone() {
   return (
     <div className="main-banner">
