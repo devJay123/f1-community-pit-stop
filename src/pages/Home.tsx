@@ -1,7 +1,7 @@
-import React from 'react';
-import './home.css';
-import { Carousel } from 'react-bootstrap';
-export default function Hone() {
+import React from "react";
+import "./home.css";
+import { Carousel } from "react-bootstrap";
+export default function Home() {
   return (
     <div className="main-banner">
       <Carousel>

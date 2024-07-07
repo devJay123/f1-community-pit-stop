@@ -1,0 +1,20 @@
+.bg_container {
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.check .section1 {
+  background-image: linear-gradient(45deg, transparent 75%, #000 25%),
+    linear-gradient(45deg, #000 25%, transparent 25%),
+    linear-gradient(-45deg, transparent 75%, #000 75%),
+    linear-gradient(-45deg, #000 25%, transparent 25%);
+  background-size: 40px 40px;
+  background-position: 0 0, -20px 20px, 0 -20px, 20px 0;
+}
+
+.card_container:hover {
+  border: "none";
+}
