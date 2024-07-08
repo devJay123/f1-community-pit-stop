@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
@@ -20,7 +20,7 @@ export default function Header() {
           <Link to="/prediction">승부예측</Link>
         </li>
         <li>
-          <Link to="/login">로그인/회원가입</Link>
+          <Link to="/loginHome">로그인/회원가입</Link>
         </li>
       </ul>
     </div>

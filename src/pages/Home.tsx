@@ -1,6 +1,6 @@
-import React from "react";
-import "./home.css";
-import { Carousel, Container, Row, Col, Button, Card } from "react-bootstrap";
+import React from 'react';
+import './home.css';
+import { Carousel, Container, Row, Col, Button, Card } from 'react-bootstrap';
 export default function Hone() {
   return (
     <div>
@@ -11,6 +11,9 @@ export default function Hone() {
           </Carousel.Item>
           <Carousel.Item>
             <div className="slide_item banner2"></div>
+          </Carousel.Item>
+          <Carousel.Item>
+            <div className="slide_item banner3"></div>
           </Carousel.Item>
         </Carousel>
       </div>
@@ -23,7 +26,7 @@ export default function Hone() {
           </Col>
           <Col md={7} className="news">
             <div className="news_container">
-              <Card className="news_item" style={{ width: "18rem" }}>
+              <Card className="news_item" style={{ width: '18rem' }}>
                 <Card.Img variant="top" src="holder.js/100px180" />
                 <Card.Body>
                   <Card.Title>Card Title</Card.Title>
@@ -34,7 +37,7 @@ export default function Hone() {
                   <Button variant="primary">Go somewhere</Button>
                 </Card.Body>
               </Card>
-              <Card className="news_item" style={{ width: "18rem" }}>
+              <Card className="news_item" style={{ width: '18rem' }}>
                 <Card.Img variant="top" src="holder.js/100px180" />
                 <Card.Body>
                   <Card.Title>Card Title</Card.Title>
@@ -45,7 +48,7 @@ export default function Hone() {
                   <Button variant="primary">Go somewhere</Button>
                 </Card.Body>
               </Card>
-              <Card className="news_item" style={{ width: "18rem" }}>
+              <Card className="news_item" style={{ width: '18rem' }}>
                 <Card.Img variant="top" src="holder.js/100px180" />
                 <Card.Body>
                   <Card.Title>Card Title</Card.Title>
@@ -56,7 +59,7 @@ export default function Hone() {
                   <Button variant="primary">Go somewhere</Button>
                 </Card.Body>
               </Card>
-              <Card className="news_item" style={{ width: "18rem" }}>
+              <Card className="news_item" style={{ width: '18rem' }}>
                 <Card.Img variant="top" src="holder.js/100px180" />
                 <Card.Body>
                   <Card.Title>Card Title</Card.Title>

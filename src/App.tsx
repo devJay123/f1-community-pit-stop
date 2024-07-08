@@ -7,9 +7,17 @@ import BoardList from "./board/BoardList";
 import BoardForm from "./board/BoardForm";
 import BoardEdit from "./board/BoardEdit";
 // import BoardReply from './board/BoardReply';
+<<<<<<< HEAD
 import BoardView from "./board/BoardView";
 import Home from "./pages/Home";
 import Rank from "./pages/Rank";
+=======
+import BoardView from './board/BoardView';
+import Home from './pages/Home';
+import Rank from './pages/Rank';
+import LoginHome from './member/LoginHome';
+import SignUp from './member/SignUp';
+>>>>>>> 2becff923b2d19cbfff043c682ae1bccd0c561ec
 
 // temp로 써져있는거 삭제하기
 function App() {
@@ -31,6 +39,10 @@ function App() {
 
           {/* <Route path="/tempreply" element={<BoardReply />} /> */}
           <Route path="/boards/:teamnum/:id" element={<BoardView />} />
+
+          {/* login */}
+          <Route path="/loginHome" element={<LoginHome />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </div>
