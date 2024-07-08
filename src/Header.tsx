@@ -12,7 +12,17 @@ export default function Header() {
 
   return (
     <div className="header">
-      <Link to="/">
+      <Link
+        to="/"
+        onClick={() => {
+          setClicked({
+            community: false,
+            rank: false,
+            prediction: false,
+            loginHome: false,
+          });
+        }}
+      >
         <div className="logo_box">
           <img src="./src/assets/f1_logo_red.svg" alt="logo" />
         </div>

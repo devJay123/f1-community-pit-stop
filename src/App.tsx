@@ -29,7 +29,6 @@ function App() {
           <Route path="/community/list/:teamnum" element={<BoardList />} />
           <Route path="/rank" element={<Rank />} />
 
-          <Route path="/templist" element={<BoardList />} />
           <Route path="/boardwrite/:teamnum" element={<BoardForm />} />
           <Route path="/boardEdit/:id" element={<BoardEdit />} />
 
