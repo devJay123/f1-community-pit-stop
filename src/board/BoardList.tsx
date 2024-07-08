@@ -112,7 +112,7 @@ export default function BoardList() {
                     <div className="">{list.id}</div>
                   </Col>
                   <Col md={4} className="text-center">
-                    <Link to={`/boards/${list.id}`}>
+                    <Link to={`/boards/${teamNum}/${list.id}`}>
                       <div className="fw-bold">{list.title}</div>
                     </Link>
                   </Col>

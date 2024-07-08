@@ -28,6 +28,8 @@ const BoardReplyForm: React.FC<BoardReplyFormProps> = ({ addReply }) => {
     setContent('');
   };
 
+  
+
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="replyContent">

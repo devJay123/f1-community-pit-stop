@@ -1,16 +1,21 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { Row, Col, Card, Container } from 'react-bootstrap';
+import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
+import { Row, Col, Card, Container, Button } from 'react-bootstrap';
 import BoardReply from './BoardReply';
 import BoardReplyForm from './BoardReplyForm';
 import BoardReplyEditForm from './BoardReplyEditFrom';
+import BoardEdit from './BoardEdit'
 import axios from '../lib/axiosCreate';
-// import { Reply } from './BoardReplyForm';
+import { number } from 'yup';
+
 
 interface Post {
+  userid: string;
   id: string;
   title: string;
   content: string;
+  teamnum: string;
+  wdate: string;
 }
 
 interface Reply {
@@ -20,7 +25,9 @@ interface Reply {
 }
 
 export default function BoardView() {
-  const { id } = useParams<{ id: string }>(); // 게시글 ID를 URL 파라미터에서 가져옵니다.
+  const { id, teamnum } = useParams<{ id: string, teamnum: string}>(); // 게시글 ID를 URL 파라미터에서 가져옵니다.
+  // const teamnum = location.state?.teamnum;
+  console.log(teamnum)
   const [post, setPost] = useState<Post | null>(null);
   const [replies, setReplies] = useState<Reply[]>([]);
   const [showEditModal, setShowEditModal] = useState(false); // 모달창
@@ -28,15 +35,17 @@ export default function BoardView() {
 
   useEffect(() => {
     const fetchData = async () => {
-      await getBoard(); // 게시글 가져오기
-      await getReplies(); // 댓글 가져오기
+      if (teamnum && id) {
+        await getBoard(); // 게시글 가져오기
+        await getReplies(); // 댓글 가져오기
+      }
     };
     fetchData(); // 호출
-  }, [id]);
+  }, [teamnum, id]);
 
   const getBoard = async () => {
     try {
-      const response = await axios.get(`/api/boards/${id}`);
+      const response = await axios.get<Post>(`/api/boards/${teamnum}/${id}`);
       setPost(response.data);
     } catch (err) {
       alert('Error: ' + err);
@@ -45,7 +54,8 @@ export default function BoardView() {
 
   const getReplies = async () => {
     try {
-      const response = await axios.get(`/api/boards/${id}/reply`);
+      const response = await axios.get<Reply[]>(`/api/boards/${teamnum}/${id}/reply`);
+      console.log(response)
       setReplies(response.data);
     } catch (err) {
       alert('Error: ' + err);
@@ -82,11 +92,19 @@ export default function BoardView() {
     setShowEditModal(true);
   };
 
-  const onEditInputChange = (e) => {
+  const onEditInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (editReply) {
       setEditReply({ ...editReply, [e.target.name]: e.target.value });
     }
   };
+
+  const onDelete = async () => {
+    let yn = window.confirm(`${id}번 글을 정말 삭제하시겠습니까?`)
+    if(yn) {
+        await axios.delete(`/api/boards/${id}`)
+        window.history.back()
+    }
+}
 
   const updateReply = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -101,7 +119,7 @@ export default function BoardView() {
           getReplies();
           setEditReply(null);
         } else {
-          alert('수정 실패');
+          window.location.reload();
         }
       }
     } catch (err) {
@@ -110,25 +128,39 @@ export default function BoardView() {
   };
 
   return (
-    <Container className="py-3">
-      <h2>BoardView [ No.{id} ]</h2>
+    <Container className="py-13">
       <Card>
+        
         <Card.Body>
+          <h1 className=''>F1 팀 {teamnum} 번의 이야기</h1>
+          <br />
+          <div className='text-end my-2'>
+          <h2> [ 게시글 번호.{id} ]</h2>
+          <Link to={`/boardEdit/:teamnum/:id`}><Button variant='success' className='mx-1'>수   정</Button></Link>
+          <Button onClick={onDelete}  variant='warning'>삭   제</Button>
+          </div>
+          <hr />
+          <div className='cArea'>
           {post ? (
             <>
-              <h4>{post.title}</h4>
+              <h2>제목 : {post.title}</h2>
+              <br />
+              <h4>유져이름 : {post.userid}</h4>
               <hr />
               <div className="cArea">
                 <p>{post.content}</p>
               </div>
+              <Card.Footer>
+                Created on {post.wdate} by {post.userid}
+              </Card.Footer>
             </>
+            
           ) : (
             <p>Loading...</p>
           )}
+          </div>
         </Card.Body>
-        <Card.Footer>
-          <Link to="/board">Back to list</Link>
-        </Card.Footer>
+
       </Card>
       <Row className="my-5">
         <Col className="px-1.5">
@@ -142,8 +174,9 @@ export default function BoardView() {
       </Row>
       <Row className="my-5">
         <Col className="px-1.5">
-          <h3 className="mt-4">댓글 추가</h3>
-          <BoardReplyForm addReply={addReply} />
+          <BoardReplyForm
+          addReply={addReply}
+          />
         </Col>
       </Row>
       {/* 댓글 수정 모달 */}

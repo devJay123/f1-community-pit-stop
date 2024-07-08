@@ -29,7 +29,7 @@ function App() {
           <Route path="/tempform" element={<BoardForm />} />
           <Route path="/tempedit" element={<BoardEdit />} />
           {/* <Route path="/tempreply" element={<BoardReply />} /> */}
-          <Route path="/boards/:id" element={<BoardView />} />
+          <Route path="/boards/:teamnum/:id" element={<BoardView />} />
         </Routes>
       </BrowserRouter>
     </div>

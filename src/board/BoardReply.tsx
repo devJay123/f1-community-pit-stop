@@ -12,6 +12,7 @@ interface BoardReplyProps {
   replies: Reply[];
   onDelete: (replyId: string) => void;
   onEdit: (reply: Reply) => void;
+
 }
 
 const BoardReply: React.FC<BoardReplyProps> = ({
