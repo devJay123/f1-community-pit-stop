@@ -4,10 +4,9 @@ import { Row, Col, Card, Container, Button } from 'react-bootstrap';
 import BoardReply from './BoardReply';
 import BoardReplyForm from './BoardReplyForm';
 import BoardReplyEditForm from './BoardReplyEditFrom';
-import BoardEdit from './BoardEdit'
+import BoardEdit from './BoardEdit';
 import axios from '../lib/axiosCreate';
 import { number } from 'yup';
-
 
 interface Post {
   userid: string;
@@ -25,9 +24,9 @@ interface Reply {
 }
 
 export default function BoardView() {
-  const { id, teamnum } = useParams<{ id: string, teamnum: string}>(); // 게시글 ID를 URL 파라미터에서 가져옵니다.
+  const { id, teamnum } = useParams<{ id: string; teamnum: string }>(); // 게시글 ID를 URL 파라미터에서 가져옵니다.
   // const teamnum = location.state?.teamnum;
-  console.log(teamnum)
+  console.log(teamnum);
   const [post, setPost] = useState<Post | null>(null);
   const [replies, setReplies] = useState<Reply[]>([]);
   const [showEditModal, setShowEditModal] = useState(false); // 모달창
@@ -54,8 +53,10 @@ export default function BoardView() {
 
   const getReplies = async () => {
     try {
-      const response = await axios.get<Reply[]>(`/api/boards/${teamnum}/${id}/reply`);
-      console.log(response)
+      const response = await axios.get<Reply[]>(
+        `/api/boards/${teamnum}/${id}/reply`
+      );
+      console.log(response);
       setReplies(response.data);
     } catch (err) {
       alert('Error: ' + err);
@@ -92,19 +93,21 @@ export default function BoardView() {
     setShowEditModal(true);
   };
 
-  const onEditInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const onEditInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     if (editReply) {
       setEditReply({ ...editReply, [e.target.name]: e.target.value });
     }
   };
 
   const onDelete = async () => {
-    let yn = window.confirm(`${id}번 글을 정말 삭제하시겠습니까?`)
-    if(yn) {
-        await axios.delete(`/api/boards/${id}`)
-        window.history.back()
+    let yn = window.confirm(`${id}번 글을 정말 삭제하시겠습니까?`);
+    if (yn) {
+      await axios.delete(`/api/boards/${id}`);
+      window.history.back();
     }
-}
+  };
 
   const updateReply = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -130,37 +133,40 @@ export default function BoardView() {
   return (
     <Container className="py-13">
       <Card>
-        
         <Card.Body>
-          <h1 className=''>F1 팀 {teamnum} 번의 이야기</h1>
+          <h1 className="">F1 팀 {teamnum} 번의 이야기</h1>
           <br />
-          <div className='text-end my-2'>
-          <h2> [ 게시글 번호.{id} ]</h2>
-          <Link to={`/boardEdit/:teamnum/:id`}><Button variant='success' className='mx-1'>수   정</Button></Link>
-          <Button onClick={onDelete}  variant='warning'>삭   제</Button>
+          <div className="text-end my-2">
+            <h2> [ 게시글 번호.{id} ]</h2>
+            <Link to={`/boardEdit/${id}`} state={{ id: id }}>
+              <Button variant="success" className="mx-1">
+                수 정
+              </Button>
+            </Link>
+            <Button onClick={onDelete} variant="warning">
+              삭 제
+            </Button>
           </div>
           <hr />
-          <div className='cArea'>
-          {post ? (
-            <>
-              <h2>제목 : {post.title}</h2>
-              <br />
-              <h4>유져이름 : {post.userid}</h4>
-              <hr />
-              <div className="cArea">
-                <p>{post.content}</p>
-              </div>
-              <Card.Footer>
-                Created on {post.wdate} by {post.userid}
-              </Card.Footer>
-            </>
-            
-          ) : (
-            <p>Loading...</p>
-          )}
+          <div className="cArea">
+            {post ? (
+              <>
+                <h2>제목 : {post.title}</h2>
+                <br />
+                <h4>유져이름 : {post.userid}</h4>
+                <hr />
+                <div className="cArea">
+                  <p>{post.content}</p>
+                </div>
+                <Card.Footer>
+                  Created on {post.wdate} by {post.userid}
+                </Card.Footer>
+              </>
+            ) : (
+              <p>Loading...</p>
+            )}
           </div>
         </Card.Body>
-
       </Card>
       <Row className="my-5">
         <Col className="px-1.5">
@@ -174,9 +180,7 @@ export default function BoardView() {
       </Row>
       <Row className="my-5">
         <Col className="px-1.5">
-          <BoardReplyForm
-          addReply={addReply}
-          />
+          <BoardReplyForm addReply={addReply} />
         </Col>
       </Row>
       {/* 댓글 수정 모달 */}

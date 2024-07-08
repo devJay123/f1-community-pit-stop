@@ -4,10 +4,16 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import axios from '../lib/axiosCreate';
 import { Form, Row, Col, Container, Button } from 'react-bootstrap';
-
-const boardId = 3;
+import { useLocation } from 'react-router-dom';
 
 export default function BoardEdit() {
+  const location = useLocation();
+  if (location.state.id) {
+    console.log(location.state.id);
+  }
+
+  const boardId = location.state.id;
+
   const validationSchema = Yup.object().shape({
     userid: Yup.string().required('작성자를 입력하세요'),
     title: Yup.string()
@@ -37,11 +43,12 @@ export default function BoardEdit() {
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get(`/api/boards/${boardId}`);
+
       const responseData = response.data[0];
 
-      if (responseData.result === 'fail') {
-        console.log('불러오기 실패');
-      }
+      // if (responseData.result === 'fail') {
+      //   console.log('불러오기 실패');
+      // }
 
       reset({
         title: responseData.title,
