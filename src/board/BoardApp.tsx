@@ -1,140 +1,43 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Card, Alert } from "react-bootstrap";
-import redbull from "../assets/red-bull-racing.avif";
-import ferrari from "../assets/ferrari.avif";
-import mclaren from "../assets/mclaren.avif";
-import mercedes from "../assets/mercedes.avif";
-import astonmartin from "../assets/aston-martin.avif";
-import rb from "../assets/rb.avif";
-import haas from "../assets/haas.avif";
-import alpine from "../assets/alpine.avif";
-import williams from "../assets/williams.avif";
-import sauber from "../assets/kick-sauber.avif";
+
+// 차량 이미지
+// import redbull from "../assets/red-bull-racing.avif";
+// import ferrari from "../assets/ferrari.avif";
+// import mclaren from "../assets/mclaren.avif";
+// import mercedes from "../assets/mercedes.avif";
+// import astonmartin from "../assets/aston-martin.avif";
+// import rb from "../assets/rb.avif";
+// import haas from "../assets/haas.avif";
+// import alpine from "../assets/alpine.avif";
+// import williams from "../assets/williams.avif";
+// import sauber from "../assets/kick-sauber.avif";
+import teams from "../lib/teamInfo";
 import "./BoardApp.css";
 
 interface ITeam {
   id: number;
   name: string;
   rank: number;
-  logo?: string;
+  logo: string;
   driverName1: string;
+  driverProfile1: string;
   driverName2: string;
-  imageUrl?: string;
+  driverProfile2: string;
+  imageUrl: string;
   teamColor: string;
 }
 
-const teams: ITeam[] = [
-  {
-    id: 1,
-    name: "Team 1",
-    rank: 1,
-    logo: "팀 로고",
-    driverName1: "선수명 1",
-    driverName2: "선수명 2",
-    imageUrl: redbull,
-    teamColor: "rgb(54 113 198 / 1)",
-  },
-  {
-    id: 2,
-    name: "Team 2",
-    rank: 2,
-    logo: "팀 로고",
-    driverName1: "선수명 1",
-    driverName2: "선수명 2",
-    imageUrl: ferrari,
-    teamColor: "rgb(232 0 32 /1)",
-  },
-  {
-    id: 3,
-    name: "Team 3",
-    rank: 3,
-    logo: "팀 로고",
-    driverName1: "선수명 1",
-    driverName2: "선수명 2",
-    imageUrl: mclaren,
-    teamColor: "rgb(255 128 0 /1)",
-  },
-  {
-    id: 4,
-    name: "Team 4",
-    rank: 4,
-    logo: "팀 로고",
-    driverName1: "선수명 1",
-    driverName2: "선수명 2",
-    imageUrl: mercedes,
-    teamColor: "rgb(39 244 210/1)",
-  },
-  {
-    id: 5,
-    name: "Team 5",
-    rank: 5,
-    logo: "팀 로고",
-    driverName1: "선수명 1",
-    driverName2: "선수명 2",
-    imageUrl: astonmartin,
-    teamColor: "rgb(34 153 113/1)",
-  },
-  {
-    id: 6,
-    name: "Team 6",
-    rank: 6,
-    logo: "팀 로고",
-    driverName1: "선수명 1",
-    driverName2: "선수명 2",
-    imageUrl: rb,
-    teamColor: "rgb(102 146 255/1)",
-  },
-  {
-    id: 7,
-    name: "Team 7",
-    rank: 7,
-    logo: "팀 로고",
-    driverName1: "선수명 1",
-    driverName2: "선수명 2",
-    imageUrl: haas,
-    teamColor: "rgb(182 186 189 /1)",
-  },
-  {
-    id: 8,
-    name: "Team 8",
-    rank: 8,
-    logo: "팀 로고",
-    driverName1: "선수명 1",
-    driverName2: "선수명 2",
-    imageUrl: alpine,
-    teamColor: "rgb(0 147 204 / 1)",
-  },
-  {
-    id: 9,
-    name: "Team 9",
-    rank: 9,
-    logo: "팀 로고",
-    driverName1: "선수명 1",
-    driverName2: "선수명 2",
-    imageUrl: williams,
-    teamColor: "rgb(100 196 255  / 1)",
-  },
-  {
-    id: 10,
-    name: "Team 10",
-    rank: 10,
-    logo: "팀 로고",
-    driverName1: "선수명 1",
-    driverName2: "선수명 2",
-    imageUrl: sauber,
-    teamColor: "rgb(82 226 82 /1)",
-  },
-];
+const teams2: ITeam[] = teams;
 
 export default function BoardApp() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   return (
     <Container>
-      <h2>커뮤니티</h2>
       <div>
-        <h3
+        <h2
           style={{
             padding: "15px",
             fontSize: "2rem",
@@ -144,15 +47,15 @@ export default function BoardApp() {
             margin: "20px 0",
           }}
         >
-          2024 F1 팀
-        </h3>
+          커뮤니티
+        </h2>
       </div>
       <Alert variant="secondary">
         Discover everything you need to know about this year's Formula 1 teams -
         drivers, podium finishes, points earned and championship titles.
       </Alert>
       <Row>
-        {teams.map((team) => (
+        {teams2.map((team) => (
           <Col md={6} key={team.id} className="mb-4">
             <Link
               to={`/community/list/${team.id}`}
@@ -214,8 +117,16 @@ export default function BoardApp() {
                       <Card.Title
                         style={{
                           padding: "10px 0",
-                          borderTop: "1px solid #a0a0a0",
-                          borderBottom: "1px solid #a0a0a0",
+                          borderTop: `${
+                            hoveredCard === team.id
+                              ? "1px solid #fff"
+                              : "1px solid #a0a0a0"
+                          }`,
+                          borderBottom: `${
+                            hoveredCard === team.id
+                              ? "1px solid #fff"
+                              : "1px solid #a0a0a0"
+                          }`,
                         }}
                       >
                         {team.name}
@@ -225,11 +136,29 @@ export default function BoardApp() {
                       <Card.Title
                         style={{
                           padding: "10px 0",
-                          borderTop: "1px solid #a0a0a0",
-                          borderBottom: "1px solid #a0a0a0",
+                          borderTop: `${
+                            hoveredCard === team.id
+                              ? "1px solid #fff"
+                              : "1px solid #a0a0a0"
+                          }`,
+                          borderBottom: `${
+                            hoveredCard === team.id
+                              ? "1px solid #fff"
+                              : "1px solid #a0a0a0"
+                          }`,
                         }}
                       >
-                        {team.logo}
+                        {" "}
+                        <Card.Img
+                          variant="top"
+                          src={team.logo}
+                          alt={`${team.logo} image`}
+                          style={{
+                            width: "32px",
+                            height: "32px",
+                            objectFit: "cover",
+                          }}
+                        />
                       </Card.Title>
                     </Col>
                   </Row>
@@ -241,8 +170,16 @@ export default function BoardApp() {
                         style={{
                           padding: "15px 0",
                           margin: "10px 0",
-                          borderRight: "1px solid #a0a0a0",
-                          borderBottom: "1px solid #a0a0a0",
+                          borderTop: `${
+                            hoveredCard === team.id
+                              ? "1px solid #fff"
+                              : "1px solid #a0a0a0"
+                          }`,
+                          borderBottom: `${
+                            hoveredCard === team.id
+                              ? "1px solid #fff"
+                              : "1px solid #a0a0a0"
+                          }`,
                           borderRadius: "0 0 10px 0",
                         }}
                       >
@@ -255,8 +192,16 @@ export default function BoardApp() {
                         style={{
                           padding: "15px 0",
                           margin: "10px 0",
-                          borderRight: "1px solid #a0a0a0",
-                          borderBottom: "1px solid #a0a0a0",
+                          borderRight: `${
+                            hoveredCard === team.id
+                              ? "1px solid #fff"
+                              : "1px solid #a0a0a0"
+                          }`,
+                          borderBottom: `${
+                            hoveredCard === team.id
+                              ? "1px solid #fff"
+                              : "1px solid #a0a0a0"
+                          }`,
                           borderRadius: "0 0 10px 0",
                         }}
                       >
