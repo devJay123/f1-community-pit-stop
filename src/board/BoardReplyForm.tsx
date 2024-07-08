@@ -2,9 +2,9 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
 export interface Reply {
-  id?: string;
+  id: string;
   content: string;
-  postId?: string;
+  postId: string;
 }
 
 interface BoardReplyFormProps {
@@ -24,7 +24,11 @@ const BoardReplyForm: React.FC<BoardReplyFormProps> = ({ addReply }) => {
       alert('댓글 내용을 입력하세요.');
       return;
     }
-    addReply({ content });
+    addReply({
+      content,
+      id: '',
+      postId: ''
+    });
     setContent('');
   };
 
