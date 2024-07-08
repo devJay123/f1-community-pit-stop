@@ -1,27 +1,27 @@
 :root {
   /* 게시글 내용, 게시글 리스트 제목, 댓글 사이즈,  */
   --base-font-size: 14px;
-  --base-font-family: url(./assets/KoPubWorld\ Dotum\ Bold.ttf);
+  --base-font-family: url(./assets/KoPubWorld_Dotum_Bold.ttf);
   --base-padding: 10px;
   --base-margin: 10px;
 }
 
 /* font-face */
 @font-face {
-  font-family: 'KoPub_Bold';
-  src: url(./assets/KoPubWorld_Dotum_Bold.ttf) format('truetype');
+  font-family: "KoPub_Bold";
+  src: url(./assets/KoPubWorld_Dotum_Bold.ttf) format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
-  font-family: 'KoPub_Medium';
-  src: url(./assets/KoPubWorld_Dotum_Medium.ttf) format('truetype');
+  font-family: "KoPub_Medium";
+  src: url(./assets/KoPubWorld_Dotum_Medium.ttf) format("truetype");
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
-  font-family: 'KoPub_Light';
-  src: url(./assets/KoPubWorld_Dotum_Light.ttf) format('truetype');
+  font-family: "KoPub_Light";
+  src: url(./assets/KoPubWorld_Dotum_Light.ttf) format("truetype");
   font-weight: 300;
   font-style: normal;
 }
