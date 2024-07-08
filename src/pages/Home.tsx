@@ -18,14 +18,25 @@ export default function Hone() {
         </Carousel>
       </div>
       <Container>
-        <Row className="py-5">
+        <Row className="py-5 news_container">
+          <h2 className="visually-hidden">뉴스</h2>
           <Col md={5} className="news_main">
-            <div>
-              <p>뉴스메인기사칸</p>
-            </div>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.formula1.com/en/latest/article/i-cant-stop-crying-hamilton-admits-there-were-days-he-didnt-feel-good-enough.wEUg8BHFp8JHOrUieCIF3"
+            >
+              <p>
+                ‘I can’t stop crying!’ – Hamilton admits there were days he
+                ‘didn’t feel good enough’ after emotional return to winning ways
+              </p>
+              <div className="news_main_imgbox">
+                <img src="./src/assets/news/news-main.avif" alt="" />
+              </div>
+            </a>
           </Col>
           <Col md={7} className="news">
-            <div className="news_container">
+            <div className="news_box">
               <Card className="news_item" style={{ width: '18rem' }}>
                 <Card.Img variant="top" src="holder.js/100px180" />
                 <Card.Body>
