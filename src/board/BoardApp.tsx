@@ -1,18 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Card, Alert } from "react-bootstrap";
-
-// 차량 이미지
-// import redbull from "../assets/red-bull-racing.avif";
-// import ferrari from "../assets/ferrari.avif";
-// import mclaren from "../assets/mclaren.avif";
-// import mercedes from "../assets/mercedes.avif";
-// import astonmartin from "../assets/aston-martin.avif";
-// import rb from "../assets/rb.avif";
-// import haas from "../assets/haas.avif";
-// import alpine from "../assets/alpine.avif";
-// import williams from "../assets/williams.avif";
-// import sauber from "../assets/kick-sauber.avif";
 import teams from "../lib/teamInfo";
 import "./BoardApp.css";
 
@@ -35,7 +23,7 @@ export default function BoardApp() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   return (
-    <Container>
+    <Container className="board_container">
       <div>
         <h2
           style={{
@@ -97,6 +85,7 @@ export default function BoardApp() {
                         ? "translateX(0)"
                         : "translateX(-100%)",
                     transition: "transform 0.1s ease-in-out",
+                    marginLeft: hoveredCard === team.id ? "0" : "10px",
                     zIndex: 0,
                   }}
                 />
@@ -113,9 +102,12 @@ export default function BoardApp() {
 
                   {/* 팀 이름 및 로고 */}
                   <Row>
-                    <Col md={9} style={{ paddingRight: 0 }}>
+                    <Col md={12}>
                       <Card.Title
                         style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          width: "100%",
                           padding: "10px 0",
                           borderTop: `${
                             hoveredCard === team.id
@@ -130,25 +122,6 @@ export default function BoardApp() {
                         }}
                       >
                         {team.name}
-                      </Card.Title>
-                    </Col>
-                    <Col md={3} style={{ paddingLeft: 0 }}>
-                      <Card.Title
-                        style={{
-                          padding: "10px 0",
-                          borderTop: `${
-                            hoveredCard === team.id
-                              ? "1px solid #fff"
-                              : "1px solid #a0a0a0"
-                          }`,
-                          borderBottom: `${
-                            hoveredCard === team.id
-                              ? "1px solid #fff"
-                              : "1px solid #a0a0a0"
-                          }`,
-                        }}
-                      >
-                        {" "}
                         <Card.Img
                           variant="top"
                           src={team.logo}
@@ -168,9 +141,12 @@ export default function BoardApp() {
                     <Col md={6}>
                       <Card.Text
                         style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          lineHeight: "50px",
                           padding: "15px 0",
                           margin: "10px 0",
-                          borderTop: `${
+                          borderRight: `${
                             hoveredCard === team.id
                               ? "1px solid #fff"
                               : "1px solid #a0a0a0"
@@ -184,12 +160,21 @@ export default function BoardApp() {
                         }}
                       >
                         {team.driverName1}
+                        <Card.Img
+                          className="w-25 h-25"
+                          variant="top"
+                          src={team.driverProfile1}
+                          alt={`${team.driverName1} image`}
+                        />
                       </Card.Text>
                     </Col>
 
                     <Col md={6}>
                       <Card.Text
                         style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          lineHeight: "50px",
                           padding: "15px 0",
                           margin: "10px 0",
                           borderRight: `${
@@ -206,6 +191,12 @@ export default function BoardApp() {
                         }}
                       >
                         {team.driverName2}
+                        <Card.Img
+                          className="w-25 h-25"
+                          variant="top"
+                          src={team.driverProfile2}
+                          alt={`${team.driverName2} image`}
+                        />
                       </Card.Text>
                     </Col>
                   </Row>

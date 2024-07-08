@@ -1,27 +1,19 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './Header';
-import BoardApp from './board/BoardApp';
-import BoardList from './board/BoardList';
-import BoardForm from './board/BoardForm';
-import BoardEdit from './board/BoardEdit';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./Header";
+import BoardApp from "./board/BoardApp";
+import BoardList from "./board/BoardList";
+import BoardForm from "./board/BoardForm";
+import BoardEdit from "./board/BoardEdit";
 // import BoardReply from './board/BoardReply';
-<<<<<<< HEAD
 import BoardView from "./board/BoardView";
 import Home from "./pages/Home";
 import Rank from "./pages/Rank";
 import LoginHome from "./member/LoginHome";
 import SignUp from "./member/SignUp";
-=======
-import BoardView from './board/BoardView';
-import Home from './pages/Home';
-import Rank from './pages/Rank';
-import LoginHome from './member/LoginHome';
-import SignUp from './member/SignUp';
-import Footer from './Footer';
+import Footer from "./Footer";
 
-import './common.css';
-import './App.css';
->>>>>>> ea76e070fe738ad28bde350071d2f74f0c2db721
+import "./common.css";
+import "./App.css";
 
 // temp로 써져있는거 삭제하기
 function App() {
