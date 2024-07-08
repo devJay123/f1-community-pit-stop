@@ -1,12 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
     <div className="header">
       <Link to="/">
         <div className="logo_box">
-          <img src="./src/assets/f1_logo_red.svg" alt="" />
+          <img src="./src/assets/f1_logo_red.svg" alt="logo" />
         </div>
       </Link>
       <ul className="header_links">
