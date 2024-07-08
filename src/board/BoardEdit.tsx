@@ -8,11 +8,9 @@ import { useLocation } from 'react-router-dom';
 
 export default function BoardEdit() {
   const location = useLocation();
-  if (location.state.id) {
-    console.log(location.state.id);
-  }
 
   const boardId = location.state.id;
+  const teamnum = location.state.teamnum;
 
   const validationSchema = Yup.object().shape({
     userid: Yup.string().required('작성자를 입력하세요'),
@@ -34,7 +32,7 @@ export default function BoardEdit() {
   const onSubmit = async (data: any) => {
     const response = await axios.put(`/api/boards/${boardId}`, data);
     if (response.data.result === 'success') {
-      window.location.href = '/';
+      window.location.href = `/boards/${teamnum}/${boardId}`;
     } else {
       console.log('fail');
     }

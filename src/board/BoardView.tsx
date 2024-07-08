@@ -138,7 +138,7 @@ export default function BoardView() {
           <br />
           <div className="text-end my-2">
             <h2> [ 게시글 번호.{id} ]</h2>
-            <Link to={`/boardEdit/${id}`} state={{ id: id }}>
+            <Link to={`/boardEdit/${id}`} state={{ id: id, teamnum: teamnum }}>
               <Button variant="success" className="mx-1">
                 수 정
               </Button>
