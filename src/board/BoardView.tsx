@@ -1,20 +1,21 @@
-import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
-import { Row, Col, Card, Container, Button } from "react-bootstrap";
+import React, { useState, useEffect, FormEvent } from "react";
+import { useParams, Link } from "react-router-dom";
+import { Row, Col, Card, Container, Button, Badge } from "react-bootstrap";
 import BoardReply from "./BoardReply";
 import BoardReplyForm from "./BoardReplyForm";
 import BoardReplyEditForm from "./BoardReplyEditFrom";
-import BoardEdit from "./BoardEdit";
+// import BoardEdit from './BoardEdit';
 import axios from "../lib/axiosCreate";
-import { number } from "yup";
+import { teamBorderColors } from "../color";
 
 interface Post {
   userid: string;
   id: string;
   title: string;
   content: string;
-  teamnum: string;
   wdate: string;
+  teamnum: number;
+  readnum: number;
 }
 
 interface Reply {
@@ -25,8 +26,6 @@ interface Reply {
 
 export default function BoardView() {
   const { id, teamnum } = useParams<{ id: string; teamnum: string }>(); // 게시글 ID를 URL 파라미터에서 가져옵니다.
-  // const teamnum = location.state?.teamnum;
-  console.log(teamnum);
   const [post, setPost] = useState<Post | null>(null);
   const [replies, setReplies] = useState<Reply[]>([]);
   const [showEditModal, setShowEditModal] = useState(false); // 모달창
@@ -37,6 +36,7 @@ export default function BoardView() {
       if (teamnum && id) {
         await getBoard(); // 게시글 가져오기
         await getReplies(); // 댓글 가져오기
+        await updateReadnum(); // 조회수 증가
       }
     };
     fetchData(); // 호출
@@ -44,8 +44,17 @@ export default function BoardView() {
 
   const getBoard = async () => {
     try {
-      const response = await axios.get<Post>(`/api/boards/${teamnum}/${id}`);
+      const response = await axios.get(`/api/boards/${teamnum}/${id}`);
       setPost(response.data);
+    } catch (err) {
+      alert("Error: " + err);
+    }
+  };
+
+  const updateReadnum = async () => {
+    try {
+      const response = await axios.put(`/api/boardReadNum/${id}`);
+      response;
     } catch (err) {
       alert("Error: " + err);
     }
@@ -56,7 +65,6 @@ export default function BoardView() {
       const response = await axios.get<Reply[]>(
         `/api/boards/${teamnum}/${id}/reply`
       );
-      console.log(response);
       setReplies(response.data);
     } catch (err) {
       alert("Error: " + err);
@@ -66,7 +74,6 @@ export default function BoardView() {
   const addReply = async (newReply: Reply): Promise<void> => {
     try {
       const response = await axios.post(`/api/boards/${id}/reply`, newReply);
-      console.log(newReply);
       if (response.data.result === "success") {
         getReplies();
       }
@@ -102,7 +109,7 @@ export default function BoardView() {
   };
 
   const onDelete = async () => {
-    let yn = window.confirm(`${id}번 글을 정말 삭제하시겠습니까?`);
+    const yn = window.confirm(`${id}번 글을 정말 삭제하시겠습니까?`);
     if (yn) {
       await axios.delete(`/api/boards/${id}`);
       window.history.back();
@@ -130,32 +137,39 @@ export default function BoardView() {
     }
   };
 
+  const borderColorClass = teamBorderColors[Number(teamnum)] || "border-dark";
+
   return (
     <Container className="py-13">
-      <Card>
+      <div className="text-end my-2">
+        <Link to={`/boardEdit/${id}`} state={{ id: id, teamnum: teamnum }}>
+          <Button variant="success" className="mx-1">
+            수 정
+          </Button>
+        </Link>
+        <Button onClick={onDelete} variant="warning">
+          삭 제
+        </Button>
+      </div>
+      <Card
+        className="mb-3 border-2"
+        style={{ borderColor: `${borderColorClass}` }}
+      >
         <Card.Body>
-          <h1 className="">F1 팀 {teamnum} 번의 이야기</h1>
-          <br />
-          <div className="text-end my-2">
-            <h2> [ 게시글 번호.{id} ]</h2>
-            <Link to={`/boardEdit/${id}`} state={{ id: id, teamnum: teamnum }}>
-              <Button variant="success" className="mx-1">
-                수 정
-              </Button>
-            </Link>
-            <Button onClick={onDelete} variant="warning">
-              삭 제
-            </Button>
+          <div>
+            <div className="card-header h2">F1 팀 {teamnum} 번의 이야기</div>
           </div>
-          <hr />
+          <br />
           <div className="cArea">
             {post ? (
               <>
-                <h2>제목 : {post.title}</h2>
-                <br />
-                <h4>유져이름 : {post.userid}</h4>
+                <div className="text-end m-1">
+                  조회수 : <Badge className="primary">{post.readnum}</Badge>
+                  <h1 className="h6">{post.userid}</h1>
+                </div>
                 <hr />
-                <div className="cArea">
+                <div className="cArea h3 p-5">
+                  <h2 className="h6 mb-4">{post.title}</h2>
                   <p>{post.content}</p>
                 </div>
                 <Card.Footer>
@@ -168,36 +182,43 @@ export default function BoardView() {
           </div>
         </Card.Body>
       </Card>
-      <Row className="my-5">
-        <Col className="px-1.5">
-          <h3 className="mt-4">댓글 목록</h3>
-          <BoardReply
-            replies={replies}
-            onDelete={deleteReply}
-            onEdit={startEditReply}
-          />
-        </Col>
-      </Row>
-      <Row className="my-5">
-        <Col className="px-1.5">
-          <BoardReplyForm addReply={addReply} />
-        </Col>
-      </Row>
-      {/* 댓글 수정 모달 */}
-      {showEditModal && editReply && (
-        <Row className="my-5">
-          <Col className="px-1.5">
-            <BoardReplyEditForm
-              reply={editReply}
-              onChange={(e) => {
-                onEditInputChange(e);
-              }}
-              onSubmit={updateReply}
-              onCancel={() => setShowEditModal(false)}
-            />
-          </Col>
-        </Row>
-      )}
+      <Card
+        className="mb-3 border-2"
+        style={{ borderColor: `${borderColorClass}` }}
+      >
+        <Card.Body className="p-3">
+          <Row className="my-1">
+            <Col className="px-1.5">
+              <h3 className="mt-4">댓글 목록</h3>
+              <BoardReply
+                replies={replies}
+                onDelete={deleteReply}
+                onEdit={startEditReply}
+              />
+            </Col>
+          </Row>
+          <Row className="my-5">
+            <Col className="px-1.5">
+              <BoardReplyForm addReply={addReply} />
+            </Col>
+          </Row>
+          {/* 댓글 수정 모달 */}
+          {showEditModal && editReply && (
+            <Row className="my-5">
+              <Col className="px-1.5">
+                <BoardReplyEditForm
+                  reply={editReply}
+                  onChange={(e) => {
+                    onEditInputChange(e);
+                  }}
+                  onSubmit={updateReply}
+                  onCancel={() => setShowEditModal(false)}
+                />
+              </Col>
+            </Row>
+          )}
+        </Card.Body>
+      </Card>
     </Container>
   );
 }
