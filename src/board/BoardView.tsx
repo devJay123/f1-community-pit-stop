@@ -1,12 +1,12 @@
-import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
-import { Row, Col, Card, Container, Button } from 'react-bootstrap';
-import BoardReply from './BoardReply';
-import BoardReplyForm from './BoardReplyForm';
-import BoardReplyEditForm from './BoardReplyEditFrom';
-import BoardEdit from './BoardEdit';
-import axios from '../lib/axiosCreate';
-import { number } from 'yup';
+import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
+import { Row, Col, Card, Container, Button } from "react-bootstrap";
+import BoardReply from "./BoardReply";
+import BoardReplyForm from "./BoardReplyForm";
+import BoardReplyEditForm from "./BoardReplyEditFrom";
+import BoardEdit from "./BoardEdit";
+import axios from "../lib/axiosCreate";
+import { number } from "yup";
 
 interface Post {
   userid: string;
@@ -47,7 +47,7 @@ export default function BoardView() {
       const response = await axios.get<Post>(`/api/boards/${teamnum}/${id}`);
       setPost(response.data);
     } catch (err) {
-      alert('Error: ' + err);
+      alert("Error: " + err);
     }
   };
 
@@ -59,7 +59,7 @@ export default function BoardView() {
       console.log(response);
       setReplies(response.data);
     } catch (err) {
-      alert('Error: ' + err);
+      alert("Error: " + err);
     }
   };
 
@@ -67,24 +67,24 @@ export default function BoardView() {
     try {
       const response = await axios.post(`/api/boards/${id}/reply`, newReply);
       console.log(newReply);
-      if (response.data.result === 'success') {
+      if (response.data.result === "success") {
         getReplies();
       }
     } catch (err) {
-      alert('Error: ' + err);
+      alert("Error: " + err);
     }
   };
 
   const deleteReply = async (replyId: string) => {
     try {
       const response = await axios.delete(`/api/boards/reply/${replyId}`);
-      if (response.data.result === 'success') {
+      if (response.data.result === "success") {
         getReplies();
       } else {
-        alert('삭제 실패');
+        alert("삭제 실패");
       }
     } catch (err) {
-      alert('Error: ' + err);
+      alert("Error: " + err);
     }
   };
 
@@ -117,7 +117,7 @@ export default function BoardView() {
           `/api/boards/reply/${editReply.id}`,
           editReply
         );
-        if (response.data.result === 'success') {
+        if (response.data.result === "success") {
           setShowEditModal(false);
           getReplies();
           setEditReply(null);
@@ -126,7 +126,7 @@ export default function BoardView() {
         }
       }
     } catch (err) {
-      alert('Error: ' + err);
+      alert("Error: " + err);
     }
   };
 

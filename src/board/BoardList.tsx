@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Badge from "react-bootstrap/Badge";
 import { useLocation, Link } from "react-router-dom";
-import { ListGroup, Row, Col, Container, Pagination } from "react-bootstrap";
+import {
+  ListGroup,
+  Row,
+  Col,
+  Container,
+  Pagination,
+  Button,
+  Alert,
+} from "react-bootstrap";
 
 import axios from "../lib/axiosCreate";
 
@@ -26,7 +34,7 @@ export default function BoardList() {
 
   const [state, setState] = useState<IStateType>({
     data: [],
-    limit: 2,
+    limit: 3,
     activePage: 1,
     listLength: 0,
   });
@@ -40,7 +48,7 @@ export default function BoardList() {
   const getList = async (page: number) => {
     try {
       const response = await axios.get<IBoardList[]>(
-        `/api/boardlist/${teamNum ?? 0}`
+        `/api/boardlist/${teamNum}`
       );
       const { data } = response;
       const startIndex = (page - 1) * state.limit;
@@ -62,6 +70,7 @@ export default function BoardList() {
   };
 
   const handlePageChange = (pageNumber: number) => {
+    if (pageNumber < 1 || pageNumber > totalPages) return;
     setState((prev) => ({ ...prev, activePage: pageNumber }));
   };
 
@@ -76,14 +85,40 @@ export default function BoardList() {
 
   return (
     <Container>
-      <h2>커뮤니티</h2>
-      <Row>
-        <Row>
-          <ListGroup as="ul">
-            <ListGroup.Item
-              as="li"
-              className="d-flex justify-content-between align-items-start"
-            >
+      <div>
+        <h3
+          style={{
+            padding: "15px",
+            fontSize: "2rem",
+            borderTop: "5px solid #000",
+            borderRight: "5px solid #000",
+            borderRadius: "0 15px 0 0",
+            margin: "20px 0",
+          }}
+        >
+          커뮤니티
+        </h3>
+      </div>
+      <Alert variant="secondary">
+        Discover everything you need to know about this year's Formula 1 teams -
+        drivers, podium finishes, points earned and championship titles.
+      </Alert>
+
+      <Row className="mt-2 mb-5">
+        <Row className="mb-4">
+          <div className="position-relative text-end mb-2">
+            <Button variant="dark">
+              <Link
+                className="text-white"
+                to={`/boardwrite/${teamNum}`}
+                state={{ teamnum: teamNum }}
+              >
+                글쓰기
+              </Link>
+            </Button>
+          </div>
+          <ListGroup className="">
+            <ListGroup.Item className="d-flex justify-content-between align-items-start bg-secondary text-white">
               <Col md={1} className="text-center">
                 번호
               </Col>
@@ -108,53 +143,63 @@ export default function BoardList() {
 
         <Row>
           {state.data.length > 0 &&
-            state.data.map((list, i) => (
-              <ListGroup as="ul" key={i}>
-                <ListGroup.Item
-                  as="li"
-                  className="d-flex justify-content-between align-items-start"
-                >
-                  <Col md={1} className="text-center">
-                    <div className="d">{i + 1}</div>
-                  </Col>
-                  <Col md={1} className="text-center">
-                    <div className="">{list.id}</div>
-                  </Col>
-                  <Col md={4} className="text-center">
-                    <Link to={`/boards/${teamNum}/${list.id}`}>
-                      <div className="fw-bold">{list.title}</div>
-                    </Link>
-                  </Col>
-                  <Col md={2} className="text-center">
-                    <div className="">{list.userid}</div>
-                  </Col>
-                  <Col md={2} className="text-center">
-                    <div className="">{list.wdate}</div>
-                  </Col>
+            state.data.map((list, i) => {
+              const reverseIndex =
+                state.listLength - (state.activePage - 1) * state.limit - i;
+              return (
+                <ListGroup as="ul" key={i}>
+                  <ListGroup.Item
+                    as="li"
+                    className="d-flex justify-content-between align-items-start"
+                  >
+                    <Col md={1} className="text-center">
+                      <div>{reverseIndex}</div>
+                    </Col>
+                    <Col md={1} className="text-center">
+                      <div>{list.id}</div>
+                    </Col>
+                    <Col md={4} className="text-center">
+                      <Link to={`/boards/${teamNum}/${list.id}`}>
+                        <div className="fw-bold">{list.title}</div>
+                      </Link>
+                    </Col>
+                    <Col md={2} className="text-center">
+                      <div className="">{list.userid}</div>
+                    </Col>
+                    <Col md={2} className="text-center">
+                      <div className="">{list.wdate}</div>
+                    </Col>
 
-                  <Col md={1} className="text-center">
-                    <Badge bg="primary" pill>
-                      {list.readnum}
-                    </Badge>
-                  </Col>
-                </ListGroup.Item>
-              </ListGroup>
-            ))}
+                    <Col md={1} className="text-center ">
+                      <Badge bg="dark" className="rounded-1">
+                        {list.readnum}
+                      </Badge>
+                    </Col>
+                  </ListGroup.Item>
+                </ListGroup>
+              );
+            })}
         </Row>
       </Row>
 
-      <Pagination>
-        <Pagination.Prev />
+      <Pagination className="d-flex justify-content-center">
+        <Pagination.Prev
+          onClick={() => handlePageChange(state.activePage - 1)}
+          disabled={state.activePage === 1}
+        />
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
           <Pagination.Item
             onClick={() => handlePageChange(page)}
             key={page}
-            disabled={state.activePage === page}
+            active={state.activePage === page}
           >
             {page}
           </Pagination.Item>
         ))}
-        <Pagination.Next />
+        <Pagination.Next
+          onClick={() => handlePageChange(state.activePage + 1)}
+          disabled={state.activePage === totalPages}
+        />
       </Pagination>
     </Container>
   );
