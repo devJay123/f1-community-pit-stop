@@ -19,7 +19,7 @@ export default function Rank() {
         ))}
       </Row>
       <Row>
-        {Array.from({ length: 17 }).map((_, i) => (
+        {Array.from({ length: 18 }).map((_, i) => (
           <Col md={3} className="mb-4" key={i}>
             <Card className="text-center">
               <Card.Body>

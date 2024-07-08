@@ -22,7 +22,6 @@ interface IStateType {
 }
 
 export default function BoardList() {
-  //const [boardList, getBoardList] = useState<IBoardList[]>([]);
   const location = useLocation();
 
   const [state, setState] = useState<IStateType>({
@@ -79,24 +78,34 @@ export default function BoardList() {
     <Container>
       <h2>커뮤니티</h2>
       <Row>
-        <Col md={1} className="text-center">
-          번호
-        </Col>
-        <Col md={1} className="text-center">
-          글 번호
-        </Col>
-        <Col md={4} className="text-center">
-          제목
-        </Col>
-        <Col md={2} className="text-center">
-          작성자
-        </Col>
-        <Col md={2} className="text-center">
-          작성날짜
-        </Col>
-        <Col md={2} className="text-center">
-          조회수
-        </Col>
+        <Row>
+          <ListGroup as="ul">
+            <ListGroup.Item
+              as="li"
+              className="d-flex justify-content-between align-items-start"
+            >
+              <Col md={1} className="text-center">
+                번호
+              </Col>
+              <Col md={1} className="text-center">
+                글 번호
+              </Col>
+              <Col md={4} className="text-center">
+                제목
+              </Col>
+              <Col md={2} className="text-center">
+                작성자
+              </Col>
+              <Col md={2} className="text-center">
+                작성날짜
+              </Col>
+              <Col md={1} className="text-center">
+                조회수
+              </Col>
+            </ListGroup.Item>
+          </ListGroup>
+        </Row>
+
         <Row>
           {state.data.length > 0 &&
             state.data.map((list, i) => (
