@@ -10,6 +10,8 @@ import BoardEdit from './board/BoardEdit';
 import BoardView from './board/BoardView';
 import Home from './pages/Home';
 import Rank from './pages/Rank';
+import LoginHome from './member/LoginHome';
+import SignUp from './member/SignUp';
 
 // temp로 써져있는거 삭제하기
 function App() {
@@ -31,6 +33,10 @@ function App() {
 
           {/* <Route path="/tempreply" element={<BoardReply />} /> */}
           <Route path="/boards/:teamnum/:id" element={<BoardView />} />
+
+          {/* login */}
+          <Route path="/loginHome" element={<LoginHome />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </div>
