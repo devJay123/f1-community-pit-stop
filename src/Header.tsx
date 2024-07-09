@@ -12,7 +12,13 @@ export default function Header() {
 
   const location = useLocation();
   const pathname = location.pathname.split('/')[1];
-  console.log(pathname);
+
+  const user = sessionStorage.getItem('loginUserid');
+
+  const onClickLogout = () => {
+    sessionStorage.clear();
+    window.location.href = '/';
+  };
 
   useEffect(() => {
     switch (pathname) {
@@ -130,7 +136,12 @@ export default function Header() {
             });
           }}
         >
-          <Link to="/loginHome">로그인/회원가입</Link>
+          {!user && <Link to="/loginHome">로그인/회원가입</Link>}
+          {user && (
+            <Link to="" onClick={onClickLogout}>
+              로그아웃
+            </Link>
+          )}
         </li>
       </ul>
     </div>

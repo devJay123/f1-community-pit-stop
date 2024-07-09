@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Container, Row, Col, Card, Alert } from "react-bootstrap";
-import teams from "../lib/teamInfo";
-import "./BoardApp.css";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Container, Row, Col, Card, Alert } from 'react-bootstrap';
+import teams from '../lib/teamInfo';
+import './BoardApp.css';
 
 interface ITeam {
   id: number;
@@ -27,15 +27,15 @@ export default function BoardApp() {
       <div>
         <h2
           style={{
-            padding: "15px",
-            fontSize: "2rem",
-            borderTop: "5px solid #000",
-            borderRight: "5px solid #000",
-            borderRadius: "0 15px 0 0",
-            margin: "20px 0",
+            padding: '15px',
+            fontSize: '2rem',
+            borderTop: '5px solid #000',
+            borderRight: '5px solid #000',
+            borderRadius: '0 15px 0 0',
+            margin: '20px 0',
           }}
         >
-          커뮤니티
+          TEAM 커뮤니티
         </h2>
       </div>
       <Alert variant="secondary">
@@ -49,8 +49,8 @@ export default function BoardApp() {
               to={`/community/list/${team.id}`}
               state={{ teamnum: team.id }}
               style={{
-                textDecoration: "none",
-                color: "inherit",
+                textDecoration: 'none',
+                color: 'inherit',
               }}
             >
               <Card
@@ -58,43 +58,43 @@ export default function BoardApp() {
                 onMouseEnter={() => setHoveredCard(team.id)}
                 onMouseLeave={() => setHoveredCard(null)}
                 style={{
-                  border: "none",
+                  border: 'none',
                   borderRight: `2px solid ${
-                    hoveredCard === team.id ? team.teamColor : "#000"
+                    hoveredCard === team.id ? team.teamColor : '#000'
                   }`,
                   borderTop: `2px solid ${
-                    hoveredCard === team.id ? team.teamColor : "#000"
+                    hoveredCard === team.id ? team.teamColor : '#000'
                   }`,
-                  color: `${hoveredCard === team.id ? "#fff" : "#000"}`,
-                  borderRadius: "0 15px 0 0",
-                  position: "relative",
-                  overflow: "hidden",
+                  color: `${hoveredCard === team.id ? '#fff' : '#000'}`,
+                  borderRadius: '0 15px 0 0',
+                  position: 'relative',
+                  overflow: 'hidden',
                 }}
               >
                 <div
                   style={{
                     content: '""',
-                    position: "absolute",
+                    position: 'absolute',
                     top: 0,
                     left: 0,
-                    width: "100%",
-                    height: "100%",
+                    width: '100%',
+                    height: '100%',
                     backgroundColor: team.teamColor,
                     transform:
                       hoveredCard === team.id
-                        ? "translateX(0)"
-                        : "translateX(-100%)",
-                    transition: "transform 0.1s ease-in-out",
-                    marginLeft: hoveredCard === team.id ? "0" : "10px",
+                        ? 'translateX(0)'
+                        : 'translateX(-100%)',
+                    transition: 'transform 0.1s ease-in-out',
+                    marginLeft: hoveredCard === team.id ? '0' : '10px',
                     zIndex: 0,
                   }}
                 />
                 <Card.Body
                   style={{
-                    position: "relative",
+                    position: 'relative',
                     zIndex: 1,
                     transition:
-                      "border-color 0.3s ease-in-out, margin-top 0.3s ease-in-out",
+                      'border-color 0.3s ease-in-out, margin-top 0.3s ease-in-out',
                   }}
                 >
                   {/* 팀 랭킹 */}
@@ -105,19 +105,19 @@ export default function BoardApp() {
                     <Col md={12}>
                       <Card.Title
                         style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          width: "100%",
-                          padding: "10px 0",
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          width: '100%',
+                          padding: '10px 0',
                           borderTop: `${
                             hoveredCard === team.id
-                              ? "1px solid #fff"
-                              : "1px solid #a0a0a0"
+                              ? '1px solid #fff'
+                              : '1px solid #a0a0a0'
                           }`,
                           borderBottom: `${
                             hoveredCard === team.id
-                              ? "1px solid #fff"
-                              : "1px solid #a0a0a0"
+                              ? '1px solid #fff'
+                              : '1px solid #a0a0a0'
                           }`,
                         }}
                       >
@@ -127,9 +127,9 @@ export default function BoardApp() {
                           src={team.logo}
                           alt={`${team.logo} image`}
                           style={{
-                            width: "32px",
-                            height: "32px",
-                            objectFit: "cover",
+                            width: '32px',
+                            height: '32px',
+                            objectFit: 'cover',
                           }}
                         />
                       </Card.Title>
@@ -141,22 +141,22 @@ export default function BoardApp() {
                     <Col md={6}>
                       <Card.Text
                         style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          lineHeight: "50px",
-                          padding: "15px 0",
-                          margin: "10px 0",
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          lineHeight: '50px',
+                          padding: '15px 0',
+                          margin: '10px 0',
                           borderRight: `${
                             hoveredCard === team.id
-                              ? "1px solid #fff"
-                              : "1px solid #a0a0a0"
+                              ? '1px solid #fff'
+                              : '1px solid #a0a0a0'
                           }`,
                           borderBottom: `${
                             hoveredCard === team.id
-                              ? "1px solid #fff"
-                              : "1px solid #a0a0a0"
+                              ? '1px solid #fff'
+                              : '1px solid #a0a0a0'
                           }`,
-                          borderRadius: "0 0 10px 0",
+                          borderRadius: '0 0 10px 0',
                         }}
                       >
                         {team.driverName1}
@@ -172,22 +172,22 @@ export default function BoardApp() {
                     <Col md={6}>
                       <Card.Text
                         style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          lineHeight: "50px",
-                          padding: "15px 0",
-                          margin: "10px 0",
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          lineHeight: '50px',
+                          padding: '15px 0',
+                          margin: '10px 0',
                           borderRight: `${
                             hoveredCard === team.id
-                              ? "1px solid #fff"
-                              : "1px solid #a0a0a0"
+                              ? '1px solid #fff'
+                              : '1px solid #a0a0a0'
                           }`,
                           borderBottom: `${
                             hoveredCard === team.id
-                              ? "1px solid #fff"
-                              : "1px solid #a0a0a0"
+                              ? '1px solid #fff'
+                              : '1px solid #a0a0a0'
                           }`,
-                          borderRadius: "0 0 10px 0",
+                          borderRadius: '0 0 10px 0',
                         }}
                       >
                         {team.driverName2}
