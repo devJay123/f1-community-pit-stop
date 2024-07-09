@@ -17,6 +17,13 @@ export default function Header() {
 
   const onClickLogout = () => {
     sessionStorage.clear();
+    setClicked({
+      community: false,
+      rank: false,
+      schedule: false,
+      loginHome: true,
+    });
+
     window.location.href = '/';
   };
 
@@ -86,57 +93,67 @@ export default function Header() {
         </div>
       </Link>
       <ul className="header_links">
-        <li
-          className={`${clicked.community ? 'clicked' : ''}`}
-          onClick={() => {
-            setClicked({
-              community: true,
-              rank: false,
-              schedule: false,
-              loginHome: false,
-            });
-          }}
-        >
-          <Link to="/community">커뮤니티</Link>
+        <li className={`${clicked.community ? 'clicked' : ''}`}>
+          <Link
+            onClick={() => {
+              setClicked({
+                community: true,
+                rank: false,
+                schedule: false,
+                loginHome: false,
+              });
+            }}
+            to="/community"
+          >
+            커뮤니티
+          </Link>
         </li>
-        <li
-          className={`${clicked.rank ? 'clicked' : ''}`}
-          onClick={() => {
-            setClicked({
-              community: false,
-              rank: true,
-              schedule: false,
-              loginHome: false,
-            });
-          }}
-        >
-          <Link to="/rank">순위</Link>
+        <li className={`${clicked.rank ? 'clicked' : ''}`}>
+          <Link
+            onClick={() => {
+              setClicked({
+                community: false,
+                rank: true,
+                schedule: false,
+                loginHome: false,
+              });
+            }}
+            to="/rank"
+          >
+            순위
+          </Link>
         </li>
-        <li
-          className={`${clicked.schedule ? 'clicked' : ''}`}
-          onClick={() => {
-            setClicked({
-              community: false,
-              rank: false,
-              schedule: true,
-              loginHome: false,
-            });
-          }}
-        >
-          <Link to="/schedule">경기일정</Link>
+        <li className={`${clicked.schedule ? 'clicked' : ''}`}>
+          <Link
+            onClick={() => {
+              setClicked({
+                community: false,
+                rank: false,
+                schedule: true,
+                loginHome: false,
+              });
+            }}
+            to="/schedule"
+          >
+            경기일정
+          </Link>
         </li>
-        <li
-          className={`${clicked.loginHome ? 'clicked' : ''}`}
-          onClick={() => {
-            setClicked({
-              community: false,
-              rank: false,
-              schedule: false,
-              loginHome: true,
-            });
-          }}
-        >
-          {!user && <Link to="/loginHome">로그인/회원가입</Link>}
+        <li className={`${clicked.loginHome ? 'clicked' : ''}`}>
+          {!user && (
+            <Link
+              onClick={() => {
+                setClicked({
+                  community: false,
+                  rank: false,
+                  schedule: false,
+                  loginHome: true,
+                });
+              }}
+              to="/loginHome"
+            >
+              로그인/회원가입
+            </Link>
+          )}
           {user && (
             <Link to="" onClick={onClickLogout}>
               로그아웃
