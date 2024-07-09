@@ -11,11 +11,11 @@ import Rank from "./pages/Rank";
 import LoginHome from "./member/LoginHome";
 import SignUp from "./member/SignUp";
 import Footer from "./Footer";
+import PageNotFound from "./pages/PageNotFound";
 
 import "./common.css";
 import "./App.css";
 
-// temp로 써져있는거 삭제하기
 function App() {
   return (
     <div>
@@ -38,6 +38,9 @@ function App() {
           {/* login */}
           <Route path="/loginHome" element={<LoginHome />} />
           <Route path="/signup" element={<SignUp />} />
+
+          {/* PageNotFound */}
+          <Route path={"*"} element={<PageNotFound />} />
         </Routes>
 
         <Footer />

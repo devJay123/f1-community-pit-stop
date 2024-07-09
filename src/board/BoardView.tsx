@@ -140,7 +140,7 @@ export default function BoardView() {
   const borderColorClass = teamBorderColors[Number(teamnum)] || "border-dark";
 
   return (
-    <Container className="py-13">
+    <Container className="py-13 ">
       <div className="text-end my-2">
         <Link to={`/boardEdit/${id}`} state={{ id: id, teamnum: teamnum }}>
           <Button variant="success" className="mx-1">
@@ -164,7 +164,7 @@ export default function BoardView() {
             {post ? (
               <>
                 <div className="text-end m-1">
-                  조회수 : <Badge className="primary">{post.readnum}</Badge>
+                  조회수 : <Badge bg="dark">{post.readnum}</Badge>
                   <h1 className="h6">{post.userid}</h1>
                 </div>
                 <hr />

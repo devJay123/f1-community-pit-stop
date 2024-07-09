@@ -45,7 +45,7 @@ const BoardReplyForm: React.FC<BoardReplyFormProps> = ({ addReply }) => {
           onChange={handleChange}
         />
       </Form.Group>
-      <Button variant="primary" type="submit" className="mt-2">
+      <Button  type="submit" className="mt-2">
         댓글 추가
       </Button>
     </Form>
