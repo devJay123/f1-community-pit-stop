@@ -10,18 +10,33 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 70%;
+
+  transition: transform 0.5s ease;
+}
+.main-banner .banner1:hover {
+  transform: scale(1.2);
 }
 .main-banner .banner2 {
   background-image: url(/src/assets/banner2.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 40% 30%;
+
+  transition: transform 0.5s ease;
+}
+.main-banner .banner2:hover {
+  transform: scale(1.2);
 }
 .main-banner .banner3 {
   background-image: url(/src/assets/banner3.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 70%;
+
+  transition: transform 0.5s ease;
+}
+.main-banner .banner3:hover {
+  transform: scale(1.2);
 }
 .news_main {
   overflow: hidden;
