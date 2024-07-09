@@ -79,6 +79,7 @@ export default function BoardEdit() {
               <Form.Label>작성자</Form.Label>
               <Form.Control
                 {...register('userid')}
+                readOnly
                 type="text"
                 name="userid"
                 placeholder="작성자를 입력하세요"
