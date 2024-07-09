@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "../lib/axiosCreate";
 
@@ -59,11 +59,23 @@ export default function LoginHome() {
   };
 
   return (
-    <div>
-      <Container>
-        <Row className="min-vh-100">
-          <Col className="mx-auto d-flex justify-content-center" md={4}>
-            <Form onSubmit={handleSubmit(handleLogin)}>
+    <div className="z-3">
+      <div
+        className="position-relative min-vh-100"
+        style={{
+          backgroundImage: "url(/src/assets/login.jpg)",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          opacity: 0.5,
+        }}
+      ></div>
+      <Row>
+        <Col md={4}>
+          <Form
+            onSubmit={handleSubmit(handleLogin)}
+            className="position-absolute top-50 start-50 translate-middle w-50 h-50 bg-dark text-light rounded"
+          >
+            <Row className="position-absolute top-50 start-50 translate-middle ">
               <Form.Group>
                 <Form.Label>아이디</Form.Label>
                 <Form.Control
@@ -86,16 +98,18 @@ export default function LoginHome() {
                   <p className="text-danger">{errors.passwd.message}</p>
                 )}
               </Form.Group>
+
               <Button variant="warning" type="submit">
                 로그인
               </Button>
-              <Link to={`/signup`}>
-                <Button type="submit">회원가입</Button>
-              </Link>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
+
+              <Button type="submit">
+                <Link to={`/signup`}>회원가입</Link>
+              </Button>
+            </Row>
+          </Form>
+        </Col>
+      </Row>
     </div>
   );
 }
