@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from '../lib/axiosCreate'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface SignUpData {
   name: string;
@@ -144,12 +144,12 @@ export default function SignUp() {
                 <p className="text-danger">{errors.email.message}</p>
               )}
             </Form.Group>
-            <div className="text-center">
+            <div className="text-center m-3">
               <Button className="mx-1" type="submit" variant="success">
                 회원가입
               </Button>
               <Button className="mx-1" type="reset" variant="danger">
-                취소
+                <Link to='/loginHome'>취소</Link>
               </Button>
             </div>
           </Form>
