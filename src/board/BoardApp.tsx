@@ -27,6 +27,7 @@ export default function BoardApp() {
       <div>
         <h2
           style={{
+            position: "relative",
             padding: "15px",
             fontSize: "2rem",
             borderTop: "5px solid #000",
@@ -36,6 +37,21 @@ export default function BoardApp() {
           }}
         >
           TEAM 커뮤니티
+          <div
+            style={{
+              position: "absolute",
+              right: "0",
+              top: "0",
+              width: "20%",
+              height: "100%",
+              backgroundImage: `linear-gradient(45deg, transparent 75%, #515151 25%),
+                        linear-gradient(45deg, #515151 25%, transparent 25%),
+                        linear-gradient(-45deg, transparent 75%, #515151 75%),
+                        linear-gradient(-45deg, #515151 25%, transparent 25%)`,
+              backgroundSize: "40px 40px",
+              backgroundPosition: "0 0, -20px 20px, 0 -20px, 20px 0",
+            }}
+          ></div>
         </h2>
       </div>
       <Alert variant="secondary">

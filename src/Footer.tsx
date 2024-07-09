@@ -7,7 +7,7 @@ export default function Footer() {
       <Container className="py-5 footer_container">
         <Row className="justify-content-md-center">
           <Col md={5} className="footer_text">
-            <p>Address: 서울특별시 중구 동대문역사문화공원</p>
+            <p>Project: Pit Stop</p>
             <p>Email : morest432@gamil.com</p>
             <p>Email : mertake7@naver.com</p>
             <p>Email : redmangos@naver.com</p>
