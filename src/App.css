@@ -7,7 +7,7 @@
   height: 110px;
   background-color: #000;
   font-size: 18px;
-  font-family: 'KoPub_Bold';
+  font-family: "KoPub_Bold";
 }
 .header a {
   color: #fff;
@@ -44,11 +44,9 @@
 /* footer */
 .footer {
   height: 200px;
-  margin-top: 100px;
-
   background-color: #000;
   color: #fff;
-  font-family: 'KoPub_Medium';
+  font-family: "KoPub_Medium";
   font-size: 16px;
 }
 .footer .footer_container .footer_text {
