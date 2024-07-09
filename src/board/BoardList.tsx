@@ -107,15 +107,27 @@ export default function BoardList() {
       <Row className="mt-2 mb-5">
         <Row className="mb-4">
           <div className="position-relative text-end mb-2">
-            <Button variant="dark">
-              <Link
-                className="text-white"
-                to={`/boardwrite/${teamNum}`}
-                state={{ teamnum: teamNum }}
-              >
-                글쓰기
-              </Link>
-            </Button>
+            {sessionStorage.getItem("loginUserid") ? (
+              <Button variant="dark">
+                <Link
+                  className="text-white"
+                  to={`/boardwrite/${teamNum}`}
+                  state={{ teamnum: teamNum }}
+                >
+                  글쓰기
+                </Link>
+              </Button>
+            ) : (
+              <Button variant="dark" disabled>
+                <Link
+                  className="text-white"
+                  to={`/boardwrite/${teamNum}`}
+                  state={{ teamnum: teamNum }}
+                >
+                  글쓰기
+                </Link>
+              </Button>
+            )}
           </div>
           <ListGroup className="">
             <ListGroup.Item className="d-flex justify-content-between align-items-start bg-secondary text-white">
@@ -182,7 +194,7 @@ export default function BoardList() {
         </Row>
       </Row>
 
-      <Pagination className="d-flex justify-content-center">
+      <Pagination className="d-flex justify-content-center my-5 mt-5">
         <Pagination.Prev
           onClick={() => handlePageChange(state.activePage - 1)}
           disabled={state.activePage === 1}
