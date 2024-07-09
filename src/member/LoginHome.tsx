@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import { Container, Row, Col, Form, Button, Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import axios from "../lib/axiosCreate";
+import React, { useState } from 'react';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import axios from '../lib/axiosCreate';
 
 interface IUserInfo {
   userid: string;
@@ -18,31 +18,31 @@ interface SignUpData {
 
 export default function LoginHome() {
   const [loginUser, setLoginUser] = useState<IUserInfo>({
-    userid: "",
-    passwd: "",
+    userid: '',
+    passwd: '',
   });
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("/api/login", loginUser);
-      if (response.data.result === "success") {
-        sessionStorage.setItem("loginUserid", loginUser.userid);
-        sessionStorage.setItem("loginPasswd", loginUser.passwd);
-        console.log("세션스토리지 저장 완료");
-        location.href = "/";
+      const response = await axios.post('/api/login', loginUser);
+      if (response.data.result === 'success') {
+        sessionStorage.setItem('loginUserid', loginUser.userid);
+        sessionStorage.setItem('loginPasswd', loginUser.passwd);
+        console.log('세션스토리지 저장 완료');
+        location.href = '/';
       }
     } catch (error) {
-      console.error("로그인 실패", error);
+      console.error('로그인 실패', error);
     }
   };
   const validationSchema = Yup.object().shape({
     userid: Yup.string()
       .matches(/^[a-zA-Z]+$/, {
-        message: "영문자만 입력해주세요.",
+        message: '영문자만 입력해주세요.',
         excludeEmptyString: true,
       })
-      .required("아이디를 입력하세요"),
-    passwd: Yup.string().required("비밀번호를 입력하세요"),
+      .required('아이디를 입력하세요'),
+    passwd: Yup.string().required('비밀번호를 입력하세요'),
   });
 
   const {
@@ -59,55 +59,67 @@ export default function LoginHome() {
   };
 
   return (
-    <div className="z-3">
+    <div className="z-3 position-relative login_wrap">
       <div
-        className="position-relative min-vh-100"
+        className=" min-vh-100"
         style={{
-          backgroundImage: "url(/src/assets/login.jpg)",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
+          backgroundImage: 'url(/src/assets/login.jpg)',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
           opacity: 0.5,
         }}
       ></div>
-      <Row>
-        <Col md={4}>
-          <Form
-            onSubmit={handleSubmit(handleLogin)}
-            className="position-absolute top-50 start-50 translate-middle w-50 h-50 bg-dark text-light rounded"
-          >
-            <Row className="position-absolute top-50 start-50 translate-middle ">
+      <Row
+        className="position-absolute w-100"
+        style={{ top: '35%', height: '250px', background: '#000' }}
+      >
+        <Col md={4} className="mx-auto d-flex" style={{ alignItems: 'center' }}>
+          <div className="w-100">
+            <Form
+              onSubmit={handleSubmit(handleLogin)}
+              className="w-100 h-100 text-light rounded"
+            >
               <Form.Group>
                 <Form.Label>아이디</Form.Label>
                 <Form.Control
-                  {...register("userid")}
+                  {...register('userid')}
                   type="text"
                   onChange={(e) => onChangeInput(e)}
+                  placeholder="아이디를 입력하세요"
                 />
                 {errors.userid && (
                   <p className="text-danger">{errors.userid.message}</p>
                 )}
               </Form.Group>
-              <Form.Group>
+              <Form.Group style={{ marginTop: '20px' }}>
                 <Form.Label>비밀번호</Form.Label>
                 <Form.Control
-                  {...register("passwd")}
+                  {...register('passwd')}
                   type="password"
                   onChange={(e) => onChangeInput(e)}
+                  placeholder="비밀번호를 입력하세요"
                 />
                 {errors.passwd && (
                   <p className="text-danger">{errors.passwd.message}</p>
                 )}
               </Form.Group>
 
-              <Button variant="warning" type="submit">
-                로그인
-              </Button>
-
-              <Button type="submit">
-                <Link to={`/signup`}>회원가입</Link>
-              </Button>
-            </Row>
-          </Form>
+              <div className="text-center" style={{ marginTop: '20px' }}>
+                <Button
+                  variant="light"
+                  type="submit"
+                  style={{ marginRight: '10px' }}
+                >
+                  로그인
+                </Button>
+                <Button variant="secondary" type="submit">
+                  <Link to={`/signup`} style={{ color: 'white' }}>
+                    회원가입
+                  </Link>
+                </Button>
+              </div>
+            </Form>
+          </div>
         </Col>
       </Row>
     </div>
