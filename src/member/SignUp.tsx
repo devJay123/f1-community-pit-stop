@@ -21,7 +21,9 @@ export default function SignUp() {
       })
       .required('아이디를 입력하세요'),
     passwd: Yup.string().required('비밀번호를 입력하세요'),
-    passwdChk: Yup.string().required('비밀번호를 다시 입력하세요'),
+    passwdChk: Yup.string()
+      .oneOf([Yup.ref('passwd')], '비밀번호가 일치하지 않습니다')
+      .required('비밀번호를 다시 입력하세요'),
     email: Yup.string().required('이메일을 입력하세요'),
   });
 
