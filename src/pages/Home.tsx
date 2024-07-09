@@ -38,48 +38,63 @@ export default function Hone() {
           <Col md={7} className="news">
             <div className="news_box">
               <Card className="news_item" style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
+                <a
+                  target="_blank"
+                  href="https://www.formula1.com/en/latest/article/hamilton-very-very-grateful-for-long-awaited-104th-f1-win-as-he-explains-why.2dest3ygDWd0pOfB0YavUm"
+                >
+                  <Card.Img variant="top" src="./src/assets/news/news1.avif" />
+                  <Card.Body>
+                    <Card.Title>News</Card.Title>
+                    <Card.Text>
+                      Hamilton ‘very, very grateful’ for long-awaited 104th F1
+                      win as he explains why it feels ‘different’ to all his
+                      others
+                    </Card.Text>
+                  </Card.Body>
+                </a>
               </Card>
               <Card className="news_item" style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
+                <a
+                  target="_blank"
+                  href="https://www.formula1.com/en/latest/article/horner-admits-perez-not-scoring-points-is-unsustainable-after-frustrating.6soUoqSKgyzOC5V7JgS3kf"
+                >
+                  <Card.Img variant="top" src="./src/assets/news/news2.avif" />
+                  <Card.Body>
+                    <Card.Title>News</Card.Title>
+                    <Card.Text>
+                      Horner admits Perez not scoring points is ‘unsustainable’
+                      after ‘frustrating’ weekend at Silverstone
+                    </Card.Text>
+                  </Card.Body>
+                </a>
               </Card>
               <Card className="news_item" style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
+                <a
+                  target="_blank"
+                  href="https://www.formula1.com/en/latest/article/i-dont-even-know-what-to-say-anymore-leclerc-not-feeling-good-after-sunday.3YFqrfIUAGXcYPtJYWfhSB"
+                >
+                  <Card.Img variant="top" src="./src/assets/news/news3.avif" />
+                  <Card.Body>
+                    <Card.Title>News</Card.Title>
+                    <Card.Text>
+                      ‘I don’t even know what to say anymore’ – Leclerc ‘not
+                      feeling good’ after Sunday to forget at Silverstone
+                    </Card.Text>
+                  </Card.Body>
+                </a>
               </Card>
               <Card className="news_item" style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
+                <a target="_blank" href="">
+                  <Card.Img variant="top" src="./src/assets/news/news4.avif" />
+                  <Card.Body>
+                    <Card.Title>News</Card.Title>
+                    <Card.Text>
+                      ‘Both our drivers could have won’ – Brown says McLaren
+                      ‘got it wrong’ after Norris and Piastri miss out at
+                      Silverstone
+                    </Card.Text>
+                  </Card.Body>
+                </a>
               </Card>
             </div>
           </Col>
