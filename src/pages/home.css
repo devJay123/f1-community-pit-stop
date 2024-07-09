@@ -15,6 +15,7 @@
   background-image: url(/src/assets/banner2.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: 40% 30%;
 }
 .main-banner .banner3 {
   background-image: url(/src/assets/banner3.jpg);
