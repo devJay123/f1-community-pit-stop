@@ -19,9 +19,7 @@ export default function LoginHome() {
   const handleLogin = async () => {
     try {
       const response = await axios.post('/api/login', loginUser);
-      // console.log(response);
 
-      // navigate("/");
       location.href = '/';
     } catch (error) {
       console.error('로그인 실패', error);
