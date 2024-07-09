@@ -65,69 +65,69 @@ export default function SignUp() {
   return (
     <Container>
       <Row>
-        <Col className="mx-auto" md={8}>
+        <Col className="mx-auto" style={{width: '40%', marginTop:'30px'}} md={8}>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group>
-              <Form.Label>이름</Form.Label>
+              <Form.Label style={{margin:'10px'}}>이름</Form.Label>
               <Form.Control
                 {...register('name')}
                 type="text"
-                placeholder="이름을 입력하세요"
+                placeholder=""
               />
               {errors.name && (
                 <p className="text-danger">{errors.name.message}</p>
               )}
             </Form.Group>
             <Form.Group>
-              <Form.Label>닉네임</Form.Label>
+              <Form.Label style={{margin:'10px'}}>닉네임</Form.Label>
               <Form.Control
                 {...register('nickname')}
                 type="text"
-                placeholder="닉네임을 입력하세요"
+                placeholder=""
               />
               {errors.nickname && (
                 <p className="text-danger">{errors.nickname.message}</p>
               )}
             </Form.Group>
             <Form.Group>
-              <Form.Label>아이디</Form.Label>
+              <Form.Label style={{margin:'10px'}}>아이디</Form.Label>
               <Form.Control
                 {...register('userid')}
                 type="text"
-                placeholder="아이디를 입력하세요"
+                placeholder=""
               />
               {errors.userid && (
                 <p className="text-danger">{errors.userid.message}</p>
               )}
             </Form.Group>
             <Form.Group>
-              <Form.Label>비밀번호</Form.Label>
+              <Form.Label style={{margin:'10px'}}>비밀번호</Form.Label>
               <Form.Control
                 {...register('passwd')}
                 type="password"
-                placeholder="비밀번호를 입력하세요"
+                placeholder=""
               />
               {errors.passwd && (
                 <p className="text-danger">{errors.passwd.message}</p>
               )}
             </Form.Group>
             <Form.Group>
-              <Form.Label>비밀번호 확인</Form.Label>
+              <Form.Label style={{margin:'10px'}}>비밀번호 확인</Form.Label>
               <Form.Control
                 {...register('passwdChk')}
                 type="password"
-                placeholder="비밀번호를 다시 입력하세요"
+                placeholder=""
               />
               {errors.passwdChk && (
                 <p className="text-danger">{errors.passwdChk.message}</p>
               )}
             </Form.Group>
             <Form.Group>
-              <Form.Label>이메일</Form.Label>
+              <Form.Label style={{margin:'10px'}}>이메일</Form.Label>
               <Form.Control
                 {...register('email')}
                 type="text"
-                placeholder="이메일을 입력하세요"
+                placeholder=""
               />
               {errors.email && (
                 <p className="text-danger">{errors.email.message}</p>
