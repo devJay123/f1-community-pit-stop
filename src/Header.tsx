@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Header() {
   const [clicked, setClicked] = useState({
@@ -9,6 +9,47 @@ export default function Header() {
     prediction: false,
     loginHome: false,
   });
+
+  const location = useLocation();
+  const pathname = location.pathname.split('/')[1];
+
+  useEffect(() => {
+    switch (pathname) {
+      case 'community':
+      case 'boards':
+        setClicked({
+          community: true,
+          rank: false,
+          prediction: false,
+          loginHome: false,
+        });
+        break;
+      case 'rank':
+        setClicked({
+          community: false,
+          rank: true,
+          prediction: false,
+          loginHome: false,
+        });
+        break;
+      case 'prediction':
+        setClicked({
+          community: false,
+          rank: false,
+          prediction: true,
+          loginHome: false,
+        });
+        break;
+      case 'loginHome':
+        setClicked({
+          community: false,
+          rank: false,
+          prediction: false,
+          loginHome: true,
+        });
+        break;
+    }
+  }, []);
 
   return (
     <div className="header">
