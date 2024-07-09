@@ -28,19 +28,18 @@ const BoardReply: React.FC<BoardReplyProps> = ({
             <span>{reply.content}</span>
             <div>
               <Button
-                variant="warning"
                 size="sm"
-                className="me-2"
+                className="me-2 bg-black"
                 onClick={() => onEdit(reply)}
               >
-                Edit
+                수정
               </Button>
               <Button
                 variant="danger"
                 size="sm"
                 onClick={() => onDelete(reply.id)}
               >
-                Delete
+                삭제
               </Button>
             </div>
           </div>

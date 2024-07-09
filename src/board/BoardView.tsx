@@ -24,12 +24,30 @@ interface Reply {
   postId: string;
 }
 
+interface IUserInfo {
+  userid: string;
+}
+
 export default function BoardView() {
   const { id, teamnum } = useParams<{ id: string; teamnum: string }>(); // 게시글 ID를 URL 파라미터에서 가져옵니다.
   const [post, setPost] = useState<Post | null>(null);
   const [replies, setReplies] = useState<Reply[]>([]);
   const [showEditModal, setShowEditModal] = useState(false); // 모달창
   const [editReply, setEditReply] = useState<Reply | null>(null);
+  const [loginUser, setLoginUser] = useState<IUserInfo>({
+    userid: ""
+  });
+  let uid = null; // 로그인한 사람의 userid값 받을 예정
+  useEffect(() => {
+      // 세션스토리지에 저장된 userInfo가 있는지 꺼내보자
+      let str = sessionStorage.getItem('userInfo');
+      // alert(str); // string 유형 
+      if(str!==null) {
+          let user=JSON.parse(str);
+          uid = user.userid;
+          setLoginUser(uid);
+      }
+  },[])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -143,11 +161,11 @@ export default function BoardView() {
     <Container className="py-13 ">
       <div className="text-end my-2">
         <Link to={`/boardEdit/${id}`} state={{ id: id, teamnum: teamnum }}>
-          <Button variant="success" className="mx-1">
+          <Button variant="dark" className="mx-1 button">
             수 정
           </Button>
         </Link>
-        <Button onClick={onDelete} variant="warning">
+        <Button onClick={onDelete} variant="danger">
           삭 제
         </Button>
       </div>
@@ -155,9 +173,9 @@ export default function BoardView() {
         className="mb-3 border-2"
         style={{ borderColor: `${borderColorClass}` }}
       >
-        <Card.Body>
-          <div>
-            <div className="card-header h2">F1 팀 {teamnum} 번의 이야기</div>
+        <Card.Body >
+          <div className="Primary">
+            <div className="card-header h2 bg-secondary">F1 팀 {teamnum} 번의 이야기</div>
           </div>
           <br />
           <div className="cArea">
@@ -172,7 +190,7 @@ export default function BoardView() {
                   <h2 className="h6 mb-4">{post.title}</h2>
                   <p>{post.content}</p>
                 </div>
-                <Card.Footer>
+                <Card.Footer className="bg-secondary">
                   Created on {post.wdate} by {post.userid}
                 </Card.Footer>
               </>

@@ -15,6 +15,7 @@ import PageNotFound from "./pages/PageNotFound";
 
 import "./common.css";
 import "./App.css";
+import ScheduleList from "./F1schedule/ScheduleList";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/loginHome" element={<LoginHome />} />
           <Route path="/signup" element={<SignUp />} />
 
+          <Route path="/schedule" element={<ScheduleList/>}/>
           {/* PageNotFound */}
           <Route path={"*"} element={<PageNotFound />} />
         </Routes>
