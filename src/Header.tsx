@@ -12,6 +12,7 @@ export default function Header() {
 
   const location = useLocation();
   const pathname = location.pathname.split('/')[1];
+  console.log(pathname);
 
   useEffect(() => {
     switch (pathname) {
@@ -48,6 +49,13 @@ export default function Header() {
           loginHome: true,
         });
         break;
+      default:
+        setClicked({
+          community: false,
+          rank: false,
+          prediction: false,
+          loginHome: false,
+        });
     }
   }, []);
 

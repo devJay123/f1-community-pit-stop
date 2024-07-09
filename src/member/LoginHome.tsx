@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "../lib/axiosCreate";
+import React, { useState } from 'react';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from '../lib/axiosCreate';
 
 interface IUserInfo {
   userid: string;
@@ -12,18 +12,19 @@ export default function LoginHome() {
   const navigate = useNavigate();
 
   const [loginUser, setLoginUser] = useState<IUserInfo>({
-    userid: "",
-    passwd: "",
+    userid: '',
+    passwd: '',
   });
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("/api/login", loginUser);
+      const response = await axios.post('/api/login', loginUser);
       // console.log(response);
 
-      navigate("/");
+      // navigate("/");
+      location.href = '/';
     } catch (error) {
-      console.error("로그인 실패", error);
+      console.error('로그인 실패', error);
     }
   };
 
