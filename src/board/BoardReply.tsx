@@ -4,6 +4,7 @@ import { ListGroup, Button } from 'react-bootstrap';
 
 interface Reply {
   id: string;
+  userid: string;
   content: string;
   postId: string;
 }
@@ -25,7 +26,7 @@ const BoardReply: React.FC<BoardReplyProps> = ({
       {replies.map((reply) => (
         <ListGroup.Item key={reply.id}>
           <div className="d-flex justify-content-between align-items-center">
-            <span>{reply.content}</span>
+            <span>{reply.content}{reply.userid}</span>
             <div>
               <Button
                 size="sm"

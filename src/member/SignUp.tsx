@@ -61,14 +61,25 @@ export default function SignUp() {
       console.log('Error: ' + err);
     }
   };
+  
 
   return (
+    // <div className="z-3">
+    // <div
+    //   className="position-relative min-vh-100"
+    //   style={{
+    //     backgroundImage: "url(/src/assets/login.jpg)",
+    //     backgroundRepeat: "no-repeat",
+    //     backgroundSize: "cover",
+    //     opacity: 0.5,
+    //   }}
+    // ></div>
     <Container>
-      <Row>
-        <Col className="mx-auto" style={{width: '40%', marginTop:'30px'}} md={8}>
-          <Form onSubmit={handleSubmit(onSubmit)}>
+      <Row >
+        <Col className="mx-auto bg-dark" style={{borderRadius:'10px', width: '30%', marginTop:'30px',marginBottom:'10px', color:'white'}} md={8}>
+          <Form  onSubmit={handleSubmit(onSubmit)}>
             <Form.Group>
-              <Form.Label style={{margin:'10px'}}>이름</Form.Label>
+              <Form.Label style={{margin:'10px', color:'white'}}>이름</Form.Label>
               <Form.Control
                 {...register('name')}
                 type="text"
@@ -145,5 +156,6 @@ export default function SignUp() {
         </Col>
       </Row>
     </Container>
+    // </div>
   );
 }

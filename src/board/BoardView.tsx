@@ -40,7 +40,7 @@ export default function BoardView() {
   let uid = null; // 로그인한 사람의 userid값 받을 예정
   useEffect(() => {
       // 세션스토리지에 저장된 userInfo가 있는지 꺼내보자
-      let str = sessionStorage.getItem('userInfo');
+      let str = sessionStorage.getItem('loginUserid');
       // alert(str); // string 유형 
       if(str!==null) {
           let user=JSON.parse(str);
@@ -159,6 +159,7 @@ export default function BoardView() {
 
   return (
     <Container className="py-13 ">
+      {
       <div className="text-end my-2">
         <Link to={`/boardEdit/${id}`} state={{ id: id, teamnum: teamnum }}>
           <Button variant="dark" className="mx-1 button">
@@ -169,6 +170,7 @@ export default function BoardView() {
           삭 제
         </Button>
       </div>
+      }
       <Card
         className="mb-3 border-2"
         style={{ borderColor: `${borderColorClass}` }}
