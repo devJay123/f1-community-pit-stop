@@ -6,7 +6,7 @@ export default function Header() {
   const [clicked, setClicked] = useState({
     community: false,
     rank: false,
-    prediction: false,
+    schedule: false,
     loginHome: false,
   });
 
@@ -21,7 +21,7 @@ export default function Header() {
         setClicked({
           community: true,
           rank: false,
-          prediction: false,
+          schedule: false,
           loginHome: false,
         });
         break;
@@ -29,7 +29,7 @@ export default function Header() {
         setClicked({
           community: false,
           rank: true,
-          prediction: false,
+          schedule: false,
           loginHome: false,
         });
         break;
@@ -37,7 +37,7 @@ export default function Header() {
         setClicked({
           community: false,
           rank: false,
-          prediction: true,
+          schedule: true,
           loginHome: false,
         });
         break;
@@ -45,7 +45,7 @@ export default function Header() {
         setClicked({
           community: false,
           rank: false,
-          prediction: false,
+          schedule: false,
           loginHome: true,
         });
         break;
@@ -53,7 +53,7 @@ export default function Header() {
         setClicked({
           community: false,
           rank: false,
-          prediction: false,
+          schedule: false,
           loginHome: false,
         });
     }
@@ -67,7 +67,7 @@ export default function Header() {
           setClicked({
             community: false,
             rank: false,
-            prediction: false,
+            schedule: false,
             loginHome: false,
           });
         }}
@@ -86,7 +86,7 @@ export default function Header() {
             setClicked({
               community: true,
               rank: false,
-              prediction: false,
+              schedule: false,
               loginHome: false,
             });
           }}
@@ -99,7 +99,7 @@ export default function Header() {
             setClicked({
               community: false,
               rank: true,
-              prediction: false,
+              schedule: false,
               loginHome: false,
             });
           }}
@@ -107,17 +107,17 @@ export default function Header() {
           <Link to="/rank">순위</Link>
         </li>
         <li
-          className={`${clicked.prediction ? 'clicked' : ''}`}
+          className={`${clicked.schedule ? 'clicked' : ''}`}
           onClick={() => {
             setClicked({
               community: false,
               rank: false,
-              prediction: true,
+              schedule: true,
               loginHome: false,
             });
           }}
         >
-          <Link to="/prediction">승부예측</Link>
+          <Link to="/schedule">경기일정</Link>
         </li>
         <li
           className={`${clicked.loginHome ? 'clicked' : ''}`}
@@ -125,7 +125,7 @@ export default function Header() {
             setClicked({
               community: false,
               rank: false,
-              prediction: false,
+              schedule: false,
               loginHome: true,
             });
           }}
