@@ -1,8 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
-import { useLocation } from 'react-router-dom';
-
-import './Chat.css';
 
 const ENDPOINT = 'http://localhost:8000';
 const socket = io(ENDPOINT);
@@ -32,6 +29,7 @@ export default function Chat() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
   const sendMessage = (e) => {
     e.preventDefault();
     if (inputMessage) {
