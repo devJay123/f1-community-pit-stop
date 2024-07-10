@@ -116,7 +116,6 @@ export default function Rank() {
                     md={4}
                     style={{
                       padding: "20px",
-                      textAlign: "center",
                     }}
                   >
                     <Card.Text>POINTS</Card.Text>
@@ -161,8 +160,6 @@ export default function Rank() {
                     >
                       <Card.Text
                         style={{
-                          position: "absolute",
-                          bottom: "0",
                           fontSize: "2.5rem",
                         }}
                       >
@@ -254,9 +251,7 @@ export default function Rank() {
                     >
                       <Card.Text
                         style={{
-                          position: "absolute",
-                          bottom: "0",
-                          fontSize: "2.5rem",
+                          fontSize: "1.5rem",
                         }}
                       >
                         {driver.permanentNumber}
