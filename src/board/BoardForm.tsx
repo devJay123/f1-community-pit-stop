@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Form, Row, Col, Button, Container } from 'react-bootstrap';
-import * as Yup from 'yup';
-import { useFormik } from 'formik';
-import axios from '../lib/axiosCreate.js';
-import { AxiosResponse } from 'axios';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
+import { Form, Row, Col, Button, Container } from "react-bootstrap";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import axios from "../lib/axiosCreate.js";
+import { AxiosResponse } from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface ResponseData {
   result: string;
@@ -21,13 +21,13 @@ export default function BoardForm() {
   const navigate = useNavigate();
 
   const formik = useFormik<FormValues>({
-    initialValues: { userid: '', title: '', content: '' },
+    initialValues: { userid: "", title: "", content: "" },
     validationSchema: Yup.object({
-      userid: Yup.string().required('작성자를 입력하세요'),
+      userid: Yup.string().required("작성자를 입력하세요"),
       title: Yup.string()
-        .max(30, '30자 이하로 작성해주세요')
-        .required('제목을 입력하세요'),
-      content: Yup.string().required('내용을 입력하세요'),
+        .max(30, "30자 이하로 작성해주세요")
+        .required("제목을 입력하세요"),
+      content: Yup.string().required("내용을 입력하세요"),
     }),
     onSubmit: async (values) => {
       const postData = {
@@ -39,33 +39,33 @@ export default function BoardForm() {
 
       try {
         const response: AxiosResponse = await axios.post(
-          '/api/boards',
+          "/api/boards",
           postData
         );
 
         const responseData: ResponseData = response.data;
-        if (responseData.result === 'success') {
+        if (responseData.result === "success") {
           // 수정해야함 링크 방식을 react방식으로
           //window.location.href = `/community/list/${location.state.teamnum}`;
           navigate(`/community/list/${location.state.teamnum}`, {
             state: { teamnum: location.state.teamnum },
           });
         } else {
-          alert('작성에 실패했습니다.');
+          alert("작성에 실패했습니다.");
         }
       } catch (err) {
-        console.log('Error:', err);
+        console.log("Error:", err);
       }
     },
   });
 
-  const loginId = sessionStorage.getItem('loginUserid');
+  const loginId = sessionStorage.getItem("loginUserid");
 
   useEffect(() => {
     formik.setValues({
-      userid: loginId || '',
-      title: '',
-      content: '',
+      userid: loginId || "",
+      title: "",
+      content: "",
     });
   }, []);
 

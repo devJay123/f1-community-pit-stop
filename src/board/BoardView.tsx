@@ -1,12 +1,12 @@
-import React, { useState, useEffect, FormEvent } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { Row, Col, Card, Container, Button, Badge } from 'react-bootstrap';
-import BoardReply from './BoardReply';
-import BoardReplyForm from './BoardReplyForm';
-import BoardReplyEditForm from './BoardReplyEditFrom';
+import React, { useState, useEffect, FormEvent } from "react";
+import { useParams, Link } from "react-router-dom";
+import { Row, Col, Card, Container, Button, Badge } from "react-bootstrap";
+import BoardReply from "./BoardReply";
+import BoardReplyForm from "./BoardReplyForm";
+import BoardReplyEditForm from "./BoardReplyEditFrom";
 // import BoardEdit from './BoardEdit';
-import axios from '../lib/axiosCreate';
-import { teamBorderColors } from '../color';
+import axios from "../lib/axiosCreate";
+import { teamBorderColors } from "../color";
 
 interface Post {
   userid: string;
@@ -22,10 +22,6 @@ interface Reply {
   id: string;
   content: string;
   postId: string;
-}
-
-interface IUserInfo {
-  userid: string;
 }
 
 export default function BoardView() {
@@ -51,7 +47,7 @@ export default function BoardView() {
       const response = await axios.get(`/api/boards/${teamnum}/${id}`);
       setPost(response.data);
     } catch (err) {
-      alert('Error: ' + err);
+      alert("Error: " + err);
     }
   };
 
@@ -60,7 +56,7 @@ export default function BoardView() {
       const response = await axios.put(`/api/boardReadNum/${id}`);
       response;
     } catch (err) {
-      alert('Error: ' + err);
+      alert("Error: " + err);
     }
   };
 
@@ -71,31 +67,31 @@ export default function BoardView() {
       );
       setReplies(response.data);
     } catch (err) {
-      alert('Error: ' + err);
+      alert("Error: " + err);
     }
   };
 
   const addReply = async (newReply: Reply): Promise<void> => {
     try {
       const response = await axios.post(`/api/boards/${id}/reply`, newReply);
-      if (response.data.result === 'success') {
+      if (response.data.result === "success") {
         getReplies();
       }
     } catch (err) {
-      alert('Error: ' + err);
+      alert("Error: " + err);
     }
   };
 
   const deleteReply = async (replyId: string) => {
     try {
       const response = await axios.delete(`/api/boards/reply/${replyId}`);
-      if (response.data.result === 'success') {
+      if (response.data.result === "success") {
         getReplies();
       } else {
-        alert('삭제 실패');
+        alert("삭제 실패");
       }
     } catch (err) {
-      alert('Error: ' + err);
+      alert("Error: " + err);
     }
   };
 
@@ -128,7 +124,7 @@ export default function BoardView() {
           `/api/boards/reply/${editReply.id}`,
           editReply
         );
-        if (response.data.result === 'success') {
+        if (response.data.result === "success") {
           setShowEditModal(false);
           getReplies();
           setEditReply(null);
@@ -137,11 +133,11 @@ export default function BoardView() {
         }
       }
     } catch (err) {
-      alert('Error: ' + err);
+      alert("Error: " + err);
     }
   };
 
-  const borderColorClass = teamBorderColors[Number(teamnum)] || 'border-dark';
+  const borderColorClass = teamBorderColors[Number(teamnum)] || "border-dark";
 
   return (
     <Container className="py-13 ">

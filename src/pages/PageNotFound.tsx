@@ -1,4 +1,3 @@
-import React from "react";
 import f1tire from "../assets/f1_tire.jpg";
 import { Container, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";

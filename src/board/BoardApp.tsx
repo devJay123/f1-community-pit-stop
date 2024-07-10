@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Card, Alert } from "react-bootstrap";
 import teams from "../lib/teamInfo";

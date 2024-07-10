@@ -1,6 +1,5 @@
-import React from 'react';
-import './home.css';
-import { Carousel, Container, Row, Col, Button, Card } from 'react-bootstrap';
+import "./home.css";
+import { Carousel, Container, Row, Col, Card } from "react-bootstrap";
 export default function Hone() {
   return (
     <div>
@@ -37,7 +36,7 @@ export default function Hone() {
           </Col>
           <Col md={7} className="news">
             <div className="news_box">
-              <Card className="news_item" style={{ width: '18rem' }}>
+              <Card className="news_item" style={{ width: "18rem" }}>
                 <a
                   target="_blank"
                   href="https://www.formula1.com/en/latest/article/hamilton-very-very-grateful-for-long-awaited-104th-f1-win-as-he-explains-why.2dest3ygDWd0pOfB0YavUm"
@@ -53,7 +52,7 @@ export default function Hone() {
                   </Card.Body>
                 </a>
               </Card>
-              <Card className="news_item" style={{ width: '18rem' }}>
+              <Card className="news_item" style={{ width: "18rem" }}>
                 <a
                   target="_blank"
                   href="https://www.formula1.com/en/latest/article/horner-admits-perez-not-scoring-points-is-unsustainable-after-frustrating.6soUoqSKgyzOC5V7JgS3kf"
@@ -68,7 +67,7 @@ export default function Hone() {
                   </Card.Body>
                 </a>
               </Card>
-              <Card className="news_item" style={{ width: '18rem' }}>
+              <Card className="news_item" style={{ width: "18rem" }}>
                 <a
                   target="_blank"
                   href="https://www.formula1.com/en/latest/article/i-dont-even-know-what-to-say-anymore-leclerc-not-feeling-good-after-sunday.3YFqrfIUAGXcYPtJYWfhSB"
@@ -83,7 +82,7 @@ export default function Hone() {
                   </Card.Body>
                 </a>
               </Card>
-              <Card className="news_item" style={{ width: '18rem' }}>
+              <Card className="news_item" style={{ width: "18rem" }}>
                 <a target="_blank" href="">
                   <Card.Img variant="top" src="./src/assets/news/news4.avif" />
                   <Card.Body>

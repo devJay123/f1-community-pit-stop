@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
-import axios from '../lib/axiosCreate';
-import { Form, Row, Col, Container, Button } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+import axios from "../lib/axiosCreate";
+import { Form, Row, Col, Container, Button } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 
 export default function BoardEdit() {
   const location = useLocation();
@@ -13,11 +13,11 @@ export default function BoardEdit() {
   const teamnum = location.state.teamnum;
 
   const validationSchema = Yup.object().shape({
-    userid: Yup.string().required('작성자를 입력하세요'),
+    userid: Yup.string().required("작성자를 입력하세요"),
     title: Yup.string()
-      .max(30, '30자 이하로 작성해주세요')
-      .required('제목을 입력하세요'),
-    content: Yup.string().required('내용을 입력하세요'),
+      .max(30, "30자 이하로 작성해주세요")
+      .required("제목을 입력하세요"),
+    content: Yup.string().required("내용을 입력하세요"),
   });
 
   const {
@@ -31,10 +31,10 @@ export default function BoardEdit() {
 
   const onSubmit = async (data: any) => {
     const response = await axios.put(`/api/boards/${boardId}`, data);
-    if (response.data.result === 'success') {
+    if (response.data.result === "success") {
       window.location.href = `/boards/${teamnum}/${boardId}`;
     } else {
-      console.log('fail');
+      console.log("fail");
     }
   };
 
@@ -66,7 +66,7 @@ export default function BoardEdit() {
             <Form.Group className="my-2">
               <Form.Label>제목</Form.Label>
               <Form.Control
-                {...register('title')}
+                {...register("title")}
                 type="text"
                 name="title"
                 placeholder="제목을 입력하세요"
@@ -78,7 +78,7 @@ export default function BoardEdit() {
             <Form.Group className="my-2">
               <Form.Label>작성자</Form.Label>
               <Form.Control
-                {...register('userid')}
+                {...register("userid")}
                 readOnly
                 type="text"
                 name="userid"
@@ -91,7 +91,7 @@ export default function BoardEdit() {
             <Form.Group className="my-2">
               <Form.Label>내용</Form.Label>
               <Form.Control
-                {...register('content')}
+                {...register("content")}
                 as="textarea"
                 rows={12}
                 name="content"
