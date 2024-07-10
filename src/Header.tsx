@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 export default function Header() {
   const [clicked, setClicked] = useState({
     community: false,
+    chat: false,
     rank: false,
     schedule: false,
     loginHome: false,
@@ -19,6 +20,7 @@ export default function Header() {
     sessionStorage.clear();
     setClicked({
       community: false,
+      chat: false,
       rank: false,
       schedule: false,
       loginHome: true,
@@ -27,12 +29,21 @@ export default function Header() {
     window.location.href = '/';
   };
 
+  const isSignup = (e) => {
+    if (!user) {
+      alert('회원만 가능합니다.');
+      e.preventDefault();
+      return;
+    }
+  };
+
   useEffect(() => {
     switch (pathname) {
       case 'community':
       case 'boards':
         setClicked({
           community: true,
+          chat: false,
           rank: false,
           schedule: false,
           loginHome: false,
@@ -41,6 +52,7 @@ export default function Header() {
       case 'rank':
         setClicked({
           community: false,
+          chat: false,
           rank: true,
           schedule: false,
           loginHome: false,
@@ -49,6 +61,7 @@ export default function Header() {
       case 'prediction':
         setClicked({
           community: false,
+          chat: false,
           rank: false,
           schedule: true,
           loginHome: false,
@@ -57,6 +70,7 @@ export default function Header() {
       case 'loginHome':
         setClicked({
           community: false,
+          chat: false,
           rank: false,
           schedule: false,
           loginHome: true,
@@ -65,6 +79,7 @@ export default function Header() {
       default:
         setClicked({
           community: false,
+          chat: false,
           rank: false,
           schedule: false,
           loginHome: false,
@@ -79,6 +94,7 @@ export default function Header() {
         onClick={() => {
           setClicked({
             community: false,
+            chat: false,
             rank: false,
             schedule: false,
             loginHome: false,
@@ -98,6 +114,7 @@ export default function Header() {
             onClick={() => {
               setClicked({
                 community: true,
+                chat: false,
                 rank: false,
                 schedule: false,
                 loginHome: false,
@@ -108,11 +125,30 @@ export default function Header() {
             커뮤니티
           </Link>
         </li>
+        <li className={`${clicked.chat ? 'clicked' : ''}`}>
+          <Link
+            onClick={(e) => {
+              isSignup(e);
+              setClicked({
+                community: false,
+                chat: true,
+                rank: false,
+                schedule: false,
+                loginHome: false,
+              });
+            }}
+            to="/chat"
+            state={{ userid: user }}
+          >
+            채팅
+          </Link>
+        </li>
         <li className={`${clicked.rank ? 'clicked' : ''}`}>
           <Link
             onClick={() => {
               setClicked({
                 community: false,
+                chat: false,
                 rank: true,
                 schedule: false,
                 loginHome: false,
@@ -128,6 +164,7 @@ export default function Header() {
             onClick={() => {
               setClicked({
                 community: false,
+                chat: false,
                 rank: false,
                 schedule: true,
                 loginHome: false,
@@ -144,6 +181,7 @@ export default function Header() {
               onClick={() => {
                 setClicked({
                   community: false,
+                  chat: false,
                   rank: false,
                   schedule: false,
                   loginHome: true,
