@@ -1,12 +1,12 @@
-import React, { useState, useEffect, FormEvent } from "react";
-import { useParams, Link } from "react-router-dom";
-import { Row, Col, Card, Container, Button, Badge } from "react-bootstrap";
-import BoardReply from "./BoardReply";
-import BoardReplyForm from "./BoardReplyForm";
-import BoardReplyEditForm from "./BoardReplyEditFrom";
+import React, { useState, useEffect, FormEvent } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { Row, Col, Card, Container, Button, Badge } from 'react-bootstrap';
+import BoardReply from './BoardReply';
+import BoardReplyForm from './BoardReplyForm';
+import BoardReplyEditForm from './BoardReplyEditFrom';
 // import BoardEdit from './BoardEdit';
-import axios from "../lib/axiosCreate";
-import { teamBorderColors } from "../color";
+import axios from '../lib/axiosCreate';
+import { teamBorderColors } from '../color';
 
 interface Post {
   userid: string;
@@ -34,7 +34,7 @@ export default function BoardView() {
   const [replies, setReplies] = useState<Reply[]>([]);
   const [showEditModal, setShowEditModal] = useState(false); // 모달창
   const [editReply, setEditReply] = useState<Reply | null>(null);
-  const [loginUser, setLoginUser] = useState<IUserInfo>({
+  /* const [loginUser, setLoginUser] = useState<IUserInfo>({
     userid: ""
   });
   let uid = null; // 로그인한 사람의 userid값 받을 예정
@@ -58,14 +58,14 @@ export default function BoardView() {
       }
     };
     fetchData(); // 호출
-  }, [teamnum, id]);
+  }, [teamnum, id]); */
 
   const getBoard = async () => {
     try {
       const response = await axios.get(`/api/boards/${teamnum}/${id}`);
       setPost(response.data);
     } catch (err) {
-      alert("Error: " + err);
+      alert('Error: ' + err);
     }
   };
 
@@ -74,7 +74,7 @@ export default function BoardView() {
       const response = await axios.put(`/api/boardReadNum/${id}`);
       response;
     } catch (err) {
-      alert("Error: " + err);
+      alert('Error: ' + err);
     }
   };
 
@@ -85,31 +85,31 @@ export default function BoardView() {
       );
       setReplies(response.data);
     } catch (err) {
-      alert("Error: " + err);
+      alert('Error: ' + err);
     }
   };
 
   const addReply = async (newReply: Reply): Promise<void> => {
     try {
       const response = await axios.post(`/api/boards/${id}/reply`, newReply);
-      if (response.data.result === "success") {
+      if (response.data.result === 'success') {
         getReplies();
       }
     } catch (err) {
-      alert("Error: " + err);
+      alert('Error: ' + err);
     }
   };
 
   const deleteReply = async (replyId: string) => {
     try {
       const response = await axios.delete(`/api/boards/reply/${replyId}`);
-      if (response.data.result === "success") {
+      if (response.data.result === 'success') {
         getReplies();
       } else {
-        alert("삭제 실패");
+        alert('삭제 실패');
       }
     } catch (err) {
-      alert("Error: " + err);
+      alert('Error: ' + err);
     }
   };
 
@@ -142,7 +142,7 @@ export default function BoardView() {
           `/api/boards/reply/${editReply.id}`,
           editReply
         );
-        if (response.data.result === "success") {
+        if (response.data.result === 'success') {
           setShowEditModal(false);
           getReplies();
           setEditReply(null);
@@ -151,33 +151,35 @@ export default function BoardView() {
         }
       }
     } catch (err) {
-      alert("Error: " + err);
+      alert('Error: ' + err);
     }
   };
 
-  const borderColorClass = teamBorderColors[Number(teamnum)] || "border-dark";
+  const borderColorClass = teamBorderColors[Number(teamnum)] || 'border-dark';
 
   return (
     <Container className="py-13 ">
       {
-      <div className="text-end my-2">
-        <Link to={`/boardEdit/${id}`} state={{ id: id, teamnum: teamnum }}>
-          <Button variant="dark" className="mx-1 button">
-            수 정
+        <div className="text-end my-2">
+          <Link to={`/boardEdit/${id}`} state={{ id: id, teamnum: teamnum }}>
+            <Button variant="dark" className="mx-1 button">
+              수 정
+            </Button>
+          </Link>
+          <Button onClick={onDelete} variant="danger">
+            삭 제
           </Button>
-        </Link>
-        <Button onClick={onDelete} variant="danger">
-          삭 제
-        </Button>
-      </div>
+        </div>
       }
       <Card
         className="mb-3 border-2"
         style={{ borderColor: `${borderColorClass}` }}
       >
-        <Card.Body >
+        <Card.Body>
           <div className="Primary">
-            <div className="card-header h2 bg-secondary">F1 팀 {teamnum} 번의 이야기</div>
+            <div className="card-header h2 bg-secondary">
+              F1 팀 {teamnum} 번의 이야기
+            </div>
           </div>
           <br />
           <div className="cArea">
