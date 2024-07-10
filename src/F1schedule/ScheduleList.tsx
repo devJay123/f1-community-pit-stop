@@ -88,12 +88,6 @@ const ScheduleList: React.FC = () => {
                 top: "0",
                 width: "20%",
                 height: "100%",
-                backgroundImage: `linear-gradient(45deg, transparent 75%, #515151 25%),
-                            linear-gradient(45deg, #515151 25%, transparent 25%),
-                            linear-gradient(-45deg, transparent 75%, #515151 75%),
-                            linear-gradient(-45deg, #515151 25%, transparent 25%)`,
-                backgroundSize: "40px 40px",
-                backgroundPosition: "0 0, -20px 20px, 0 -20px, 20px 0",
               }}
             ></div>
           </h2>
