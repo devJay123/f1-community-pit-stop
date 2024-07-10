@@ -34,36 +34,6 @@ export default function BoardView() {
   const [replies, setReplies] = useState<Reply[]>([]);
   const [showEditModal, setShowEditModal] = useState(false); // 모달창
   const [editReply, setEditReply] = useState<Reply | null>(null);
-<<<<<<< HEAD
-  const [loginUser, setLoginUser] = useState<IUserInfo>({
-    userid: "",
-=======
-  /* const [loginUser, setLoginUser] = useState<IUserInfo>({
-    userid: ""
->>>>>>> 0407449d1fa2fe776c4f61d2ce0fc750a04f09fd
-  });
-  let uid = null; // 로그인한 사람의 userid값 받을 예정
-  useEffect(() => {
-    // 세션스토리지에 저장된 userInfo가 있는지 꺼내보자
-    let str = sessionStorage.getItem("loginUserid");
-    // alert(str); // string 유형
-    if (str !== null) {
-      let user = JSON.parse(str);
-      uid = user.userid;
-      setLoginUser(uid);
-    }
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (teamnum && id) {
-        await getBoard(); // 게시글 가져오기
-        await getReplies(); // 댓글 가져오기
-        await updateReadnum(); // 조회수 증가
-      }
-    };
-    fetchData(); // 호출
-  }, [teamnum, id]); */
 
   const getBoard = async () => {
     try {
