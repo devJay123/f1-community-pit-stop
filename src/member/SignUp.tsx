@@ -64,19 +64,30 @@ export default function SignUp() {
   
 
   return (
-    // <div className="z-3">
-    // <div
-    //   className="position-relative min-vh-100"
-    //   style={{
-    //     backgroundImage: "url(/src/assets/login.jpg)",
-    //     backgroundRepeat: "no-repeat",
-    //     backgroundSize: "cover",
-    //     opacity: 0.5,
-    //   }}
-    // ></div>
-    <Container>
-      <Row >
-        <Col className="mx-auto bg-dark" style={{borderRadius:'10px', width: '30%', marginTop:'30px',marginBottom:'10px', color:'white'}} md={8}>
+    <div className="position-relative z-3" style={{height:'600px'}}>
+    <div style={{
+        filter:"blur(5px)",
+        WebkitFilter:"blur(5px)",
+        height:"400px"
+      }}>
+    <div
+      className=" min-vh-100"
+      style={{
+        backgroundImage: "url(/src/assets/pit-crew-gif-4801470.gif)",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backdropFilter: "blur(1000px)",
+        boxShadow: "2px 7px 15px 8px rgba(0,0,0,0.3)",
+        height:"600px"
+        // backgroundColor: "rgba(0,0,128,0.1)",
+        // opacity: 0.5,
+      }}
+    >
+    </div>
+    </div>
+    <Container className='position-absolute' style={{top:'0'}}>
+      <Row>
+    <Col className=" mx-auto bg-dark" style={{borderRadius:'10px', width: '30%', marginTop:'30px',marginBottom:'10px', color:'white'}} md={8}>
           <Form  onSubmit={handleSubmit(onSubmit)}>
             <Form.Group>
               <Form.Label style={{margin:'10px', color:'white'}}>이름</Form.Label>
@@ -155,7 +166,8 @@ export default function SignUp() {
           </Form>
         </Col>
       </Row>
-    </Container>
-    // </div>
+      </Container>
+    </div>
+  
   );
 }
