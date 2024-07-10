@@ -195,7 +195,7 @@ export default function Rank() {
             <Col md={3} key={i} className="mb-3">
               <Card>
                 <Row>
-                  <Col md={8}>
+                  <Col md={7}>
                     <Card.Title
                       style={{
                         fontSize: "3rem",
@@ -206,7 +206,7 @@ export default function Rank() {
                     </Card.Title>
                   </Col>
                   <Col
-                    md={4}
+                    md={5}
                     style={{
                       padding: "20px",
                       textAlign: "center",
