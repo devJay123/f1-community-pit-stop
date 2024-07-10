@@ -35,6 +35,13 @@ export default function Header() {
       e.preventDefault();
       return;
     }
+    setClicked({
+      community: false,
+      chat: true,
+      rank: false,
+      schedule: false,
+      loginHome: false,
+    });
   };
 
   useEffect(() => {
@@ -129,13 +136,6 @@ export default function Header() {
           <Link
             onClick={(e) => {
               isSignup(e);
-              setClicked({
-                community: false,
-                chat: true,
-                rank: false,
-                schedule: false,
-                loginHome: false,
-              });
             }}
             to="/chat"
             state={{ userid: user }}
