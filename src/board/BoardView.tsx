@@ -35,19 +35,19 @@ export default function BoardView() {
   const [showEditModal, setShowEditModal] = useState(false); // 모달창
   const [editReply, setEditReply] = useState<Reply | null>(null);
   const [loginUser, setLoginUser] = useState<IUserInfo>({
-    userid: ""
+    userid: "",
   });
   let uid = null; // 로그인한 사람의 userid값 받을 예정
   useEffect(() => {
-      // 세션스토리지에 저장된 userInfo가 있는지 꺼내보자
-      let str = sessionStorage.getItem('loginUserid');
-      // alert(str); // string 유형 
-      if(str!==null) {
-          let user=JSON.parse(str);
-          uid = user.userid;
-          setLoginUser(uid);
-      }
-  },[])
+    // 세션스토리지에 저장된 userInfo가 있는지 꺼내보자
+    let str = sessionStorage.getItem("loginUserid");
+    // alert(str); // string 유형
+    if (str !== null) {
+      let user = JSON.parse(str);
+      uid = user.userid;
+      setLoginUser(uid);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -160,24 +160,26 @@ export default function BoardView() {
   return (
     <Container className="py-13 ">
       {
-      <div className="text-end my-2">
-        <Link to={`/boardEdit/${id}`} state={{ id: id, teamnum: teamnum }}>
-          <Button variant="dark" className="mx-1 button">
-            수 정
+        <div className="text-end my-2">
+          <Link to={`/boardEdit/${id}`} state={{ id: id, teamnum: teamnum }}>
+            <Button variant="dark" className="mx-1 button">
+              수 정
+            </Button>
+          </Link>
+          <Button onClick={onDelete} variant="danger">
+            삭 제
           </Button>
-        </Link>
-        <Button onClick={onDelete} variant="danger">
-          삭 제
-        </Button>
-      </div>
+        </div>
       }
       <Card
         className="mb-3 border-2"
         style={{ borderColor: `${borderColorClass}` }}
       >
-        <Card.Body >
+        <Card.Body>
           <div className="Primary">
-            <div className="card-header h2 bg-secondary">F1 팀 {teamnum} 번의 이야기</div>
+            <div className="card-header h2 bg-secondary">
+              F1 팀 {teamnum} 번의 이야기
+            </div>
           </div>
           <br />
           <div className="cArea">
