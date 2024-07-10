@@ -60,3 +60,23 @@
 .rank_container {
   font-family: "KoPub_Bold";
 }
+
+@media (max-width: 700px) {
+  .header {
+    flex-wrap: wrap;
+    font-size: 14px;
+    height: 150px;
+  }
+  .header ul {
+    width: 100%;
+  }
+  .header ul li {
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    height: 90px;
+  }
+  .logo_box {
+    padding-top: 20px;
+  }
+}

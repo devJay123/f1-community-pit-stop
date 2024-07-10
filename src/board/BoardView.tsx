@@ -35,6 +35,17 @@ export default function BoardView() {
   const [showEditModal, setShowEditModal] = useState(false); // 모달창
   const [editReply, setEditReply] = useState<Reply | null>(null);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      if (teamnum && id) {
+        await getBoard(); // 게시글 가져오기
+        await getReplies(); // 댓글 가져오기
+        await updateReadnum(); // 조회수 증가
+      }
+    };
+    fetchData(); // 호출
+  }, [teamnum, id]);
+
   const getBoard = async () => {
     try {
       const response = await axios.get(`/api/boards/${teamnum}/${id}`);
