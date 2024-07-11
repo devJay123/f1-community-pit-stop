@@ -1,0 +1,48 @@
+.img-container {
+  filter: blur(5px);
+  height: 700px;
+  background-image: url(/src/assets/pit-crew-gif-4801470.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  backdrop-filter: blur(1000px);
+  box-shadow: 2px 7px 15px 8px rgba(0, 0, 0, 0.3);
+}
+
+.form-container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.form-container .form-box {
+  border-radius: 10px;
+  color: white;
+  position: relative;
+
+  animation-name: moveRight;
+  animation-duration: 0.3s;
+  animation-timing-function: linear; /* 'leaner'를 'linear'로 수정 */
+  animation-iteration-count: 1;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+}
+
+/* 브라우저 호환성을 위해 표준 키프레임도 추가 */
+@keyframes moveRight {
+  0% {
+    left: 50px;
+  }
+  100% {
+    left: 30%;
+  }
+}
+
+/* Webkit 브라우저를 위한 키프레임 */
+@-webkit-keyframes moveRight {
+  0% {
+    left: 50px;
+  }
+  100% {
+    left: 450px;
+  }
+}
