@@ -1,3 +1,14 @@
+import redbullLogo from "../assets/team_logo/red-bull-racing-logo.png";
+import ferrariLogo from "../assets/team_logo/ferrari-logo.png";
+import mclarenLogo from "../assets/team_logo/mclaren-logo.png";
+import mercedesLogo from "../assets/team_logo/mercedes-logo.png";
+import astonmartinLogo from "../assets/team_logo/aston-martin-logo.png";
+import rbLogo from "../assets/team_logo/rb-logo.png";
+import haasLogo from "../assets/team_logo/haas-logo.png";
+import alpineLogo from "../assets/team_logo/alpine-logo.png";
+import williamsLogo from "../assets/team_logo/williams-logo.png";
+import sauberLogo from "../assets/team_logo/kick-sauber-logo.png";
+
 const profile = [
   {
     teamName: "RedBull",
@@ -5,6 +16,9 @@ const profile = [
     driverProfile: "./src/assets/player/maxver01.png",
     teamColor: "rgb(54 113 198 / 1)",
     nameCode: "VER",
+    teamLogo: redbullLogo,
+    nation: "/src/assets/nation/Netherlands.jpg",
+    number: "/src/assets/numberr/MAXVER01.png",
   },
   {
     teamName: "RedBull",
@@ -12,6 +26,9 @@ const profile = [
     driverProfile: "./src/assets/player/serper01.png",
     teamColor: "rgb(54 113 198 / 1)",
     nameCode: "PER",
+    teamLogo: redbullLogo,
+    nation: "/src/assets/nation/Mexico.jpg",
+    number: "/src/assets/numberr/SERPER01.png",
   },
   {
     teamName: "Ferrari",
@@ -19,6 +36,9 @@ const profile = [
     driverProfile: "./src/assets/player/chalec01.png",
     teamColor: "rgb(232 0 32 /1)",
     nameCode: "LEC",
+    teamLogo: ferrariLogo,
+    nation: "/src/assets/nation/Monaco.jpg",
+    number: "/src/assets/numberr/CHALEC01.png",
   },
   {
     teamName: "Ferrari",
@@ -26,6 +46,9 @@ const profile = [
     driverProfile: "./src/assets/player/carsai01.png",
     teamColor: "rgb(232 0 32 /1)",
     nameCode: "SAI",
+    teamLogo: ferrariLogo,
+    nation: "/src/assets/nation/Spain.jpg",
+    number: "/src/assets/numberr/CARSAI01.png",
   },
   {
     teamName: "Mclaren",
@@ -33,6 +56,9 @@ const profile = [
     driverProfile: "./src/assets/player/lannor01.png",
     teamColor: "rgb(255 128 0 /1)",
     nameCode: "NOR",
+    teamLogo: mclarenLogo,
+    nation: "/src/assets/nation/United_Kingdom.jpg",
+    number: "/src/assets/numberr/LANNOR01.png",
   },
   {
     teamName: "Mclaren",
@@ -40,6 +66,9 @@ const profile = [
     driverProfile: "./src/assets/player/oscpia01.png",
     teamColor: "rgb(255 128 0 /1)",
     nameCode: "PIA",
+    teamLogo: mclarenLogo,
+    nation: "/src/assets/nation/Australia.jpg",
+    number: "/src/assets/numberr/OSCPIA01.png",
   },
   {
     teamName: "Mercedes",
@@ -47,6 +76,9 @@ const profile = [
     driverProfile: "./src/assets/player/lewham01.png",
     teamColor: "rgb(39 244 210/1)",
     nameCode: "HAM",
+    teamLogo: mercedesLogo,
+    nation: "/src/assets/nation/United_Kingdom.jpg",
+    number: "/src/assets/numberr/LEWHAM01.png",
   },
   {
     teamName: "Mercedes",
@@ -54,6 +86,9 @@ const profile = [
     driverProfile: "./src/assets/player/georus01.png",
     teamColor: "rgb(39 244 210/1)",
     nameCode: "RUS",
+    teamLogo: mercedesLogo,
+    nation: "/src/assets/nation/United_Kingdom.jpg",
+    number: "/src/assets/numberr/GEORUS01.png",
   },
   {
     teamName: "Aston Martin",
@@ -61,6 +96,9 @@ const profile = [
     driverProfile: "./src/assets/player/feralo01.png",
     teamColor: "rgb(34 153 113/1)",
     nameCode: "ALO",
+    teamLogo: astonmartinLogo,
+    nation: "/src/assets/nation/Spain.jpg",
+    number: "/src/assets/numberr/FERALO01.png",
   },
   {
     teamName: "Aston Martin",
@@ -68,6 +106,9 @@ const profile = [
     driverProfile: "./src/assets/player/lanstr01.png",
     teamColor: "rgb(34 153 113/1)",
     nameCode: "STR",
+    teamLogo: astonmartinLogo,
+    nation: "/src/assets/nation/Canada.jpg",
+    number: "/src/assets/numberr/LANSTR01.png",
   },
   {
     teamName: "RB",
@@ -75,6 +116,9 @@ const profile = [
     driverProfile: "./src/assets/player/yuktsu01.png",
     teamColor: "rgb(102 146 255/1)",
     nameCode: "TSU",
+    teamLogo: rbLogo,
+    nation: "/src/assets/nation/Japan.jpg",
+    number: "/src/assets/numberr/YUKTSU01.png",
   },
   {
     teamName: "RB",
@@ -82,6 +126,9 @@ const profile = [
     driverProfile: "./src/assets/player/danric01.png",
     teamColor: "rgb(102 146 255/1)",
     nameCode: "RIC",
+    teamLogo: rbLogo,
+    nation: "/src/assets/nation/Australia.jpg",
+    number: "/src/assets/numberr/DANRIC01.png",
   },
   {
     teamName: "Haas",
@@ -89,6 +136,9 @@ const profile = [
     driverProfile: "./src/assets/player/nichul01.png",
     teamColor: "rgb(182 186 189 /1)",
     nameCode: "HUL",
+    teamLogo: haasLogo,
+    nation: "/src/assets/nation/Germany.jpg",
+    number: "/src/assets/numberr/NICHUL01.png",
   },
   {
     teamName: "Haas",
@@ -96,6 +146,9 @@ const profile = [
     driverProfile: "./src/assets/player/kevmag01.png",
     teamColor: "rgb(182 186 189 /1)",
     nameCode: "MAG",
+    teamLogo: haasLogo,
+    nation: "/src/assets/nation/Denmark.jpg",
+    number: "/src/assets/numberr/KEVMAG01.png",
   },
   {
     teamName: "Alpine",
@@ -103,6 +156,9 @@ const profile = [
     driverProfile: "./src/assets/player/piegas01.png",
     teamColor: "rgb(0 147 204 / 1)",
     nameCode: "GAS",
+    teamLogo: alpineLogo,
+    nation: "/src/assets/nation/France.jpg",
+    number: "/src/assets/numberr/PIEGAS01.png",
   },
   {
     teamName: "Alpine",
@@ -110,6 +166,9 @@ const profile = [
     driverProfile: "./src/assets/player/estoco01.png",
     teamColor: "rgb(0 147 204 / 1)",
     nameCode: "OCO",
+    teamLogo: alpineLogo,
+    nation: "/src/assets/nation/France.jpg",
+    number: "/src/assets/numberr/ESTOCO01.png",
   },
   {
     teamName: "Williams",
@@ -117,6 +176,9 @@ const profile = [
     driverProfile: "./src/assets/player/alealb01.png",
     teamColor: "rgb(100 196 255  / 1)",
     nameCode: "ALB",
+    teamLogo: williamsLogo,
+    nation: "/src/assets/nation/Thailand.jpg",
+    number: "/src/assets/numberr/ALEALB01.png",
   },
   {
     teamName: "Williams",
@@ -124,6 +186,9 @@ const profile = [
     driverProfile: "./src/assets/player/logsar01.png",
     teamColor: "rgb(100 196 255  / 1)",
     nameCode: "SAR",
+    teamLogo: williamsLogo,
+    nation: "/src/assets/nation/United_States.jpg",
+    number: "/src/assets/numberr/LOGSAR01.png",
   },
   {
     teamName: "Kick Sauber",
@@ -131,6 +196,9 @@ const profile = [
     driverProfile: "./src/assets/player/valbot01.png",
     teamColor: "rgb(82 226 82 /1)",
     nameCode: "BOT",
+    teamLogo: sauberLogo,
+    nation: "/src/assets/nation/Finland.jpg",
+    number: "/src/assets/numberr/VALBOT01.png",
   },
   {
     teamName: "Kick Sauber",
@@ -138,6 +206,9 @@ const profile = [
     driverProfile: "./src/assets/player/guazho01.png",
     teamColor: "rgb(82 226 82 /1)",
     nameCode: "ZHO",
+    teamLogo: sauberLogo,
+    nation: "/src/assets/nation/China.jpg",
+    number: "/src/assets/numberr/GUAZHO01.png",
   },
   {
     teamName: "Ferrari",
@@ -145,6 +216,9 @@ const profile = [
     driverProfile: "",
     teamColor: "rgb(232 0 32 /1)",
     nameCode: "BEA",
+    teamLogo: ferrariLogo,
+    nation: "/src/assets/nation/United_Kingdom.jpg",
+    number: "/src/assets/numberr/OLIBEA01.png",
   },
 ];
 
