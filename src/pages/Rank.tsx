@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Row, Col, Card, Container, Badge } from "react-bootstrap";
 import profile from "../lib/driverProfile";
+import { dummyDrivers } from "../lib/dummyProfile";
 
 interface IDrivers {
   code: string;
@@ -17,7 +18,10 @@ interface IDrivers {
   positionText: string;
   wins: string;
 }
+
 interface IDriversProfile {
+  position: string;
+  points: string;
   teamName: string;
   driverName: string;
   driverProfile: string;
@@ -28,38 +32,41 @@ interface IDriversProfile {
   number: string;
 }
 
+interface dummyData {
+  position: string;
+  namecode: string;
+  name: string;
+  points: string;
+  country: string;
+  team: string;
+  dateOfBirth: string;
+  firstName: string;
+  lastName: string;
+}
+
 export default function Rank() {
-  const [drivers, setDrivers] = useState<IDrivers[]>([]);
+  //const [drivers, setDrivers] = useState<IDrivers[]>([]);
+  const [drivers, setDrivers] = useState<dummyData[]>([]);
   const [driversProfiles, setDriversProfiles] = useState<IDriversProfile[]>([]);
 
   useEffect(() => {
-    getDriversRank().then((data) => {
-      let tmp = data;
-      tmp = tmp.map(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (el: { Driver: any; wins: any; position: any; points: any }) => ({
-          ...el.Driver,
-          wins: el.wins,
-          position: el.position,
-          points: el.points,
-        })
-      );
-      console.log("123", tmp);
-      setDrivers(tmp);
-    });
+    setDrivers(dummyDrivers);
 
     getDriversProfile().then(() => {
       const proflieUrl = profile;
       const profileData = proflieUrl.map((el) => el);
-      console.log("456", profileData);
+
       setDriversProfiles(profileData);
     });
   }, []);
 
   const mergedData = drivers.map((driver) => {
-    const profile = driversProfiles.find((p) => p.nameCode === driver.code);
+    console.log(driver);
+    const profile = driversProfiles.find((p) => p.nameCode === driver.namecode);
     return {
-      ...driver,
+      name: profile ? profile.driverName : "points not found",
+      points: profile ? profile.points : "points not found",
+      position: profile ? profile.position : "position not found",
       profile: profile ? profile.driverProfile : "profile not found",
       teamName: profile ? profile.teamName : "team name not found",
       teamColor: profile ? profile.teamColor : "#000",
@@ -72,11 +79,11 @@ export default function Rank() {
   // F1그랑프리는 대회마다 1위부터 10위 선수들에게만 점수(각각 25ㆍ18ㆍ15ㆍ12ㆍ10ㆍ8ㆍ6ㆍ4ㆍ2ㆍ1)를 부여한다.
 
   async function getDriversRank() {
-    const url = "http://ergast.com/api/f1/current/driverStandings.json";
-    const response = await axios.get(url);
+    //const url = "http://ergast.com/api/f1/current/driverStandings.json";
+    //const response = await axios.get(url);
 
-    const driverData =
-      response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+    //const driverData = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+    const driverData = dummyDrivers;
 
     return driverData;
   }
@@ -160,11 +167,11 @@ export default function Rank() {
                           paddingTop: "10px",
                         }}
                       >
-                        {driver.givenName}
+                        {/* {driver.name} */}
                       </span>
                     </Card.Text>
                     <Card.Text>
-                      <div
+                      <p
                         style={{
                           display: "flex",
                           justifyContent: "space-between",
@@ -173,7 +180,7 @@ export default function Rank() {
                           fontSize: "1.5rem",
                         }}
                       >
-                        <span>{driver.familyName}</span>
+                        <span>{driver.name}</span>
                         <Card.Img
                           src={driver.nation}
                           style={{
@@ -182,7 +189,7 @@ export default function Rank() {
                             border: "1px solid #000",
                           }}
                         />
-                      </div>
+                      </p>
                     </Card.Text>
                     <Card.Text style={{ color: "#595959", padding: "10px" }}>
                       {driver.teamName}
@@ -247,7 +254,7 @@ export default function Rank() {
                               position: "absolute",
                               top: 0,
                               left: 0,
-                              opacity: 0.5, // 투명도 조절
+                              opacity: 0.5,
                               zIndex: 0,
                             }}
                           ></div>
@@ -317,11 +324,11 @@ export default function Rank() {
                           paddingTop: "10px",
                         }}
                       >
-                        {driver.givenName}
+                        {driver.name}
                       </span>
                     </Card.Text>
                     <Card.Text>
-                      <div
+                      <span
                         style={{
                           display: "flex",
                           justifyContent: "space-between",
@@ -339,7 +346,7 @@ export default function Rank() {
                             border: "1px solid #000",
                           }}
                         />
-                      </div>
+                      </span>
                     </Card.Text>
                     <Card.Text style={{ color: "#595959", padding: "10px" }}>
                       {driver.teamName}
