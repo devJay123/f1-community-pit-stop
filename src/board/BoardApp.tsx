@@ -36,7 +36,10 @@ export default function BoardApp() {
             margin: "20px 0",
           }}
         >
-          TEAM 커뮤니티
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span>TEAM 커뮤니티</span>
+            <Card.Img src={"/src/assets/flag.png"} style={{ width: "40px" }} />
+          </div>
         </h2>
       </div>
       <Alert variant="secondary" style={{ lineHeight: "1.5" }}>
