@@ -126,7 +126,7 @@ export default function Header() {
       >
         <div className="logo_box">
           <h1 style={{ fontSize: '18px' }}>
-            <img src="/src/assets/f1_logo_red.svg" alt="logo" />
+            <img src="/assets/f1_logo_red.svg" alt="logo" />
             Pit Stop
           </h1>
         </div>
