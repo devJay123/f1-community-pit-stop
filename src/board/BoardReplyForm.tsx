@@ -1,6 +1,7 @@
 // BoardReplyForm.tsx
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 export interface Reply {
   id: string;
@@ -16,6 +17,7 @@ interface BoardReplyFormProps {
 }
 
 const BoardReplyForm: React.FC<BoardReplyFormProps> = ({ addReply }) => {
+  const navigate = useNavigate();
   const [content, setContent] = useState('');
   const loginUserId = sessionStorage.getItem("loginUserid");
 
@@ -23,6 +25,7 @@ const BoardReplyForm: React.FC<BoardReplyFormProps> = ({ addReply }) => {
     e.preventDefault();
     if (!loginUserId) {
       alert("로그인이 필요합니다.");
+      navigate('/loginhome')
       return;
     }
 

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ScheduleCard from "./ScheduleCard";
-import { Card, Container } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import f1tire from "../assets/f1_tire.jpg";
 
 interface Location {
   lat: string;
@@ -49,7 +51,7 @@ const ScheduleList: React.FC = () => {
   useEffect(() => {
     const fetchRaceData = async () => {
       try {
-        const response = await axios.get("https://ergast.com/api/f1/2024.json");
+        const response = await axios.get("https://ergast.com/api/f1/20242.json");
         const raceList = response.data.MRData.RaceTable.Races;
         console.log(raceList);
         setRaces(raceList);
@@ -62,7 +64,43 @@ const ScheduleList: React.FC = () => {
   }, []);
 
   if (races.length === 0) {
-    return <div>Loading...</div>;
+    return <Container
+    className="text-center"
+    style={{
+      height: "100vh",
+      backgroundColor: "#fff",
+      color: "#000",
+      fontFamily: "KoPub_Bold",
+      fontSize: "2.5rem",
+    }}
+  >
+    <Row
+      className="align-items-center justify-content-center"
+      style={{ height: "100%" }}
+    >
+      <Col>
+        <h1 className="display-1">
+          L
+          <span
+            style={{
+              display: "inline-block",
+              width: "100px",
+              height: "100px",
+              backgroundImage: `url(${f1tire})`,
+              backgroundSize: "cover",
+            }}
+          ></span>
+          ADING
+        </h1>
+        <p className="py-4">페이지 로딩중</p>
+        <Button variant="dark">
+          <Link to={"/"} className="text-white">
+            홈으로 돌아가기
+          </Link>
+        </Button>
+      </Col>
+    </Row>
+  </Container>;
   }
 
   return (

@@ -14,14 +14,14 @@ const BoardReply: React.FC<BoardReplyProps> = ({ replies, onDelete, onEdit, logi
     <ListGroup>
       {replies.map((reply) => (
         <ListGroup.Item key={reply.id}>
-          <div className="d-flex justify-content-between" style={{padding:'10px'}}>
+          <div className="d-flex " style={{padding:'10px'}}>
             <div style={{padding:'10px'}}>
               <strong style={{fontWeight:'bold'}}>{reply.userid}</strong>
-              <small className="text-muted">{reply.userid}</small>
-              <small className="text-muted mx-2">{reply.wdate.substring(0, 10)}</small>
+              <span className="text-muted" style={{width:'100%'}}> {reply.content}</span>
             </div>
+              <small className=" mx-2" style={{marginTop:'10px'}}>{reply.wdate.substring(0, 10)}</small>
             {loginUserId === reply.userid && (
-              <div>
+              <div className="text-end bg-black">
                 <Button variant="button" onClick={() => onEdit(reply)}>
                   수정
                 </Button>
