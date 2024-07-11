@@ -32,11 +32,7 @@ export default function Header() {
     window.location.href = "/";
   };
 
-<<<<<<< HEAD
-  const isSignup = (e: MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-=======
   const isSignup = (e: ReactMouseEvent<HTMLAnchorElement>) => {
->>>>>>> 689c30872118a955c3c59720fa875acff57fd646
     if (!user) {
       alert("회원만 가능합니다.");
       e.preventDefault();
