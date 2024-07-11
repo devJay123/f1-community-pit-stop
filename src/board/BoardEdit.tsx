@@ -59,12 +59,13 @@ export default function BoardEdit() {
   }, []);
 
   return (
+    <div className='EditForm'>
     <Container>
       <Row>
-        <Col className="p-3 mx-auto" md={8}>
+        <Col className="p-4 mt-3 mb-3 mx-auto EditFormRow" md={8}>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group className="my-2">
-              <Form.Label>제목</Form.Label>
+              <Form.Label className='h3 m-2'>제목</Form.Label>
               <Form.Control
                 {...register('title')}
                 type="text"
@@ -76,7 +77,7 @@ export default function BoardEdit() {
               )}
             </Form.Group>
             <Form.Group className="my-2">
-              <Form.Label>작성자</Form.Label>
+              <Form.Label className='h3 m-2'>작성자</Form.Label>
               <Form.Control
                 {...register('userid')}
                 readOnly
@@ -89,7 +90,7 @@ export default function BoardEdit() {
               )}
             </Form.Group>
             <Form.Group className="my-2">
-              <Form.Label>내용</Form.Label>
+              <Form.Label className='h3 m-2'>내용</Form.Label>
               <Form.Control
                 {...register('content')}
                 as="textarea"
@@ -100,11 +101,11 @@ export default function BoardEdit() {
               {errors.content && (
                 <p className="text-danger">{errors.content.message}</p>
               )}
-              <div className="text-center">
-                <Button className="mx-1" type="submit" variant="success">
+              <div className="text-center mt-4">
+                <Button className="mx-1" type="submit" variant="dark">
                   글쓰기
                 </Button>
-                <Button className="mx-1" type="reset" variant="warning">
+                <Button className="mx-1" type="reset" variant="danger">
                   다시쓰기
                 </Button>
               </div>
@@ -113,5 +114,6 @@ export default function BoardEdit() {
         </Col>
       </Row>
     </Container>
+    </div>
   );
 }
