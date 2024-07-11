@@ -1,8 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  MouseEvent as ReactMouseEvent,
-} from 'react';
+import { useEffect, useState, MouseEvent as ReactMouseEvent } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 export default function Header() {

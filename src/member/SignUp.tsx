@@ -1,4 +1,4 @@
-import { Form, Row, Col, Button, Container } from 'react-bootstrap';
+import { Form, Row, Col, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -65,9 +65,7 @@ export default function SignUp() {
     }
   };
 
-  const checkDuplicated = async (type) => {
-    const checkData = { type: type, data: getValues(type) };
-    const response = await axios.post(`/api/signup/check`, checkData);
+  const checkDuplicated = async (type: string) => {
     let msg = '';
 
     switch (type) {
@@ -81,6 +79,12 @@ export default function SignUp() {
         msg = '아이디';
         break;
     }
+
+    if (!getValues(type)) {
+      return alert(`${msg} 입력해주세요!`);
+    }
+    const checkData = { type: type, data: getValues(type) };
+    const response = await axios.post(`/api/signup/check`, checkData);
 
     if (response.data.result === 'success') {
       alert(`사용 가능한 ${msg}입니다.`);
