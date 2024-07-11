@@ -1,9 +1,10 @@
-import { Form, Row, Col, Button, Container } from "react-bootstrap";
-import { useForm } from "react-hook-form";
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "../lib/axiosCreate";
-import { Link, useNavigate } from "react-router-dom";
+import { Form, Row, Col, Button, Container } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import axios from '../lib/axiosCreate';
+import { Link, useNavigate } from 'react-router-dom';
+import './SignUp.css';
 
 interface SignUpData {
   name: string;
@@ -18,31 +19,32 @@ export default function SignUp() {
   const navigate = useNavigate();
   const validationSchema = Yup.object().shape({
     name: Yup.string()
-      .min(2, "2자 이상으로 입력해주세요")
-      .max(10, "10자 이하로 입력해주세요")
-      .required("이름을 입력하세요"),
+      .min(2, '2자 이상으로 입력해주세요')
+      .max(10, '10자 이하로 입력해주세요')
+      .required('이름을 입력하세요'),
     nickname: Yup.string()
-      .min(2, "2자 이상으로 입력해주세요")
-      .max(10, "10자 이하로 입력해주세요")
-      .required("닉네임을 입력하세요(10자 이하)"),
+      .min(2, '2자 이상으로 입력해주세요')
+      .max(10, '10자 이하로 입력해주세요')
+      .required('닉네임을 입력하세요(10자 이하)'),
     userid: Yup.string()
       .matches(/^[a-zA-Z]+$/, {
-        message: "영문자만 입력해주세요.",
+        message: '영문자만 입력해주세요.',
         excludeEmptyString: true,
       })
-      .required("아이디를 입력하세요"),
-    passwd: Yup.string().required("비밀번호를 입력하세요"),
+      .required('아이디를 입력하세요'),
+    passwd: Yup.string().required('비밀번호를 입력하세요'),
     passwdChk: Yup.string()
-      .oneOf([Yup.ref("passwd")], "비밀번호가 일치하지 않습니다")
-      .required("비밀번호를 다시 입력하세요"),
+      .oneOf([Yup.ref('passwd')], '비밀번호가 일치하지 않습니다')
+      .required('비밀번호를 다시 입력하세요'),
     email: Yup.string()
-      .email("올바른 이메일 형식이 아닙니다")
-      .required("이메일을 입력하세요"),
+      .email('올바른 이메일 형식이 아닙니다')
+      .required('이메일을 입력하세요'),
   });
 
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<SignUpData>({
     resolver: yupResolver(validationSchema),
@@ -50,65 +52,56 @@ export default function SignUp() {
 
   const onSubmit = async (data: SignUpData) => {
     try {
-      const response = await axios.post("/api/signup", data);
+      const response = await axios.post('/api/signup', data);
       const responseData = response.data;
-      if (responseData && responseData.result === "success") {
-        alert("회원가입 완료. 로그인 페이지로 이동합니다");
-        navigate("/loginHome");
+      if (responseData && responseData.result === 'success') {
+        alert('회원가입 완료. 로그인 페이지로 이동합니다');
+        navigate('/loginHome');
       } else {
-        alert("회원가입 실패.");
+        alert('회원가입 실패.');
       }
     } catch (err) {
-      console.log("Error: " + err);
+      console.log('Error: ' + err);
+    }
+  };
+
+  const checkDuplicated = async (type) => {
+    const checkData = { type: type, data: getValues(type) };
+    const response = await axios.post(`/api/signup/check`, checkData);
+    let msg = '';
+
+    switch (type) {
+      case 'nickname':
+        msg = '닉네임';
+        break;
+      case 'email':
+        msg = '이메일';
+        break;
+      case 'userid':
+        msg = '아이디';
+        break;
+    }
+
+    if (response.data.result === 'success') {
+      alert(`사용 가능한 ${msg}입니다.`);
+    } else {
+      alert(`중복된 ${msg}입니다. 다시 입력해주세요.`);
     }
   };
 
   return (
-    <div className="position-relative z-3" style={{ height: "700px" }}>
-      <div
-        style={{
-          filter: "blur(5px)",
-          WebkitFilter: "blur(5px)",
-          height: "650px",
-        }}
-      >
-        <div
-          className=" min-vh-100"
-          style={{
-            backgroundImage: "url(/src/assets/pit-crew-gif-4801470.gif)",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            backdropFilter: "blur(1000px)",
-            boxShadow: "2px 7px 15px 8px rgba(0,0,0,0.3)",
-            height: "700px",
-            // backgroundColor: "rgba(0,0,128,0.1)",
-            // opacity: 0.5,
-          }}
-        ></div>
-      </div>
-      <Container
-        className="position-absolute"
-        style={{ top: "0", marginLeft: "50px" }}
-      >
-        <Row>
-          <Col
-            className=" mx-auto bg-dark"
-            style={{
-              borderRadius: "10px",
-              width: "30%",
-              marginTop: "100px",
-              marginBottom: "10px",
-              color: "white",
-            }}
-            md={8}
-          >
-            <Form onSubmit={handleSubmit(onSubmit)}>
+    <div className="position-relative z-3 signup-wrap">
+      <div className="img-container"></div>
+      <div className="form-container d-flex align-items-center">
+        <Row className="d-flex align-items-center" style={{ width: '100%' }}>
+          <Col className="bg-dark form-box" xs={11} md={5}>
+            <Form className="py-2 px-3" onSubmit={handleSubmit(onSubmit)}>
               <Form.Group>
-                <Form.Label style={{ margin: "10px", color: "white" }}>
+                <Form.Label style={{ margin: '10px', color: 'white' }}>
                   이름
                 </Form.Label>
                 <Form.Control
-                  {...register("name")}
+                  {...register('name')}
                   type="text"
                   placeholder=""
                 />
@@ -117,31 +110,52 @@ export default function SignUp() {
                 )}
               </Form.Group>
               <Form.Group>
-                <Form.Label style={{ margin: "10px" }}>닉네임</Form.Label>
-                <Form.Control
-                  {...register("nickname")}
-                  type="text"
-                  placeholder=""
-                />
+                <Form.Label style={{ margin: '10px' }}>닉네임</Form.Label>
+                <div className="d-flex justify-content-between">
+                  <Form.Control
+                    {...register('nickname')}
+                    type="text"
+                    placeholder=""
+                  />
+                  <Button
+                    onClick={() => {
+                      checkDuplicated('nickname');
+                    }}
+                    style={{ width: '30%', marginLeft: '20px' }}
+                  >
+                    중복확인
+                  </Button>
+                </div>
+
                 {errors.nickname && (
                   <p className="text-danger">{errors.nickname.message}</p>
                 )}
               </Form.Group>
               <Form.Group>
-                <Form.Label style={{ margin: "10px" }}>아이디</Form.Label>
-                <Form.Control
-                  {...register("userid")}
-                  type="text"
-                  placeholder=""
-                />
+                <Form.Label style={{ margin: '10px' }}>아이디</Form.Label>
+                <div className="d-flex justify-content-between">
+                  <Form.Control
+                    {...register('userid')}
+                    type="text"
+                    placeholder=""
+                  />
+                  <Button
+                    onClick={() => {
+                      checkDuplicated('userid');
+                    }}
+                    style={{ width: '30%', marginLeft: '20px' }}
+                  >
+                    중복확인
+                  </Button>
+                </div>
                 {errors.userid && (
                   <p className="text-danger">{errors.userid.message}</p>
                 )}
               </Form.Group>
               <Form.Group>
-                <Form.Label style={{ margin: "10px" }}>비밀번호</Form.Label>
+                <Form.Label style={{ margin: '10px' }}>비밀번호</Form.Label>
                 <Form.Control
-                  {...register("passwd")}
+                  {...register('passwd')}
                   type="password"
                   placeholder=""
                 />
@@ -150,11 +164,11 @@ export default function SignUp() {
                 )}
               </Form.Group>
               <Form.Group>
-                <Form.Label style={{ margin: "10px" }}>
+                <Form.Label style={{ margin: '10px' }}>
                   비밀번호 확인
                 </Form.Label>
                 <Form.Control
-                  {...register("passwdChk")}
+                  {...register('passwdChk')}
                   type="password"
                   placeholder=""
                 />
@@ -163,12 +177,23 @@ export default function SignUp() {
                 )}
               </Form.Group>
               <Form.Group>
-                <Form.Label style={{ margin: "10px" }}>이메일</Form.Label>
-                <Form.Control
-                  {...register("email")}
-                  type="text"
-                  placeholder=""
-                />
+                <Form.Label style={{ margin: '10px' }}>이메일</Form.Label>
+                <div className="d-flex justify-content-between">
+                  <Form.Control
+                    {...register('email')}
+                    type="text"
+                    placeholder=""
+                  />
+                  <Button
+                    onClick={() => {
+                      checkDuplicated('email');
+                    }}
+                    style={{ width: '30%', marginLeft: '20px' }}
+                  >
+                    중복확인
+                  </Button>
+                </div>
+
                 {errors.email && (
                   <p className="text-danger">{errors.email.message}</p>
                 )}
@@ -178,13 +203,15 @@ export default function SignUp() {
                   회원가입
                 </Button>
                 <Button className="mx-1" type="reset" variant="danger">
-                  <Link to="/loginHome">취소</Link>
+                  <Link to="/loginHome" style={{ color: 'white' }}>
+                    취소
+                  </Link>
                 </Button>
               </div>
             </Form>
           </Col>
         </Row>
-      </Container>
+      </div>
     </div>
   );
 }
