@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { MouseEvent, useEffect } from 'react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -29,7 +29,7 @@ export default function Header() {
     window.location.href = '/';
   };
 
-  const isSignup = (e) => {
+  const isSignup = (e: MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (!user) {
       alert('회원만 가능합니다.');
       e.preventDefault();

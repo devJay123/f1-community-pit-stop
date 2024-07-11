@@ -1,0 +1,48 @@
+.chat-app {
+  padding: 0 60px;
+  background-color: rgb(250, 250, 250);
+}
+.chat-header {
+  height: 60px;
+  line-height: 60px;
+
+  padding: 0 30px;
+
+  font-family: 'KoPub_Bold';
+  font-size: 20px;
+}
+.message-container {
+  height: 53vh;
+  padding: 5px 20px;
+
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: rgb(66, 66, 66);
+
+  font-family: 'KoPub_Bold';
+  font-size: 18px;
+}
+.message-container .message {
+  width: auto;
+  margin-top: 10px;
+}
+.message-container .message .chat-msg {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background-color: beige;
+}
+
+.chat-form {
+  height: 40px;
+  margin: 15px 0;
+}
+.chat-form input.chat-input {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.chat-form .chat-btn {
+  width: 70px;
+}

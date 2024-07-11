@@ -1,6 +1,5 @@
-import React from 'react';
 import './home.css';
-import { Carousel, Container, Row, Col, Button, Card } from 'react-bootstrap';
+import { Carousel, Container, Row, Col, Card } from 'react-bootstrap';
 export default function Hone() {
   return (
     <div>

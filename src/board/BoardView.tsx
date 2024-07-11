@@ -24,9 +24,9 @@ interface Reply {
   postId: string;
 }
 
-interface IUserInfo {
-  userid: string;
-}
+// interface IUserInfo {
+//   userid: string;
+// }
 
 export default function BoardView() {
   const { id, teamnum } = useParams<{ id: string; teamnum: string }>(); // 게시글 ID를 URL 파라미터에서 가져옵니다.

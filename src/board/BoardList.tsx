@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import Badge from "react-bootstrap/Badge";
-import { useLocation, Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import Badge from 'react-bootstrap/Badge';
+import { useLocation, Link } from 'react-router-dom';
 import {
   ListGroup,
   Row,
@@ -9,9 +9,9 @@ import {
   Pagination,
   Button,
   Alert,
-} from "react-bootstrap";
+} from 'react-bootstrap';
 
-import axios from "../lib/axiosCreate";
+import axios from '../lib/axiosCreate';
 
 interface IBoardList {
   id: number;
@@ -63,7 +63,7 @@ export default function BoardList() {
       }));
     } catch (err: unknown) {
       console.log(
-        "ERROR:",
+        'ERROR:',
         err instanceof Error ? err : new Error(String(err))
       );
     }
@@ -88,12 +88,12 @@ export default function BoardList() {
       <div>
         <h3
           style={{
-            padding: "15px",
-            fontSize: "2rem",
-            borderTop: "5px solid #000",
-            borderRight: "5px solid #000",
-            borderRadius: "0 15px 0 0",
-            margin: "20px 0",
+            padding: '15px',
+            fontSize: '2rem',
+            borderTop: '5px solid #000',
+            borderRight: '5px solid #000',
+            borderRadius: '0 15px 0 0',
+            margin: '20px 0',
           }}
         >
           커뮤니티
@@ -107,7 +107,7 @@ export default function BoardList() {
       <Row className="mt-2 mb-5">
         <Row className="mb-4">
           <div className="position-relative text-end mb-2">
-            {sessionStorage.getItem("loginUserid") ? (
+            {sessionStorage.getItem('loginUserid') ? (
               <Button variant="dark">
                 <Link
                   className="text-white"

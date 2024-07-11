@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Row, Col, Card, Container, Badge } from "react-bootstrap";
-import profile from "../lib/driverProfile";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Row, Col, Card, Container, Badge } from 'react-bootstrap';
+import profile from '../lib/driverProfile';
 
 interface IDrivers {
   code: string;
@@ -38,14 +38,14 @@ export default function Rank() {
         position: el.position,
         points: el.points,
       }));
-      console.log("123", tmp);
+      console.log('123', tmp);
       setDrivers(tmp);
     });
 
     getDriversProfile().then((data) => {
       const proflieUrl = profile;
       const profileData = proflieUrl.map((el) => el);
-      console.log("456", profileData);
+      console.log('456', profileData);
       setDriversProfiles(profileData);
     });
   }, []);
@@ -54,15 +54,15 @@ export default function Rank() {
     const profile = driversProfiles.find((p) => p.nameCode === driver.code);
     return {
       ...driver,
-      profile: profile ? profile.driverProfile : "profile not found",
-      teamName: profile ? profile.teamName : "team name not found",
+      profile: profile ? profile.driverProfile : 'profile not found',
+      teamName: profile ? profile.teamName : 'team name not found',
     };
   });
 
   // F1그랑프리는 대회마다 1위부터 10위 선수들에게만 점수(각각 25ㆍ18ㆍ15ㆍ12ㆍ10ㆍ8ㆍ6ㆍ4ㆍ2ㆍ1)를 부여한다.
 
   async function getDriversRank() {
-    const url = "http://ergast.com/api/f1/current/driverStandings.json";
+    const url = 'http://ergast.com/api/f1/current/driverStandings.json';
     const response = await axios.get(url);
 
     const driverData =
@@ -72,7 +72,7 @@ export default function Rank() {
   }
 
   async function getDriversProfile() {
-    const url = "https://api.openf1.org/v1/drivers?session_key=latest";
+    const url = 'https://api.openf1.org/v1/drivers?session_key=latest';
     const response = await axios.get(url);
 
     const driverData = response.data;
@@ -83,13 +83,13 @@ export default function Rank() {
       <div>
         <h2
           style={{
-            position: "relative",
-            padding: "15px",
-            fontSize: "2rem",
-            borderTop: "5px solid #000",
-            borderRight: "5px solid #000",
-            borderRadius: "0 15px 0 0",
-            margin: "20px 0",
+            position: 'relative',
+            padding: '15px',
+            fontSize: '2rem',
+            borderTop: '5px solid #000',
+            borderRight: '5px solid #000',
+            borderRadius: '0 15px 0 0',
+            margin: '20px 0',
           }}
         >
           선수 순위
@@ -105,8 +105,8 @@ export default function Rank() {
                   <Col md={8}>
                     <Card.Title
                       style={{
-                        fontSize: "3rem",
-                        padding: "20px 0 0 20px",
+                        fontSize: '3rem',
+                        padding: '20px 0 0 20px',
                       }}
                     >
                       {driver.position}
@@ -115,7 +115,7 @@ export default function Rank() {
                   <Col
                     md={4}
                     style={{
-                      padding: "20px",
+                      padding: '20px',
                     }}
                   >
                     <Card.Text>POINTS</Card.Text>
@@ -129,9 +129,9 @@ export default function Rank() {
                     <Card.Text>
                       <span
                         style={{
-                          display: "block",
-                          borderTop: "1px solid #481f1f",
-                          paddingTop: "10px",
+                          display: 'block',
+                          borderTop: '1px solid #481f1f',
+                          paddingTop: '10px',
                         }}
                       >
                         {driver.givenName}
@@ -140,27 +140,27 @@ export default function Rank() {
                     <Card.Text>
                       <span
                         style={{
-                          display: "block",
-                          borderBottom: "1px solid #481f1f",
-                          paddingBottom: "10px",
-                          fontSize: "1.5rem",
+                          display: 'block',
+                          borderBottom: '1px solid #481f1f',
+                          paddingBottom: '10px',
+                          fontSize: '1.5rem',
                         }}
                       >
                         {driver.familyName}
                       </span>
                     </Card.Text>
-                    <Card.Text style={{ color: "#595959", padding: "10px" }}>
+                    <Card.Text style={{ color: '#595959', padding: '10px' }}>
                       {driver.teamName}
                     </Card.Text>
                     <Col
                       md={3}
                       style={{
-                        position: "relative",
+                        position: 'relative',
                       }}
                     >
                       <Card.Text
                         style={{
-                          fontSize: "2.5rem",
+                          fontSize: '2.5rem',
                         }}
                       >
                         {driver.permanentNumber}
@@ -172,9 +172,9 @@ export default function Rank() {
                         src={driver.profile}
                         alt={`${driver.profile} image`}
                         style={{
-                          width: "12rem",
-                          height: "18rem",
-                          objectFit: "cover",
+                          width: '12rem',
+                          height: '18rem',
+                          objectFit: 'cover',
                         }}
                       />
                     </Col>
@@ -195,8 +195,8 @@ export default function Rank() {
                   <Col md={7}>
                     <Card.Title
                       style={{
-                        fontSize: "3rem",
-                        padding: "20px 0 0 20px",
+                        fontSize: '3rem',
+                        padding: '20px 0 0 20px',
                       }}
                     >
                       {driver.position}
@@ -205,8 +205,8 @@ export default function Rank() {
                   <Col
                     md={5}
                     style={{
-                      padding: "20px",
-                      textAlign: "center",
+                      padding: '20px',
+                      textAlign: 'center',
                     }}
                   >
                     <Card.Text>POINTS</Card.Text>
@@ -220,9 +220,9 @@ export default function Rank() {
                     <Card.Text>
                       <span
                         style={{
-                          display: "block",
-                          borderTop: "1px solid #481f1f",
-                          paddingTop: "10px",
+                          display: 'block',
+                          borderTop: '1px solid #481f1f',
+                          paddingTop: '10px',
                         }}
                       >
                         {driver.givenName}
@@ -231,27 +231,27 @@ export default function Rank() {
                     <Card.Text>
                       <span
                         style={{
-                          display: "block",
-                          borderBottom: "1px solid #481f1f",
-                          paddingBottom: "10px",
-                          fontSize: "1.5rem",
+                          display: 'block',
+                          borderBottom: '1px solid #481f1f',
+                          paddingBottom: '10px',
+                          fontSize: '1.5rem',
                         }}
                       >
                         {driver.familyName}
                       </span>
                     </Card.Text>
-                    <Card.Text style={{ color: "#595959", padding: "10px" }}>
+                    <Card.Text style={{ color: '#595959', padding: '10px' }}>
                       {driver.teamName}
                     </Card.Text>
                     <Col
                       md={3}
                       style={{
-                        position: "relative",
+                        position: 'relative',
                       }}
                     >
                       <Card.Text
                         style={{
-                          fontSize: "1.5rem",
+                          fontSize: '1.5rem',
                         }}
                       >
                         {driver.permanentNumber}
@@ -263,9 +263,9 @@ export default function Rank() {
                         src={driver.profile}
                         alt={`${driver.profile} image`}
                         style={{
-                          width: "9rem",
-                          height: "17rem",
-                          objectFit: "cover",
+                          width: '9rem',
+                          height: '17rem',
+                          objectFit: 'cover',
                         }}
                       />
                     </Col>

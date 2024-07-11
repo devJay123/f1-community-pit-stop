@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
+import './Chat.css';
+import { Container } from 'react-bootstrap';
 
 const ENDPOINT = 'http://localhost:8000';
 const socket = io(ENDPOINT);
@@ -44,33 +46,33 @@ export default function Chat() {
 
   return (
     <div className="chat-app">
-      <h2>환영합니다, {userId}님!</h2>
-      <div
-        className="message-container"
-        style={{
-          height: '400px',
-          overflowY: 'auto',
-          border: '1px solid #ccc',
-          padding: '10px',
-          marginBottom: '10px',
-        }}
-      >
+      <div className="chat-header">
+        <h2>환영합니다, {userId}님!</h2>
+      </div>
+      <div className="message-container">
         {messages.map((msg, index) => (
           <div key={index} className="message">
-            {msg}
+            <span className="chat-msg">{msg}</span>
           </div>
         ))}
         <div ref={messagesEndRef} />
       </div>
-      <form onSubmit={sendMessage} style={{ display: 'flex' }}>
+      <form
+        className="chat-form"
+        onSubmit={sendMessage}
+        style={{ display: 'flex' }}
+      >
         <input
+          className="chat-input"
           type="text"
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
           placeholder="메시지를 입력하세요..."
-          style={{ flex: 1, marginRight: '10px' }}
+          style={{ flex: 1 }}
         />
-        <button type="submit">전송</button>
+        <button className="chat-btn" type="submit">
+          전송
+        </button>
       </form>
     </div>
   );
