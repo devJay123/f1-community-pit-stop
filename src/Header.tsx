@@ -1,6 +1,9 @@
-import { MouseEvent, useEffect } from 'react';
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, {
+  useEffect,
+  useState,
+  MouseEvent as ReactMouseEvent,
+} from "react";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
   const [clicked, setClicked] = useState({
@@ -12,9 +15,9 @@ export default function Header() {
   });
 
   const location = useLocation();
-  const pathname = location.pathname.split('/')[1];
+  const pathname = location.pathname.split("/")[1];
 
-  const user = sessionStorage.getItem('loginUserid');
+  const user = sessionStorage.getItem("loginUserid");
 
   const onClickLogout = () => {
     sessionStorage.clear();
@@ -26,12 +29,16 @@ export default function Header() {
       loginHome: true,
     });
 
-    window.location.href = '/';
+    window.location.href = "/";
   };
 
+<<<<<<< HEAD
   const isSignup = (e: MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+=======
+  const isSignup = (e: ReactMouseEvent<HTMLAnchorElement>) => {
+>>>>>>> 689c30872118a955c3c59720fa875acff57fd646
     if (!user) {
-      alert('회원만 가능합니다.');
+      alert("회원만 가능합니다.");
       e.preventDefault();
       return;
     }
@@ -46,8 +53,8 @@ export default function Header() {
 
   useEffect(() => {
     switch (pathname) {
-      case 'community':
-      case 'boards':
+      case "community":
+      case "boards":
         setClicked({
           community: true,
           chat: false,
@@ -56,7 +63,7 @@ export default function Header() {
           loginHome: false,
         });
         break;
-      case 'rank':
+      case "rank":
         setClicked({
           community: false,
           chat: false,
@@ -65,7 +72,7 @@ export default function Header() {
           loginHome: false,
         });
         break;
-      case 'prediction':
+      case "prediction":
         setClicked({
           community: false,
           chat: false,
@@ -74,7 +81,7 @@ export default function Header() {
           loginHome: false,
         });
         break;
-      case 'loginHome':
+      case "loginHome":
         setClicked({
           community: false,
           chat: false,
@@ -92,7 +99,7 @@ export default function Header() {
           loginHome: false,
         });
     }
-  }, []);
+  }, [pathname]);
 
   return (
     <div className="header">
@@ -109,14 +116,14 @@ export default function Header() {
         }}
       >
         <div className="logo_box">
-          <h1 style={{ fontSize: '18px' }}>
+          <h1 style={{ fontSize: "18px" }}>
             <img src="/src/assets/f1_logo_red.svg" alt="logo" />
             Pit Stop
           </h1>
         </div>
       </Link>
       <ul className="header_links">
-        <li className={`${clicked.community ? 'clicked' : ''}`}>
+        <li className={`${clicked.community ? "clicked" : ""}`}>
           <Link
             onClick={() => {
               setClicked({
@@ -132,18 +139,18 @@ export default function Header() {
             커뮤니티
           </Link>
         </li>
-        <li className={`${clicked.chat ? 'clicked' : ''}`}>
+        <li className={`${clicked.chat ? "clicked" : ""}`}>
           <Link
-            onClick={(e) => {
-              isSignup(e);
-            }}
+            onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) =>
+              isSignup(e)
+            }
             to="/chat"
             state={{ userid: user }}
           >
             채팅
           </Link>
         </li>
-        <li className={`${clicked.rank ? 'clicked' : ''}`}>
+        <li className={`${clicked.rank ? "clicked" : ""}`}>
           <Link
             onClick={() => {
               setClicked({
@@ -159,7 +166,7 @@ export default function Header() {
             순위
           </Link>
         </li>
-        <li className={`${clicked.schedule ? 'clicked' : ''}`}>
+        <li className={`${clicked.schedule ? "clicked" : ""}`}>
           <Link
             onClick={() => {
               setClicked({
@@ -175,8 +182,8 @@ export default function Header() {
             경기일정
           </Link>
         </li>
-        <li className={`${clicked.loginHome ? 'clicked' : ''}`}>
-          {!user && (
+        <li className={`${clicked.loginHome ? "clicked" : ""}`}>
+          {!user ? (
             <Link
               onClick={() => {
                 setClicked({
@@ -191,9 +198,8 @@ export default function Header() {
             >
               로그인/회원가입
             </Link>
-          )}
-          {user && (
-            <Link to="" onClick={onClickLogout}>
+          ) : (
+            <Link to="/" onClick={onClickLogout}>
               로그아웃
             </Link>
           )}

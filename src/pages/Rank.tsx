@@ -32,17 +32,19 @@ export default function Rank() {
   useEffect(() => {
     getDriversRank().then((data) => {
       let tmp = data;
-      tmp = tmp.map((el) => ({
-        ...el.Driver,
-        wins: el.wins,
-        position: el.position,
-        points: el.points,
-      }));
+      tmp = tmp.map(
+        (el: { Driver: any; wins: any; position: any; points: any }) => ({
+          ...el.Driver,
+          wins: el.wins,
+          position: el.position,
+          points: el.points,
+        })
+      );
       console.log('123', tmp);
       setDrivers(tmp);
     });
 
-    getDriversProfile().then((data) => {
+    getDriversProfile().then(() => {
       const proflieUrl = profile;
       const profileData = proflieUrl.map((el) => el);
       console.log('456', profileData);

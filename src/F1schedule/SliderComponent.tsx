@@ -51,6 +51,12 @@ interface SliderComponentProps {
     schedule: ScheduleItem[];
 }
 
+const TrackImage = styled.div`
+    background-color: #f0f0f0;
+    height: 150px;
+    margin: 16px 0;
+`;
+
 const SliderComponent: React.FC<SliderComponentProps> = ({ schedule }) => {
     const settings = {
         centerMode: true,
@@ -63,6 +69,7 @@ const SliderComponent: React.FC<SliderComponentProps> = ({ schedule }) => {
 
     return (
         <Container>
+            <div className='header'>경기일정</div>
         <StyledSlider {...settings}>
             {schedule.map((item, index) => (
             <Card key={index}>
@@ -71,6 +78,7 @@ const SliderComponent: React.FC<SliderComponentProps> = ({ schedule }) => {
                 <p>{item.date}</p>
                 <p>{item.country}</p>
                 <p>{item.title}</p>
+                <TrackImage/>
                 </div>
             </Card>
             ))}
