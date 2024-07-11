@@ -1,60 +1,67 @@
-import React, { useState, FormEvent } from "react";
-import { Form, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+// BoardReplyForm.tsx
+import React, { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 
 export interface Reply {
   id: string;
   content: string;
   postId: string;
   userid: string;
+  wdate: string;  // 날짜 필드 추가
 }
 
+
 interface BoardReplyFormProps {
-  addReply: (reply: Reply) => Promise<void>;
+  addReply: (newReply: Reply) => Promise<void>;
 }
 
 const BoardReplyForm: React.FC<BoardReplyFormProps> = ({ addReply }) => {
-  const [content, setContent] = useState<string>("");
+  const [content, setContent] = useState('');
   const loginUserId = sessionStorage.getItem("loginUserid");
-  const navigate = useNavigate();
-  console.log(loginUserId)
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (loginUserId) {
-      const newReply: Reply = {
-        id: '',
-        content,
-        postId: "", // postId는 댓글이 속한 게시글의 ID로 설정합니다. 필요 시 수정.
-        userid: loginUserId,
-      };
-      await addReply(newReply);
-      setContent('');
-    } else {
-      alert("로그인한 사용자만 댓글을 작성할 수 있습니다.");
-      navigate('/loginHome')
+    if (!loginUserId) {
+      alert("로그인이 필요합니다.");
+      return;
     }
+
+    const now = new Date();
+    const formattedDate = now.toISOString().split('T')[0]; // 날짜만 가져옴
+    const formattedTime = now.toTimeString().split(' ')[0]; // 시간만 가져옴
+
+    const newReply: Reply = {
+      id: '', // ID는 서버에서 생성됨
+      content,
+      postId: '', // 게시글 ID는 BoardView에서 설정됨
+      userid: loginUserId,
+      wdate: `${formattedDate} ${formattedTime}`,
+    };
+    console.log(newReply.wdate)
+
+    await addReply(newReply);
+    setContent('');
   };
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="replyContent">
-        <Form.Label>댓글 작성</Form.Label>
+      <Form.Group>
+        <Form.Label>댓글 내용</Form.Label>
         <Form.Control
           as="textarea"
           rows={3}
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          required
         />
       </Form.Group>
       <Button variant="primary" type="submit" className="mt-2">
-        등록
+        댓글 작성
       </Button>
     </Form>
   );
 };
 
 export default BoardReplyForm;
+
 
 

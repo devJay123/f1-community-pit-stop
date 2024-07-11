@@ -17,7 +17,8 @@ const BoardReply: React.FC<BoardReplyProps> = ({ replies, onDelete, onEdit, logi
           <div className="d-flex justify-content-between" style={{padding:'10px'}}>
             <div style={{padding:'10px'}}>
               <strong style={{fontWeight:'bold'}}>{reply.userid}</strong>
-              <span> : {reply.content}</span>
+              <small className="text-muted">{reply.userid}</small>
+              <small className="text-muted mx-2">{reply.wdate.substring(0, 10)}</small>
             </div>
             {loginUserId === reply.userid && (
               <div>

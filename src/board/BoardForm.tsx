@@ -4,7 +4,8 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import axios from '../lib/axiosCreate.js';
 import { AxiosResponse } from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { teamBorderColors } from "../color";
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 interface ResponseData {
   result: string;
@@ -21,7 +22,7 @@ export default function BoardForm() {
   const navigate = useNavigate();
 
   const formik = useFormik<FormValues>({
-    initialValues: { userid: '', title: '', content: '' },
+    initialValues: { userid: '', title: '', content: ''},
     validationSchema: Yup.object({
       userid: Yup.string().required('작성자를 입력하세요'),
       title: Yup.string()
@@ -69,13 +70,15 @@ export default function BoardForm() {
     });
   }, []);
 
+
   return (
+    <div className='EditForm'>
     <Container>
-      <Row>
-        <Col className="p-3 mx-auto" md={8}>
+      <Row >
+        <Col className="p-3 mt-3 mb-3 mx-auto EditFormRow" md={8}>
           <Form onSubmit={formik.handleSubmit}>
             <Form.Group className="my-2">
-              <Form.Label>제 목</Form.Label>
+              <Form.Label className='h3 m-2'>제 목</Form.Label>
               <Form.Control
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -89,7 +92,7 @@ export default function BoardForm() {
               ) : null}
             </Form.Group>
             <Form.Group className="my-2">
-              <Form.Label>작성자</Form.Label>
+              <Form.Label className='h3 m-2'>작성자</Form.Label>
               <Form.Control
                 readOnly
                 onChange={formik.handleChange}
@@ -104,7 +107,7 @@ export default function BoardForm() {
               ) : null}
             </Form.Group>
             <Form.Group className="my-2">
-              <Form.Label>내 용</Form.Label>
+              <Form.Label className='h3 m-2'>내 용</Form.Label>
               <Form.Control
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -119,12 +122,12 @@ export default function BoardForm() {
               ) : null}
             </Form.Group>
             <div className="text-center">
-              <Button type="submit" variant="success" className="mx-1">
+              <Button type="submit" variant="dark" className="mx-1">
                 글쓰기
               </Button>
               <Button
                 onClick={formik.handleReset}
-                variant="warning"
+                variant="danger"
                 className="mx-1 "
               >
                 다시쓰기
@@ -134,5 +137,6 @@ export default function BoardForm() {
         </Col>
       </Row>
     </Container>
+    </div>
   );
 }

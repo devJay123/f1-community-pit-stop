@@ -185,14 +185,14 @@ export default function BoardView() {
           <div className="cArea">
             {post ? (
               <>
-                <div className="text-end m-1">
+                <h2 className="h1 mb-2" style={{position:'relative', left:'20px'}}>{post.title}</h2>
+                <div className="text-end m-1" style={{position:'absolute', right:'30px', top:'30px', }}>
                   조회수 : <Badge bg="dark">{post.readnum}</Badge>
                   <h1 className="h6">{post.userid}</h1>
                 </div>
-                <hr />
-                <div className="cArea h3 p-5">
-                  <h2 className="h6 mb-4">{post.title}</h2>
-                  <p>{post.content}</p>
+                <hr style={{ borderColor: `${borderColorClass}`, fontSize:'50px' }}/>
+                <div className="cArea h3 p-2">
+                  <p className=" h5 mt-5 m-3">{post.content}</p>
                 </div>
                 <Card.Footer className="bg-secondary">
                   Created on {post.wdate} by {post.userid}
