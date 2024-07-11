@@ -219,4 +219,15 @@ export const dummyDrivers = [
     team: "Williams",
     dateOfBirth: "2000-12-31",
   },
+  {
+    position: "14",
+    name: "Oliver Bearman",
+    firstName: "Oliver",
+    lastName: "Bearman",
+    namecode: "BEA",
+    points: "6",
+    country: "United Kingdom",
+    team: "Ferrari",
+    dateOfBirth: "2005-08-05",
+  },
 ];
