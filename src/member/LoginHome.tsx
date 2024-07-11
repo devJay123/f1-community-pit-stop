@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useRef, KeyboardEvent } from "react";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -100,6 +100,7 @@ export default function LoginHome() {
                   type="password"
                   onChange={(e) => onChangeInput(e)}
                   placeholder="비밀번호를 입력하세요"
+                  onKeyUp={handleKeydownInput}
                 />
                 {errors.passwd && (
                   <p className="text-danger">{errors.passwd.message}</p>
@@ -111,6 +112,7 @@ export default function LoginHome() {
                   variant="light"
                   type="submit"
                   style={{ marginRight: "10px" }}
+                  // ref={buttonRef}
                 >
                   로그인
                 </Button>
