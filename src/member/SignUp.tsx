@@ -65,7 +65,9 @@ export default function SignUp() {
     }
   };
 
-  const checkDuplicated = async (type: string) => {
+  const checkDuplicated = async (
+    type: 'name' | 'userid' | 'email' | 'nickname' | 'passwd' | 'passwdChk'
+  ) => {
     let msg = '';
 
     switch (type) {
