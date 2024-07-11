@@ -45,4 +45,11 @@
 }
 .chat-form .chat-btn {
   width: 70px;
+  border: 1px solid rgb(66, 66, 66);
+}
+
+@media screen and (max-width: 768px) {
+  .chat-app {
+    padding: 0 10px;
+  }
 }

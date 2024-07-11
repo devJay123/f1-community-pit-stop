@@ -86,6 +86,15 @@ export default function Header() {
           loginHome: true,
         });
         break;
+      case 'chat':
+        setClicked({
+          community: false,
+          chat: true,
+          rank: false,
+          schedule: false,
+          loginHome: false,
+        });
+        break;
       default:
         setClicked({
           community: false,
