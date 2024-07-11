@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
 import './Chat.css';
-import { Container } from 'react-bootstrap';
 
 const ENDPOINT = 'http://localhost:8000';
 const socket = io(ENDPOINT);
@@ -50,6 +49,11 @@ export default function Chat() {
         <h2>환영합니다, {userId}님!</h2>
       </div>
       <div className="message-container">
+        <span
+          style={{ display: 'inline-block', color: 'white', marginTop: '5px' }}
+        >
+          채팅을 입력하세요 !
+        </span>
         {messages.map((msg, index) => (
           <div key={index} className="message">
             <span className="chat-msg">{msg}</span>
