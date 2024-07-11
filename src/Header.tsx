@@ -34,9 +34,8 @@ export default function Header() {
 
   const isSignup = (e: ReactMouseEvent<HTMLAnchorElement>) => {
     if (!user) {
-      alert('회원만 가능합니다.');
       e.preventDefault();
-      return;
+      return alert('회원만 가능합니다.');
     }
     setClicked({
       community: false,
@@ -95,6 +94,15 @@ export default function Header() {
           loginHome: false,
         });
         break;
+      case 'schedule':
+        setClicked({
+          community: false,
+          chat: false,
+          rank: false,
+          schedule: true,
+          loginHome: false,
+        });
+        break;
       default:
         setClicked({
           community: false,
@@ -146,9 +154,7 @@ export default function Header() {
         </li>
         <li className={`${clicked.chat ? 'clicked' : ''}`}>
           <Link
-            onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) =>
-              isSignup(e)
-            }
+            onClick={(e) => isSignup(e)}
             to="/chat"
             state={{ userid: user }}
           >

@@ -7,7 +7,7 @@
   height: 110px;
   background-color: #000;
   font-size: 18px;
-  font-family: "KoPub_Bold";
+  font-family: 'KoPub_Bold';
 }
 .header a {
   color: #fff;
@@ -45,7 +45,7 @@
 .footer {
   background-color: #000;
   color: #fff;
-  font-family: "KoPub_Medium";
+  font-family: 'KoPub_Medium';
   font-size: 16px;
 }
 .footer .footer_container .footer_text {
@@ -54,27 +54,33 @@
 
 /* login */
 .login_wrap {
-  font-family: "KoPub_Bold";
+  font-family: 'KoPub_Bold';
 }
 
 .rank_container {
-  font-family: "KoPub_Bold";
+  font-family: 'KoPub_Bold';
 }
 
 @media (max-width: 700px) {
   .header {
+    justify-content: center;
     flex-wrap: wrap;
-    font-size: 14px;
-    height: 150px;
+    font-size: 16px;
+    height: 130px;
+    padding: 0;
   }
   .header ul {
     width: 100%;
   }
   .header ul li {
-    display: flex;
-    align-items: center;
-    padding: 3px;
-    height: 90px;
+    /* display: flex; */
+    /* align-items: center; */
+    padding: 0 5px;
+    height: 40px;
+    line-height: 40px;
+  }
+  .header ul li a {
+    height: 100%;
   }
   .logo_box {
     padding-top: 20px;
