@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
 import './Chat.css';
-import { Container } from 'react-bootstrap';
 
 const ENDPOINT = 'http://localhost:8000';
 const socket = io(ENDPOINT);

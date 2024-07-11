@@ -65,7 +65,7 @@
   .header {
     justify-content: center;
     flex-wrap: wrap;
-    font-size: 16px;
+    font-size: 18px;
     height: 130px;
     padding: 0;
   }
@@ -76,8 +76,8 @@
     /* display: flex; */
     /* align-items: center; */
     padding: 0 5px;
-    height: 40px;
-    line-height: 40px;
+    height: 50px;
+    line-height: 50px;
   }
   .header ul li a {
     height: 100%;
