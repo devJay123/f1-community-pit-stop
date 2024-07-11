@@ -1,12 +1,11 @@
-import React, { useState, useEffect, FormEvent } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { Row, Col, Card, Container, Button, Badge } from 'react-bootstrap';
-import BoardReply from './BoardReply';
-import BoardReplyForm from './BoardReplyForm';
-import BoardReplyEditForm from './BoardReplyEditFrom';
-// import BoardEdit from './BoardEdit';
-import axios from '../lib/axiosCreate';
-import { teamBorderColors } from '../color';
+import React, { useState, useEffect, FormEvent } from "react";
+import { useParams, Link } from "react-router-dom";
+import { Row, Col, Card, Container, Button, Badge } from "react-bootstrap";
+import BoardReply from "./BoardReply";
+import BoardReplyForm, { Reply } from "./BoardReplyForm";
+import BoardReplyEditForm from "./BoardReplyEditFrom";
+import axios from "../lib/axiosCreate";
+import { teamBorderColors } from "../color";
 
 interface Post {
   userid: string;
@@ -18,31 +17,29 @@ interface Post {
   readnum: number;
 }
 
-interface Reply {
-  id: string;
-  content: string;
-  postId: string;
+interface ReplyWithUserId extends Reply {
+  userId: string;
 }
 
 export default function BoardView() {
-  const { id, teamnum } = useParams<{ id: string; teamnum: string }>(); // 게시글 ID를 URL 파라미터에서 가져옵니다.
+  const { id, teamnum } = useParams<{ id: string; teamnum: string }>();
   const [post, setPost] = useState<Post | null>(null);
-  const [replies, setReplies] = useState<Reply[]>([]);
-  const [showEditModal, setShowEditModal] = useState(false); // 모달창
+  const [replies, setReplies] = useState<ReplyWithUserId[]>([]);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [editReply, setEditReply] = useState<Reply | null>(null);
-  const [loginUserId, setLoginUserId] = useState<string | null>(null); // 로그인한 사용자의 ID 상태 변수
+  const [loginUserId, setLoginUserId] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       if (teamnum && id) {
-        await getBoard(); // 게시글 가져오기
-        await getReplies(); // 댓글 가져오기
-        await updateReadnum(); // 조회수 증가
-        const userIdFromSession = sessionStorage.getItem('loginUserid');
-        setLoginUserId(userIdFromSession); // sessionStorage에서 사용자 ID 가져오기
+        await getBoard();
+        await getReplies();
+        await updateReadnum();
+        const userIdFromSession = sessionStorage.getItem("loginUserid");
+        setLoginUserId(userIdFromSession);
       }
     };
-    fetchData(); // 호출
+    fetchData();
   }, [teamnum, id]);
 
   const getBoard = async () => {
@@ -50,7 +47,7 @@ export default function BoardView() {
       const response = await axios.get(`/api/boards/${teamnum}/${id}`);
       setPost(response.data);
     } catch (err) {
-      alert('Error: ' + err);
+      alert("Error: " + err);
     }
   };
 
@@ -59,42 +56,42 @@ export default function BoardView() {
       const response = await axios.put(`/api/boardReadNum/${id}`);
       response;
     } catch (err) {
-      alert('Error: ' + err);
+      alert("Error: " + err);
     }
   };
 
   const getReplies = async () => {
     try {
-      const response = await axios.get<Reply[]>(
+      const response = await axios.get<ReplyWithUserId[]>(
         `/api/boards/${teamnum}/${id}/reply`
       );
       setReplies(response.data);
     } catch (err) {
-      alert('Error: ' + err);
+      alert("Error: " + err);
     }
   };
 
   const addReply = async (newReply: Reply): Promise<void> => {
     try {
       const response = await axios.post(`/api/boards/${id}/reply`, newReply);
-      if (response.data.result === 'success') {
+      if (response.data.result === "success") {
         getReplies();
       }
     } catch (err) {
-      alert('Error: ' + err);
+      alert("Error: " + err);
     }
   };
 
   const deleteReply = async (replyId: string) => {
     try {
       const response = await axios.delete(`/api/boards/reply/${replyId}`);
-      if (response.data.result === 'success') {
+      if (response.data.result === "success") {
         getReplies();
       } else {
-        alert('삭제 실패');
+        alert("삭제 실패");
       }
     } catch (err) {
-      alert('Error: ' + err);
+      alert("Error: " + err);
     }
   };
 
@@ -127,7 +124,7 @@ export default function BoardView() {
           `/api/boards/reply/${editReply.id}`,
           editReply
         );
-        if (response.data.result === 'success') {
+        if (response.data.result === "success") {
           setShowEditModal(false);
           getReplies();
           setEditReply(null);
@@ -136,22 +133,19 @@ export default function BoardView() {
         }
       }
     } catch (err) {
-      alert('Error: ' + err);
+      alert("Error: " + err);
     }
   };
 
-  const borderColorClass = teamBorderColors[Number(teamnum)] || 'border-dark';
+  const borderColorClass = teamBorderColors[Number(teamnum)] || "border-dark";
 
   return (
-    <Container className="py-13 ">
+    <Container className="py-13">
       {
         <div className="text-end my-2">
-          {loginUserId === post?.userid && ( // 사용자 ID와 게시글 작성자 ID가 일치할 때만 수정 및 삭제 버튼 표시
+          {loginUserId === post?.userid && (
             <>
-              <Link
-                to={`/boardEdit/${id}`}
-                state={{ id: id, teamnum: teamnum }}
-              >
+              <Link to={`/boardEdit/${id}`} state={{ id: id, teamnum: teamnum }}>
                 <Button variant="dark" className="mx-1 button">
                   수정
                 </Button>
@@ -163,15 +157,29 @@ export default function BoardView() {
           )}
         </div>
       }
+            <div>
+        <h2
+          style={{
+            position: 'relative',
+            padding: '15px',
+            fontSize: '2rem',
+            borderTop: '5px solid #000',
+            borderRight: '5px solid #000',
+            borderRadius: '0 15px 0 0',
+            margin: '20px 0',
+          }}
+        >
+          
+        </h2>
+      </div>
       <Card
         className="mb-3 border-2"
         style={{ borderColor: `${borderColorClass}` }}
       >
         <Card.Body>
           <div className="Primary">
-            <div className="card-header h2 bg-secondary">
-              F1 팀 {teamnum} 번의 이야기
-            </div>
+            {/* <div className="card h2 bg-secondary">
+            </div> */}
           </div>
           <br />
           <div className="cArea">
@@ -208,6 +216,7 @@ export default function BoardView() {
                 replies={replies}
                 onDelete={deleteReply}
                 onEdit={startEditReply}
+                loginUserId={loginUserId}
               />
             </Col>
           </Row>
@@ -216,7 +225,6 @@ export default function BoardView() {
               <BoardReplyForm addReply={addReply} />
             </Col>
           </Row>
-          {/* 댓글 수정 모달 */}
           {showEditModal && editReply && (
             <Row className="my-5">
               <Col className="px-1.5">
@@ -236,3 +244,4 @@ export default function BoardView() {
     </Container>
   );
 }
+
