@@ -30,6 +30,7 @@ export default function BoardView() {
   const [replies, setReplies] = useState<Reply[]>([]);
   const [showEditModal, setShowEditModal] = useState(false); // 모달창
   const [editReply, setEditReply] = useState<Reply | null>(null);
+  const [loginUserId, setLoginUserId] = useState<string | null>(null); // 로그인한 사용자의 ID 상태 변수
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,6 +38,8 @@ export default function BoardView() {
         await getBoard(); // 게시글 가져오기
         await getReplies(); // 댓글 가져오기
         await updateReadnum(); // 조회수 증가
+        const userIdFromSession = sessionStorage.getItem("loginUserid");
+        setLoginUserId(userIdFromSession); // sessionStorage에서 사용자 ID 가져오기
       }
     };
     fetchData(); // 호출
@@ -143,14 +146,18 @@ export default function BoardView() {
     <Container className="py-13 ">
       {
         <div className="text-end my-2">
-          <Link to={`/boardEdit/${id}`} state={{ id: id, teamnum: teamnum }}>
-            <Button variant="dark" className="mx-1 button">
-              수 정
-            </Button>
-          </Link>
-          <Button onClick={onDelete} variant="danger">
-            삭 제
-          </Button>
+          {loginUserId === post?.userid && ( // 사용자 ID와 게시글 작성자 ID가 일치할 때만 수정 및 삭제 버튼 표시
+            <>
+              <Link to={`/boardEdit/${id}`} state={{ id: id, teamnum: teamnum }}>
+                <Button variant="dark" className="mx-1 button">
+                  수정
+                </Button>
+              </Link>
+              <Button onClick={onDelete} variant="danger">
+                삭제
+              </Button>
+            </>
+          )}
         </div>
       }
       <Card
