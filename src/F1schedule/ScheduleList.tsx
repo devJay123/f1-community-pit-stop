@@ -80,7 +80,7 @@ const ScheduleList: React.FC = () => {
               margin: "20px 0",
             }}
           >
-            선수 순위
+            경기 일정
             <div
               style={{
                 position: "absolute",
