@@ -60,6 +60,18 @@ export default function LoginHome() {
     setLoginUser({ ...loginUser, [name]: value });
   };
 
+  const handleKeydownInput = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== "Enter") return;
+    if (e.key === "Enter") {
+      e.preventDefault();
+      return handleSubmit(handleLogin);
+      /*  if (buttonRef.current) {
+        console.log(buttonRef.current);
+        return buttonRef.current.click();
+      } */
+    }
+  };
+
   return (
     <div className="z-3 position-relative login_wrap">
       <div
