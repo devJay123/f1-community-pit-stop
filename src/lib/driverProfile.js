@@ -11,6 +11,8 @@ import sauberLogo from "../assets/team_logo/kick-sauber-logo.png";
 
 const profile = [
   {
+    position: "1",
+    points: "255",
     teamName: "RedBull",
     driverName: "Max VERSTAPPEN",
     driverProfile: "./src/assets/player/maxver01.png",
@@ -21,6 +23,8 @@ const profile = [
     number: "/src/assets/numberr/MAXVER01.png",
   },
   {
+    position: "6",
+    points: "118",
     teamName: "RedBull",
     driverName: "Sergio PEREZ",
     driverProfile: "./src/assets/player/serper01.png",
@@ -31,6 +35,8 @@ const profile = [
     number: "/src/assets/numberr/SERPER01.png",
   },
   {
+    position: "3",
+    points: "150",
     teamName: "Ferrari",
     driverName: "Charles LECLERC",
     driverProfile: "./src/assets/player/chalec01.png",
@@ -41,6 +47,8 @@ const profile = [
     number: "/src/assets/numberr/CHALEC01.png",
   },
   {
+    position: "4",
+    points: "146",
     teamName: "Ferrari",
     driverName: "Carlos SAINZ",
     driverProfile: "./src/assets/player/carsai01.png",
@@ -51,6 +59,8 @@ const profile = [
     number: "/src/assets/numberr/CARSAI01.png",
   },
   {
+    position: "2",
+    points: "171",
     teamName: "Mclaren",
     driverName: "Lando NORRIS",
     driverProfile: "./src/assets/player/lannor01.png",
@@ -61,6 +71,8 @@ const profile = [
     number: "/src/assets/numberr/LANNOR01.png",
   },
   {
+    position: "5",
+    points: "124",
     teamName: "Mclaren",
     driverName: "Oscar PIASTRI",
     driverProfile: "./src/assets/player/oscpia01.png",
@@ -71,6 +83,8 @@ const profile = [
     number: "/src/assets/numberr/OSCPIA01.png",
   },
   {
+    position: "8",
+    points: "110",
     teamName: "Mercedes",
     driverName: "Lewis HAMILTON",
     driverProfile: "./src/assets/player/lewham01.png",
@@ -81,6 +95,8 @@ const profile = [
     number: "/src/assets/numberr/LEWHAM01.png",
   },
   {
+    position: "7",
+    points: "111",
     teamName: "Mercedes",
     driverName: "George RUSSELL",
     driverProfile: "./src/assets/player/georus01.png",
@@ -91,6 +107,8 @@ const profile = [
     number: "/src/assets/numberr/GEORUS01.png",
   },
   {
+    position: "9",
+    points: "45",
     teamName: "Aston Martin",
     driverName: "Fernando ALONSO",
     driverProfile: "./src/assets/player/feralo01.png",
@@ -101,6 +119,8 @@ const profile = [
     number: "/src/assets/numberr/FERALO01.png",
   },
   {
+    position: "10",
+    points: "23",
     teamName: "Aston Martin",
     driverName: "Lance STROLL",
     driverProfile: "./src/assets/player/lanstr01.png",
@@ -111,6 +131,8 @@ const profile = [
     number: "/src/assets/numberr/LANSTR01.png",
   },
   {
+    position: "12",
+    points: "20",
     teamName: "RB",
     driverName: "Yuki TSUNODA",
     driverProfile: "./src/assets/player/yuktsu01.png",
@@ -121,6 +143,8 @@ const profile = [
     number: "/src/assets/numberr/YUKTSU01.png",
   },
   {
+    position: "13",
+    points: "11",
     teamName: "RB",
     driverName: "Daniel RICCIARDO",
     driverProfile: "./src/assets/player/danric01.png",
@@ -131,6 +155,8 @@ const profile = [
     number: "/src/assets/numberr/DANRIC01.png",
   },
   {
+    position: "11",
+    points: "22",
     teamName: "Haas",
     driverName: "Nico HULKENBERG",
     driverProfile: "./src/assets/player/nichul01.png",
@@ -141,6 +167,8 @@ const profile = [
     number: "/src/assets/numberr/NICHUL01.png",
   },
   {
+    position: "16",
+    points: "5",
     teamName: "Haas",
     driverName: "Kevin MAGNUSSEN",
     driverProfile: "./src/assets/player/kevmag01.png",
@@ -151,6 +179,8 @@ const profile = [
     number: "/src/assets/numberr/KEVMAG01.png",
   },
   {
+    position: "15",
+    points: "6",
     teamName: "Alpine",
     driverName: "Pierre GASLY",
     driverProfile: "./src/assets/player/piegas01.png",
@@ -161,6 +191,8 @@ const profile = [
     number: "/src/assets/numberr/PIEGAS01.png",
   },
   {
+    position: "18",
+    points: "3",
     teamName: "Alpine",
     driverName: "Esteban OCON",
     driverProfile: "./src/assets/player/estoco01.png",
@@ -171,6 +203,8 @@ const profile = [
     number: "/src/assets/numberr/ESTOCO01.png",
   },
   {
+    position: "17",
+    points: "4",
     teamName: "Williams",
     driverName: "Alexander ALBON",
     driverProfile: "./src/assets/player/alealb01.png",
@@ -181,6 +215,8 @@ const profile = [
     number: "/src/assets/numberr/ALEALB01.png",
   },
   {
+    position: "20",
+    points: "0",
     teamName: "Williams",
     driverName: "Logan SARGEANT",
     driverProfile: "./src/assets/player/logsar01.png",
@@ -191,6 +227,8 @@ const profile = [
     number: "/src/assets/numberr/LOGSAR01.png",
   },
   {
+    position: "21",
+    points: "0",
     teamName: "Kick Sauber",
     driverName: "Valtteri BOTTAS",
     driverProfile: "./src/assets/player/valbot01.png",
@@ -201,9 +239,11 @@ const profile = [
     number: "/src/assets/numberr/VALBOT01.png",
   },
   {
+    position: "19",
+    points: "0",
     teamName: "Kick Sauber",
     driverName: "ZHOU Guanyu",
-    driverProfile: "./src/assets/player/guazho01.png",
+    driverProfile: "/src/assets/player/guazho01.png",
     teamColor: "rgb(82 226 82 /1)",
     nameCode: "ZHO",
     teamLogo: sauberLogo,
@@ -211,9 +251,11 @@ const profile = [
     number: "/src/assets/numberr/GUAZHO01.png",
   },
   {
+    position: "14",
+    points: "6",
     teamName: "Ferrari",
     driverName: "Oliver Bearman",
-    driverProfile: "",
+    driverProfile: "/src/assets/player/olibea01.png",
     teamColor: "rgb(232 0 32 /1)",
     nameCode: "BEA",
     teamLogo: ferrariLogo,

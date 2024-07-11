@@ -51,6 +51,7 @@ export default function BoardView() {
     }
   };
 
+
   const updateReadnum = async () => {
     try {
       const response = await axios.put(`/api/boardReadNum/${id}`);
