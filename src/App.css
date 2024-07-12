@@ -1,4 +1,13 @@
 /* Header */
+html,
+body,
+#root {
+  height: 100%;
+}
+.content-wrap {
+  min-height: 70vh;
+}
+
 .header {
   display: flex;
   justify-content: space-between;

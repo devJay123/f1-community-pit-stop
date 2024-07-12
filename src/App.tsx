@@ -24,30 +24,32 @@ function App() {
       <BrowserRouter>
         <Header />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/community" element={<BoardApp />} />
+        <div className="content-wrap">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/community" element={<BoardApp />} />
 
-          <Route path="/community/list/:teamnum" element={<BoardList />} />
+            <Route path="/community/list/:teamnum" element={<BoardList />} />
 
-          {/* 채팅 */}
-          <Route path="/chat" element={<Chat />} />
-          <Route path="/rank" element={<Rank />} />
+            {/* 채팅 */}
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/rank" element={<Rank />} />
 
-          <Route path="/boardwrite/:teamnum" element={<BoardForm />} />
-          <Route path="/boardEdit/:id" element={<BoardEdit />} />
+            <Route path="/boardwrite/:teamnum" element={<BoardForm />} />
+            <Route path="/boardEdit/:id" element={<BoardEdit />} />
 
-          {/* <Route path="/tempreply" element={<BoardReply />} /> */}
-          <Route path="/boards/:teamnum/:id" element={<BoardView />} />
+            {/* <Route path="/tempreply" element={<BoardReply />} /> */}
+            <Route path="/boards/:teamnum/:id" element={<BoardView />} />
 
-          {/* login */}
-          <Route path="/loginHome" element={<LoginHome />} />
-          <Route path="/signup" element={<SignUp />} />
+            {/* login */}
+            <Route path="/loginHome" element={<LoginHome />} />
+            <Route path="/signup" element={<SignUp />} />
 
-          <Route path="/schedule" element={<ScheduleList />} />
-          {/* PageNotFound */}
-          <Route path={'*'} element={<PageNotFound />} />
-        </Routes>
+            <Route path="/schedule" element={<ScheduleList />} />
+            {/* PageNotFound */}
+            <Route path={'*'} element={<PageNotFound />} />
+          </Routes>
+        </div>
 
         <Footer />
       </BrowserRouter>
