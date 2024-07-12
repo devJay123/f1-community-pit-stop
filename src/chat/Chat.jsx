@@ -3,9 +3,10 @@ import { io } from 'socket.io-client';
 import './Chat.css';
 
 // 배포용
-// const ENDPOINT = 'https://port-0-f1-community-pit-stop-server-ly5p232t0b63615b.sel5.cloudtype.app';
+const ENDPOINT =
+  'https://port-0-f1-community-pit-stop-server-ly5p232t0b63615b.sel5.cloudtype.app';
 // 로컬용
-const ENDPOINT = 'http://localhost:8000';
+// const ENDPOINT = 'http://localhost:8000';
 
 const socket = io(ENDPOINT);
 
