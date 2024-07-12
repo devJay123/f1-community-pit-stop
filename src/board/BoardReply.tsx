@@ -21,7 +21,7 @@ const BoardReply: React.FC<BoardReplyProps> = ({ replies, onDelete, onEdit, logi
             </div>
               <small className=" mx-2" style={{marginTop:'10px'}}>{reply.wdate.substring(0, 10)}</small>
             {loginUserId === reply.userid && (
-              <div className="text-end bg-black">
+              <div className="text-end">
                 <Button variant="button" onClick={() => onEdit(reply)}>
                   수정
                 </Button>
