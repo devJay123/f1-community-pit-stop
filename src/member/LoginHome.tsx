@@ -6,6 +6,8 @@ import { Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from '../lib/axiosCreate';
 
+import loginImg from '/src/assets/login.jpg';
+
 interface IUserInfo {
   userid: string;
   passwd: string;
@@ -73,7 +75,7 @@ export default function LoginHome() {
       <div
         className=" min-vh-100"
         style={{
-          backgroundImage: 'url(/src/assets/login.jpg)',
+          backgroundImage: `url(${loginImg})`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           opacity: 0.5,

@@ -2,7 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
 import './Chat.css';
 
-const ENDPOINT = 'http://localhost:8000';
+const ENDPOINT =
+  'https://web-f1-community-pit-stop-ly5p232t0b63615b.sel5.cloudtype.app';
 const socket = io(ENDPOINT);
 
 export default function Chat() {

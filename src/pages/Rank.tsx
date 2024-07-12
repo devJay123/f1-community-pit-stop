@@ -56,7 +56,6 @@ export default function Rank() {
     getDriversProfile().then(() => {
       const proflieUrl = profile;
       const profileData = proflieUrl.map((el) => el);
-
       setDriversProfiles(profileData);
     });
   }, []);

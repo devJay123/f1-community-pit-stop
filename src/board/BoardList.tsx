@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import Badge from "react-bootstrap/Badge";
-import { useLocation, Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import Badge from 'react-bootstrap/Badge';
+import { useLocation, Link } from 'react-router-dom';
 import {
   ListGroup,
   Row,
@@ -10,10 +10,10 @@ import {
   Button,
   Alert,
   Card,
-} from "react-bootstrap";
+} from 'react-bootstrap';
 
-import axios from "../lib/axiosCreate";
-import teams from "../lib/teamInfo";
+import axios from '../lib/axiosCreate';
+import teams from '../lib/teamInfo';
 
 interface ITeam {
   id: number;
@@ -79,7 +79,7 @@ export default function BoardList() {
       }));
     } catch (err: unknown) {
       console.log(
-        "ERROR:",
+        'ERROR:',
         err instanceof Error ? err : new Error(String(err))
       );
     }
@@ -102,7 +102,7 @@ export default function BoardList() {
   return (
     <Container
       style={{
-        fontFamily: "KoPub_Bold",
+        fontFamily: 'KoPub_Bold',
       }}
     >
       {teams2.map((team, i) => {
@@ -111,15 +111,15 @@ export default function BoardList() {
             <div>
               <h3
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  padding: "15px",
-                  fontSize: "2rem",
-                  borderTop: "5px solid #000",
-                  borderRight: "5px solid #000",
-                  borderRadius: "0 15px 0 0",
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  padding: '15px',
+                  fontSize: '2rem',
+                  borderTop: '5px solid #000',
+                  borderRight: '5px solid #000',
+                  borderRadius: '0 15px 0 0',
                   borderColor: team.teamColor,
-                  margin: "20px 0",
+                  margin: '20px 0',
                 }}
               >
                 <div>
@@ -129,24 +129,24 @@ export default function BoardList() {
                     }}
                   >
                     {team.name}
-                  </span>{" "}
+                  </span>{' '}
                   게시판
                 </div>
                 <Card.Img
                   src={team.logo}
                   style={{
-                    width: "50px",
-                    height: "50px",
-                    paddingRight: "10px",
+                    width: '50px',
+                    height: '50px',
+                    paddingRight: '10px',
                   }}
                 />
               </h3>
             </div>
             <Alert variant="secondary">
-              <span style={{ display: "block" }}>
+              <span style={{ display: 'block' }}>
                 게시판 이용 규칙 : 비방 금지
               </span>
-              <span style={{ display: "block" }}>글쓰기 권한 : 회원</span>
+              <span style={{ display: 'block' }}>글쓰기 권한 : 회원</span>
             </Alert>
           </div>
         ) : (
@@ -156,7 +156,7 @@ export default function BoardList() {
       <Row className="mt-2 mb-5">
         <Row className="mb-4">
           <div className="position-relative text-end mb-2">
-            {sessionStorage.getItem("loginUserid") ? (
+            {sessionStorage.getItem('loginUserid') ? (
               <Button variant="dark">
                 <Link
                   className="text-white"
