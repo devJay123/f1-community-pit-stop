@@ -3,6 +3,7 @@ import { Row, Col, Card, Container, Badge } from "react-bootstrap";
 import profile from "../lib/driverProfile";
 import { dummyDrivers } from "../lib/dummyProfile";
 import { teamInfo } from "../lib/dummyTeamInfo";
+import flag from "../assets/flag.png";
 
 // interface IDrivers {
 //   code: string;
@@ -99,7 +100,10 @@ export default function Rank() {
             margin: "20px 0",
           }}
         >
-          선수 순위
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span>선수 순위</span>
+            <Card.Img src={flag} style={{ width: "40px" }} />
+          </div>
         </h2>
       </div>
       {/* 1 ~ 3 위 */}

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Card, Alert } from "react-bootstrap";
 import teams from "../lib/teamInfo";
-
+import flag from "../assets/flag.png";
 import "./BoardApp.css";
 
 interface ITeam {
@@ -39,7 +39,7 @@ export default function BoardApp() {
         >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <span>TEAM 커뮤니티</span>
-            <Card.Img src={"/src/assets/flag.png"} style={{ width: "40px" }} />
+            <Card.Img src={flag} style={{ width: "40px" }} />
           </div>
         </h2>
       </div>
