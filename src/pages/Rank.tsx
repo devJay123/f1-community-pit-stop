@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Row, Col, Card, Container, Badge } from "react-bootstrap";
 import profile from "../lib/driverProfile";
 import { dummyDrivers } from "../lib/dummyProfile";
+import { teamInfo } from "../lib/dummyTeamInfo";
 
 // interface IDrivers {
 //   code: string;
@@ -79,10 +80,11 @@ export default function Rank() {
   // F1그랑프리는 대회마다 1위부터 10위 선수들에게만 점수(각각 25ㆍ18ㆍ15ㆍ12ㆍ10ㆍ8ㆍ6ㆍ4ㆍ2ㆍ1)를 부여한다.
 
   async function getDriversProfile() {
-    const url = "https://api.openf1.org/v1/drivers?session_key=latest";
-    const response = await axios.get(url);
+    //const url = "https://api.openf1.org/v1/drivers?session_key=latest";
+    //const response = await axios.get(url);
 
-    const driverData = response.data;
+    const driverData = teamInfo;
+
     return driverData;
   }
   return (
@@ -293,7 +295,7 @@ export default function Rank() {
                         justifyContent: "space-between",
                       }}
                     >
-                      <Col md={8}>
+                      <Col md={7}>
                         <Card.Title
                           style={{
                             fontSize: "3rem",
@@ -305,10 +307,10 @@ export default function Rank() {
                       </Col>
 
                       <Col
-                        md={4}
-                        lg={5}
+                        md={5}
                         style={{
-                          padding: "20px",
+                          textAlign: "right",
+                          padding: "10px",
                         }}
                       >
                         <Card.Text>POINTS</Card.Text>
