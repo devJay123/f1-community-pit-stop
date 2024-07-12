@@ -83,7 +83,12 @@ export default function LoginHome() {
       ></div>
       <Row
         className="position-absolute w-100"
-        style={{ top: '35%', height: '250px', background: '#000' }}
+        style={{
+          top: '35%',
+          left: '11px',
+          height: '250px',
+          background: '#000',
+        }}
       >
         <Col md={4} className="mx-auto d-flex" style={{ alignItems: 'center' }}>
           <div className="w-100">
