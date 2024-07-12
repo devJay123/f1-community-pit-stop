@@ -227,10 +227,7 @@ export default function BoardList() {
               <Col md={1} className="text-center">
                 번호
               </Col>
-              <Col md={1} className="text-center">
-                글 번호
-              </Col>
-              <Col md={4} className="text-center">
+              <Col md={6} className="text-center">
                 제목
               </Col>
               <Col md={2} className="text-center">
@@ -261,10 +258,7 @@ export default function BoardList() {
                       <Col md={1} className="text-center">
                         <div>{reverseIndex}</div>
                       </Col>
-                      <Col md={1} className="text-center">
-                        <div>{list.id}</div>
-                      </Col>
-                      <Col md={4} className="text-center">
+                      <Col md={6} className="text-center">
                         <Link to={`/boards/${teamNum}/${list.id}`}>
                           <div className="fw-bold">{list.title}</div>
                         </Link>
