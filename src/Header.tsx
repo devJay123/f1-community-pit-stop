@@ -1,6 +1,8 @@
 import { useEffect, useState, MouseEvent as ReactMouseEvent } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+import logo from '/src/assets/f1_logo_red.svg';
+
 export default function Header() {
   const [clicked, setClicked] = useState({
     community: false,
@@ -126,7 +128,7 @@ export default function Header() {
       >
         <div className="logo_box">
           <h1 style={{ fontSize: '18px' }}>
-            <img src="/assets/f1_logo_red.svg" alt="logo" />
+            <img src={logo} alt="logo" />
             Pit Stop
           </h1>
         </div>
