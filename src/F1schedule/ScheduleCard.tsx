@@ -44,44 +44,40 @@ interface Race {
 interface ScheduleCardProps {
   race: Race;
 }
-// const formatDate = (dateString: string) => {
-//     return new Date(dateString).toISOString().split('T')[0]; // YYYY-MM-DD 형식으로 변환
-// };
 
-// const formatTime = (timeString: string) => {
-//     return new Date(timeString).toISOString().split('T')[1].slice(0, 8); // HH:MM:SS 형식으로 변환
-// };
+interface ScheduleCardProps {
+  race: Race;
+  trackImage: string; // 이미지 경로 prop 추가
+}
 
-const ScheduleCard: React.FC<ScheduleCardProps> = ({ race }) => {
+
+
+const ScheduleCard: React.FC<ScheduleCardProps> = ({ race, trackImage }) => {
+
+
   return (
-    <Container>
+    <Container >
       <Row>
-        <Col md={4} className="mb-4">
-          <Card className="text-center" style={{ width: "18rem" }}>
-            <Card.Header>
-              <Card.Title>{race.raceName}</Card.Title>
-              <Card.Text>{race.Circuit.circuitName}</Card.Text>
-              <Card.Text>
+        <Col md={4} xs={12}   className="mb-4" style={{
+                  width: "17rem",
+                  padding: "15px",  
+                  borderTop: "5px solid #000",
+                  borderRight: "5px solid #000",
+                  borderRadius: "0 15px 0 0",
+                  }}>
+          <Card className="text-center" style={{ width: "15rem", border:"none" }}>
+            <Card.Header style={{backgroundColor:"white", fontSize:'20px'}}><span style={{display:'flex', fontWeight:'bold'}}>ROUND {race.round}</span><br />
+              <Card.Title style={{fontSize:'19px'}}>{race.raceName}</Card.Title>
+              <h2 className="h5">Race</h2>
+              <Card.Text style={{fontSize:'17px'}}>{race.date}</Card.Text>
+              <br />
+              <Card.Text style={{fontSize:'15px'}}>{race.Circuit.circuitName}</Card.Text>
+              <Card.Text style={{fontSize:'17px'}}>
                 {race.Circuit.Location.locality},{" "}
                 {race.Circuit.Location.country}
               </Card.Text>
             </Card.Header>
-            <Card.Body>
-              {/* <p>{new Date(race.date).toLocaleDateString()} at {new Date(race.time).toLocaleTimeString()}</p> */}
-              {/* <h2>Practice Sessions</h2> */}
-              <ul>
-                {/* <li>First Practice: {(race.FirstPractice.date).toString()} at {race.FirstPractice.time}</li> */}
-                {/* <li>Second Practice: {new Date(race.SecondPractice.date).toLocaleDateString()} at {new Date(race.SecondPractice.time).toLocaleTimeString()}</li>
-                    <li>Third Practice: {new Date(race.ThirdPractice.date).toLocaleDateString()} at {new Date(race.ThirdPractice.time).toLocaleTimeString()}</li> */}
-              </ul>
-              <h2>Qualifying</h2>
-              {/* <p>{new Date(race.Qualifying.date).toLocaleDateString()} at {new Date(race.Qualifying.time).toLocaleTimeString()}</p> */}
-              <p>
-                {race.Qualifying.date} at {race.Qualifying.time}
-              </p>
-              {/* <p>{formatDate(race.Qualifying.date)} at {formatTime(race.Qualifying.time)}</p> */}
-            </Card.Body>
-            <Card.Img />
+            <Card.Img className="bg-plusPattern64" variant="top" src={trackImage} alt="Track image" style={{width:"80%", height:"80%" }} />
           </Card>
         </Col>
       </Row>
