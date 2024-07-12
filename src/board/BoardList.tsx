@@ -97,7 +97,7 @@ export default function BoardList() {
 
   const renderPaginationItems = () => {
     const items = [];
-    const maxVisiblePages = 10;
+    //const maxVisiblePages = 10;
 
     items.push(
       <Pagination.Item
