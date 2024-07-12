@@ -124,10 +124,10 @@ export default function SignUp() {
                     placeholder=""
                   />
                   <Button
+                    className="duplicate_btn"
                     onClick={() => {
                       checkDuplicated('nickname');
                     }}
-                    style={{ width: '30%', marginLeft: '20px' }}
                   >
                     중복확인
                   </Button>
@@ -149,7 +149,7 @@ export default function SignUp() {
                     onClick={() => {
                       checkDuplicated('userid');
                     }}
-                    style={{ width: '30%', marginLeft: '20px' }}
+                    className="duplicate_btn"
                   >
                     중복확인
                   </Button>
@@ -194,7 +194,7 @@ export default function SignUp() {
                     onClick={() => {
                       checkDuplicated('email');
                     }}
-                    style={{ width: '30%', marginLeft: '20px' }}
+                    className="duplicate_btn"
                   >
                     중복확인
                   </Button>

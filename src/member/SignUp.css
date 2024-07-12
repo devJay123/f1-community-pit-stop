@@ -27,10 +27,15 @@
   animation-fill-mode: forwards;
 }
 
+.form-container .form-box .duplicate_btn {
+  width: 30%;
+  margin-left: 20px;
+}
+
 /* 브라우저 호환성을 위해 표준 키프레임도 추가 */
 @keyframes moveRight {
   0% {
-    left: 50px;
+    left: 1%;
   }
   100% {
     left: 30%;
@@ -40,9 +45,21 @@
 /* Webkit 브라우저를 위한 키프레임 */
 @-webkit-keyframes moveRight {
   0% {
-    left: 50px;
+    left: 1%;
   }
   100% {
-    left: 450px;
+    left: 30%;
+  }
+}
+
+/* 반응형 쿼리 */
+@media (max-width: 840px) {
+  /* 브라우저 호환성을 위해 표준 키프레임도 추가 */
+  .form-container .form-box {
+    animation-name: none;
+    left: 7%;
+  }
+  .form-container .form-box .duplicate_btn {
+    width: 40%;
   }
 }
