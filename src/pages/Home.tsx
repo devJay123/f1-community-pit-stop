@@ -1,5 +1,12 @@
 import './home.css';
 import { Carousel, Container, Row, Col, Card } from 'react-bootstrap';
+
+import newsMain from '/src/assets/news/news-main.avif';
+import news1 from '/src/assets/news/news1.avif';
+import news2 from '/src/assets/news/news2.avif';
+import news3 from '/src/assets/news/news3.avif';
+import news4 from '/src/assets/news/news4.avif';
+
 export default function Hone() {
   return (
     <div>
@@ -30,7 +37,7 @@ export default function Hone() {
                 ‘didn’t feel good enough’ after emotional return to winning ways
               </p>
               <div className="news_main_imgbox">
-                <img src="/src/assets/news/news-main.avif" alt="" />
+                <img src={newsMain} alt="뉴스메인" />
               </div>
             </a>
           </Col>
@@ -41,7 +48,7 @@ export default function Hone() {
                   target="_blank"
                   href="https://www.formula1.com/en/latest/article/hamilton-very-very-grateful-for-long-awaited-104th-f1-win-as-he-explains-why.2dest3ygDWd0pOfB0YavUm"
                 >
-                  <Card.Img variant="top" src="/src/assets/news/news1.avif" />
+                  <Card.Img variant="top" src={news1} alt="뉴스1" />
                   <Card.Body>
                     <Card.Title>News</Card.Title>
                     <Card.Text>
@@ -57,7 +64,7 @@ export default function Hone() {
                   target="_blank"
                   href="https://www.formula1.com/en/latest/article/horner-admits-perez-not-scoring-points-is-unsustainable-after-frustrating.6soUoqSKgyzOC5V7JgS3kf"
                 >
-                  <Card.Img variant="top" src="/src/assets/news/news2.avif" />
+                  <Card.Img variant="top" src={news2} alt="뉴스2" />
                   <Card.Body>
                     <Card.Title>News</Card.Title>
                     <Card.Text>
@@ -72,7 +79,7 @@ export default function Hone() {
                   target="_blank"
                   href="https://www.formula1.com/en/latest/article/i-dont-even-know-what-to-say-anymore-leclerc-not-feeling-good-after-sunday.3YFqrfIUAGXcYPtJYWfhSB"
                 >
-                  <Card.Img variant="top" src="/src/assets/news/news3.avif" />
+                  <Card.Img variant="top" src={news3} alt="뉴스3" />
                   <Card.Body>
                     <Card.Title>News</Card.Title>
                     <Card.Text>
@@ -84,7 +91,7 @@ export default function Hone() {
               </Card>
               <Card className="news_item" style={{ width: '18rem' }}>
                 <a target="_blank" href="">
-                  <Card.Img variant="top" src="/src/assets/news/news4.avif" />
+                  <Card.Img variant="top" src={news4} alt="뉴스4" />
                   <Card.Body>
                     <Card.Title>News</Card.Title>
                     <Card.Text>
