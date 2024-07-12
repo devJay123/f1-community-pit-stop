@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import Badge from 'react-bootstrap/Badge';
-import { useLocation, Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import Badge from "react-bootstrap/Badge";
+import { useLocation, Link } from "react-router-dom";
 import {
   ListGroup,
   Row,
@@ -10,10 +10,10 @@ import {
   Button,
   Alert,
   Card,
-} from 'react-bootstrap';
+} from "react-bootstrap";
 
-import axios from '../lib/axiosCreate';
-import teams from '../lib/teamInfo';
+import axios from "../lib/axiosCreate";
+import teams from "../lib/teamInfo";
 
 interface ITeam {
   id: number;
@@ -54,10 +54,6 @@ export default function BoardList() {
     listLength: 0,
   });
 
-  // 전에 안되었던 이유
-  // 커뮤니티 메인에서 해당 팀의 탭 메뉴 클릭 으로 들어가는 경우 ->
-  // state가 기록이 되면서 넘어가짐
-  // 절차상 /community/list/teamnum 으로 state에 기록이 됨
   const teamNum: number = location.state?.teamnum;
   const teams2: ITeam[] = teams;
 
@@ -79,7 +75,7 @@ export default function BoardList() {
       }));
     } catch (err: unknown) {
       console.log(
-        'ERROR:',
+        "ERROR:",
         err instanceof Error ? err : new Error(String(err))
       );
     }
@@ -99,54 +95,102 @@ export default function BoardList() {
     fetchData();
   }, [teamNum, state.activePage]);
 
+  const renderPaginationItems = () => {
+    const items = [];
+    const maxVisiblePages = 10;
+
+    items.push(
+      <Pagination.Item
+        key={1}
+        active={1 === state.activePage}
+        onClick={() => handlePageChange(1)}
+      >
+        1
+      </Pagination.Item>
+    );
+
+    let startPage = Math.max(2, state.activePage - 4);
+    let endPage = Math.min(totalPages - 1, state.activePage + 4);
+
+    if (state.activePage <= 5) {
+      endPage = Math.min(9, totalPages - 1);
+    } else if (state.activePage >= totalPages - 4) {
+      startPage = Math.max(2, totalPages - 8);
+    }
+
+    if (startPage > 2) {
+      items.push(<Pagination.Ellipsis key="start-ellipsis" />);
+    }
+
+    for (let page = startPage; page <= endPage; page++) {
+      items.push(
+        <Pagination.Item
+          key={page}
+          active={page === state.activePage}
+          onClick={() => handlePageChange(page)}
+        >
+          {page}
+        </Pagination.Item>
+      );
+    }
+
+    if (endPage < totalPages - 1) {
+      items.push(<Pagination.Ellipsis key="end-ellipsis" />);
+    }
+
+    if (totalPages > 1) {
+      items.push(
+        <Pagination.Item
+          key={totalPages}
+          active={totalPages === state.activePage}
+          onClick={() => handlePageChange(totalPages)}
+        >
+          {totalPages}
+        </Pagination.Item>
+      );
+    }
+
+    return items;
+  };
+
   return (
-    <Container
-      style={{
-        fontFamily: 'KoPub_Bold',
-      }}
-    >
+    <Container style={{ fontFamily: "KoPub_Bold" }}>
       {teams2.map((team, i) => {
         return teamNum === i + 1 ? (
           <div key={i}>
             <div>
               <h3
                 style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  padding: '15px',
-                  fontSize: '2rem',
-                  borderTop: '5px solid #000',
-                  borderRight: '5px solid #000',
-                  borderRadius: '0 15px 0 0',
+                  display: "flex",
+                  justifyContent: "space-between",
+                  padding: "15px",
+                  fontSize: "2rem",
+                  borderTop: "5px solid #000",
+                  borderRight: "5px solid #000",
+                  borderRadius: "0 15px 0 0",
                   borderColor: team.teamColor,
-                  margin: '20px 0',
+                  margin: "20px 0",
                 }}
               >
                 <div>
-                  <span
-                    style={{
-                      color: team.teamColor,
-                    }}
-                  >
-                    {team.name}
-                  </span>{' '}
+                  <span style={{ color: team.teamColor }}>{team.name}</span>{" "}
                   게시판
                 </div>
                 <Card.Img
                   src={team.logo}
                   style={{
-                    width: '50px',
-                    height: '50px',
-                    paddingRight: '10px',
+                    width: "50px",
+                    height: "50px",
+                    paddingRight: "10px",
                   }}
                 />
               </h3>
             </div>
             <Alert variant="secondary">
-              <span style={{ display: 'block' }}>
+              <span style={{ display: "block" }}>
                 게시판 이용 규칙 : 비방 금지
               </span>
-              <span style={{ display: 'block' }}>글쓰기 권한 : 회원</span>
+              <span style={{ display: "block" }}>글쓰기 권한 : 회원</span>
             </Alert>
           </div>
         ) : (
@@ -156,7 +200,7 @@ export default function BoardList() {
       <Row className="mt-2 mb-5">
         <Row className="mb-4">
           <div className="position-relative text-end mb-2">
-            {sessionStorage.getItem('loginUserid') ? (
+            {sessionStorage.getItem("loginUserid") ? (
               <Button variant="dark">
                 <Link
                   className="text-white"
@@ -231,7 +275,6 @@ export default function BoardList() {
                       <Col md={2} className="text-center">
                         <div className="">{list.wdate}</div>
                       </Col>
-
                       <Col md={1} className="text-center ">
                         <Badge bg="dark" className="rounded-1">
                           {list.readnum}
@@ -256,15 +299,7 @@ export default function BoardList() {
           onClick={() => handlePageChange(state.activePage - 1)}
           disabled={state.activePage === 1}
         />
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-          <Pagination.Item
-            onClick={() => handlePageChange(page)}
-            key={page}
-            active={state.activePage === page}
-          >
-            {page}
-          </Pagination.Item>
-        ))}
+        {renderPaginationItems()}
         <Pagination.Next
           onClick={() => handlePageChange(state.activePage + 1)}
           disabled={state.activePage === totalPages}
