@@ -64,7 +64,7 @@ export default function BoardList() {
   const getList = async (page: number) => {
     try {
       const response = await axios.get<IBoardList[]>(
-        `https://port-0-f1-community-pit-stop-server-ly5p232t0b63615b.sel5.cloudtype.app/api/boardlist/${teamNum}`
+        `/api/boardlist/${teamNum}`
       );
       const { data } = response;
       const startIndex = (page - 1) * state.limit;
