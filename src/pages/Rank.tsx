@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-//import axios from "axios";
+import { useEffect, useState } from "react";
 import { Row, Col, Card, Container, Badge } from "react-bootstrap";
 import profile from "../lib/driverProfile";
 import { dummyDrivers } from "../lib/dummyProfile";
