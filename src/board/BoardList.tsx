@@ -109,13 +109,13 @@ export default function BoardList() {
       </Pagination.Item>
     );
 
-    let startPage = Math.max(2, state.activePage - 4);
-    let endPage = Math.min(totalPages - 1, state.activePage + 4);
+    let startPage = Math.max(2, state.activePage - 9);
+    let endPage = Math.min(totalPages - 1, state.activePage + 9);
 
     if (state.activePage <= 5) {
-      endPage = Math.min(9, totalPages - 1);
+      endPage = Math.min(5, totalPages - 1);
     } else if (state.activePage >= totalPages - 4) {
-      startPage = Math.max(2, totalPages - 8);
+      startPage = Math.max(5, totalPages - 8);
     }
 
     if (startPage > 2) {

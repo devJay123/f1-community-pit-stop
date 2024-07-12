@@ -321,7 +321,7 @@ export default function Rank() {
                           text="white"
                           style={{
                             textAlign: "right",
-                            width: "70%",
+                            width: "100%",
                           }}
                         >
                           <Card.Title className="mb-0 text-center">
