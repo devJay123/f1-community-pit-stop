@@ -309,22 +309,15 @@ export default function Rank() {
                       </Col>
 
                       <Col
-                        md={5}
+                        md={4}
                         style={{
-                          textAlign: "right",
                           padding: "10px",
+                          textAlign: "right",
                         }}
                       >
                         <Card.Text>POINTS</Card.Text>
-                        <Badge
-                          bg="black"
-                          text="white"
-                          style={{
-                            textAlign: "right",
-                            width: "100%",
-                          }}
-                        >
-                          <Card.Title className="mb-0 text-center">
+                        <Badge bg="black" text="white">
+                          <Card.Title className="mb-0">
                             {driver.points}
                           </Card.Title>
                         </Badge>
