@@ -29,6 +29,7 @@ import track23 from "../assets/circuit/Qatar carbon23.png"
 import track24 from "../assets/circuit/Abu Dhab carbon24.png"
 import f1tire from "../assets/f1_tire.jpg"
 import bgimg from "../assets/schedulebgimg.jpg"
+import bgflagimg from "../assets/chequered-flag.jpg"
 import "../F1schedule/Schedule.css"
 
 const trackImages: { [key: string]: string } = {
@@ -106,7 +107,6 @@ const ScheduleList: React.FC = () => {
       try {
         const response = await axios.get("https://ergast.com/api/f1/2024.json");
         const raceList = response.data.MRData.RaceTable.Races;
-        console.log(raceList);
         setRaces(raceList);
       } catch (error) {
         console.error("Error fetching and parsing JSON", error);
@@ -170,7 +170,7 @@ const ScheduleList: React.FC = () => {
             backgroundSize: "cover",
             backgroundPosition: "center",
             width: "100%",
-            height: "400px",
+            height: "430px",
             marginTop: "20px",
             marginBottom: "20px",
             borderRadius:"0 15px 15px 15px "
@@ -200,38 +200,41 @@ const ScheduleList: React.FC = () => {
               }}
             ></div>
           </h2>
-          <div style={{display:'flex', justifyContent:'center'}}>
+          <div className="div1" >
             {nextTwoRaces.map((race) => (
-            <Container key={race.round} style={{display:'flex', justifyContent:'space-between'}}>
+            <Container key={race.round} style={{display:'flex', justifyContent:'space-between', opacity:'0.9'}}>
               <Card className="headcard" style={{
                   width: "17rem",
-                  height: "19rem",
+                  height: "20rem",
                   borderTop: "5px solid #000",
                   borderRight: "5px solid #000",
                   borderRadius: "15px 15px 15px 15px",
-                  marginRight: "4rem"
+                  backgroundColor: "rgb(225, 225, 225)"
                   }}>
                 <Card.Header style={{fontWeight:'bold'}}>Round {race.round}</Card.Header>
-                
                 <Card.Body>
                   <p>{race.Circuit.Location.country}</p>
                   <br></br>
                   <p>{race.date}</p>
                   </Card.Body>
-                <Card.Img style={{width:'270px', height:'190px', padding:'13px'}} src={trackImages[race.round]}/>
+                <Card.Img style={{width:'270px', height:'190px',padding:'13px'}} src={trackImages[race.round]}/>
               </Card>
-              <Card className="cardbottom" style={{
+              <div className="cardbottom">
+              <Card style={{
                   width: "17rem",
+                  height: "20rem",
                   padding: "15px",  
                   borderTop: "5px solid #000",
                   borderRight: "5px solid #000",
                   borderRadius: "15px 15px 15px 15px",
+                  backgroundColor: "rgb(225, 225, 225)"
                   }}>
-                <Card.Body>FirstPractice : {race.FirstPractice.date} Time : {race.FirstPractice.time.substring(0,5)}</Card.Body>
-                <Card.Body>FirstPractice : {race.SecondPractice.date} Time : {race.SecondPractice.time.substring(0,5)}</Card.Body>
-                <Card.Body>FirstPractice : {race.ThirdPractice.date} Time : {race.ThirdPractice.time.substring(0,5)}</Card.Body>
-                <Card.Body>FirstPractice : {race.Qualifying.date} Time : {race.Qualifying.time.substring(0,5)}</Card.Body>
+                <Card.Body>FirstPractice : {race.FirstPractice.date} Time &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {race.FirstPractice.time.substring(0,5)}</Card.Body>
+                <Card.Body>FirstPractice : {race.SecondPractice.date} Time &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {race.SecondPractice.time.substring(0,5)}</Card.Body>
+                <Card.Body>FirstPractice : {race.ThirdPractice.date} Time &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {race.ThirdPractice.time.substring(0,5)}</Card.Body>
+                <Card.Body>FirstPractice : {race.Qualifying.date} Time &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {race.Qualifying.time.substring(0,5)}</Card.Body>
               </Card>
+              </div>
             </Container>
           ))}
         </div>
@@ -244,7 +247,7 @@ const ScheduleList: React.FC = () => {
             return (
               <div
               key={race.round}
-              style={{ width: "300px", marginBottom: "20px", opacity: isPast ? 0.2 : 1, }}
+              style={{padding:"10px", marginBottom: "3px", opacity: isPast ? 0.2 : 1, }}
               
               >
               <ScheduleCard race={race} trackImage={trackImages[race.round]} />

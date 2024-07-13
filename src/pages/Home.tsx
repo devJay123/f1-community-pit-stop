@@ -6,6 +6,7 @@ import news1 from '/src/assets/news/news1.avif';
 import news2 from '/src/assets/news/news2.avif';
 import news3 from '/src/assets/news/news3.avif';
 import news4 from '/src/assets/news/news4.avif';
+import SliderComponent from '../F1schedule/SliderComponent';
 
 export default function Hone() {
   return (
