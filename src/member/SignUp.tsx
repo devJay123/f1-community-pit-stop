@@ -41,6 +41,8 @@ export default function SignUp() {
       .required('이메일을 입력하세요'),
   });
 
+  let duplicateChk = false;
+
   const {
     register,
     handleSubmit,
@@ -51,6 +53,10 @@ export default function SignUp() {
   });
 
   const onSubmit = async (data: SignUpData) => {
+    if (!duplicateChk) {
+      return alert('중복을 확인해주세요');
+    }
+
     try {
       const response = await axios.post('/api/signup', data);
       const responseData = response.data;
@@ -90,8 +96,10 @@ export default function SignUp() {
 
     if (response.data.result === 'success') {
       alert(`사용 가능한 ${msg}입니다.`);
+      duplicateChk = true;
     } else {
       alert(`중복된 ${msg}입니다. 다시 입력해주세요.`);
+      duplicateChk = false;
     }
   };
 
