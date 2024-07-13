@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import axios from '../lib/axiosCreate';
 import { Link, useNavigate } from 'react-router-dom';
 import './SignUp.css';
+import { useState } from 'react';
 
 interface SignUpData {
   name: string;
@@ -15,7 +16,19 @@ interface SignUpData {
   email: string;
 }
 
+interface dupChk {
+  nickname: boolean;
+  email: boolean;
+  userid: boolean;
+}
+
 export default function SignUp() {
+  const [duplicateChk, setDuplicateChk] = useState({
+    nickname: false,
+    email: false,
+    userid: false,
+  });
+
   const navigate = useNavigate();
   const validationSchema = Yup.object().shape({
     name: Yup.string()
@@ -41,8 +54,6 @@ export default function SignUp() {
       .required('이메일을 입력하세요'),
   });
 
-  let duplicateChk = false;
-
   const {
     register,
     handleSubmit,
@@ -53,8 +64,12 @@ export default function SignUp() {
   });
 
   const onSubmit = async (data: SignUpData) => {
-    if (!duplicateChk) {
-      return alert('중복을 확인해주세요');
+    if (!duplicateChk.email) {
+      return alert('이메일 중복을 확인해주세요');
+    } else if (!duplicateChk.nickname) {
+      return alert('닉네임 중복을 확인해주세요');
+    } else if (!duplicateChk.userid) {
+      return alert('아이디 중복을 확인해주세요');
     }
 
     try {
@@ -91,15 +106,24 @@ export default function SignUp() {
     if (!getValues(type)) {
       return alert(`${msg} 입력해주세요!`);
     }
+
     const checkData = { type: type, data: getValues(type) };
     const response = await axios.post(`/api/signup/check`, checkData);
 
     if (response.data.result === 'success') {
       alert(`사용 가능한 ${msg}입니다.`);
-      duplicateChk = true;
+
+      setDuplicateChk((prevState: dupChk) => ({
+        ...prevState,
+        [type]: true,
+      }));
     } else {
       alert(`중복된 ${msg}입니다. 다시 입력해주세요.`);
-      duplicateChk = false;
+
+      setDuplicateChk((prevState: dupChk) => ({
+        ...prevState,
+        [type]: false,
+      }));
     }
   };
 

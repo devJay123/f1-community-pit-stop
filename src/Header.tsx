@@ -48,67 +48,37 @@ export default function Header() {
     switch (pathname) {
       case 'community':
       case 'boards':
-        setClicked({
+        setClicked((prevState) => ({
+          ...prevState,
           community: true,
-          chat: false,
-          rank: false,
-          schedule: false,
-          loginHome: false,
-        });
+        }));
         break;
       case 'rank':
-        setClicked({
-          community: false,
-          chat: false,
+        setClicked((prevState) => ({
+          ...prevState,
           rank: true,
-          schedule: false,
-          loginHome: false,
-        });
-        break;
-      case 'prediction':
-        setClicked({
-          community: false,
-          chat: false,
-          rank: false,
-          schedule: true,
-          loginHome: false,
-        });
+        }));
         break;
       case 'loginHome':
-        setClicked({
-          community: false,
-          chat: false,
-          rank: false,
-          schedule: false,
+        setClicked((prevState) => ({
+          ...prevState,
           loginHome: true,
-        });
+        }));
         break;
       case 'chat':
-        setClicked({
-          community: false,
+        setClicked((prevState) => ({
+          ...prevState,
           chat: true,
-          rank: false,
-          schedule: false,
-          loginHome: false,
-        });
+        }));
         break;
       case 'schedule':
-        setClicked({
-          community: false,
-          chat: false,
-          rank: false,
+        setClicked((prevState) => ({
+          ...prevState,
           schedule: true,
-          loginHome: false,
-        });
+        }));
         break;
       default:
-        setClicked({
-          community: false,
-          chat: false,
-          rank: false,
-          schedule: false,
-          loginHome: false,
-        });
+        setClicked((prevState) => ({ ...prevState }));
     }
   }, [pathname]);
 
