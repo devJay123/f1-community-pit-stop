@@ -1,16 +1,16 @@
 @media (max-width: 770px) {
-    .cardbottom {
-        display: none;
-    }
-    .headcard {
-        width: 17rem;
-        height: 19rem;
-        border-top: 5px solid #000;
-        border-right: 5px solid #000;
-        border-radius: 15px 15px 15px 15px;
-        margin-right: 4rem;
-    }
-    /* .containerdiv {
+  .cardbottom {
+    display: none;
+  }
+  .headcard {
+    width: 17rem;
+    height: 19rem;
+    border-top: 5px solid #000;
+    border-right: 5px solid #000;
+    border-radius: 15px 15px 15px 15px;
+    margin-right: 4rem;
+  }
+  /* .containerdiv {
         justify-content: end;
     } */
 }
