@@ -1,24 +1,11 @@
 import { useEffect, useState } from "react";
-import { Row, Col, Card, Container, Badge } from "react-bootstrap";
+import { Row, Col, Card, Container, Badge, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import profile from "../lib/driverProfile";
 import { dummyDrivers } from "../lib/dummyProfile";
 import { teamInfo } from "../lib/dummyTeamInfo";
 import flag from "../assets/flag.png";
-
-// interface IDrivers {
-//   code: string;
-//   dateOfBirth: string;
-//   driverId: string;
-//   familyName: string;
-//   givenName: string;
-//   nationality: string;
-//   permanentNumber: string;
-//   url: string;
-//   points: string;
-//   position: string;
-//   positionText: string;
-//   wins: string;
-// }
+import f1tire from "../assets/f1_tire.jpg";
 
 interface IDriversProfile {
   position: string;
@@ -46,17 +33,18 @@ interface dummyData {
 }
 
 export default function Rank() {
-  //const [drivers, setDrivers] = useState<IDrivers[]>([]);
   const [drivers, setDrivers] = useState<dummyData[]>([]);
   const [driversProfiles, setDriversProfiles] = useState<IDriversProfile[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setDrivers(dummyDrivers);
 
     getDriversProfile().then(() => {
-      const proflieUrl = profile;
-      const profileData = proflieUrl.map((el) => el);
+      const profileUrl = profile;
+      const profileData = profileUrl.map((el) => el);
       setDriversProfiles(profileData);
+      setLoading(false); // 데이터 로드가 완료되면 로딩 상태를 false로 설정
     });
   }, []);
 
@@ -86,6 +74,49 @@ export default function Rank() {
 
     return driverData;
   }
+
+  if (loading) {
+    return (
+      <Container
+        className="text-center"
+        style={{
+          height: "100vh",
+          backgroundColor: "#fff",
+          color: "#000",
+          fontFamily: "KoPub_Bold",
+          fontSize: "2.5rem",
+        }}
+      >
+        <Row
+          className="align-items-center justify-content-center"
+          style={{ height: "100%" }}
+        >
+          <Col>
+            <h1 className="display-1">
+              L
+              <span
+                style={{
+                  display: "inline-block",
+                  width: "100px",
+                  height: "100px",
+                  backgroundImage: `url(${f1tire})`,
+                  backgroundSize: "cover",
+                }}
+              ></span>
+              ADING
+            </h1>
+            <p className="py-4">페이지 로딩중</p>
+            <Button variant="dark">
+              <Link to={"/"} className="text-white">
+                홈으로 돌아가기
+              </Link>
+            </Button>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
+
   return (
     <Container className="rank_container">
       <div>
@@ -445,3 +476,4 @@ export default function Rank() {
     </Container>
   );
 }
+

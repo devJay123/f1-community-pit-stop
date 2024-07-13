@@ -45,16 +45,20 @@ interface ScheduleItem {
     date: string;
     country: string;
     title: string;
+    trackImage: string;
 }
 
 interface SliderComponentProps {
     schedule: ScheduleItem[];
 }
 
-const TrackImage = styled.div`
+const TrackImage = styled.div<{ src: string }>`
     background-color: #f0f0f0;
     height: 150px;
     margin: 16px 0;
+    background-image: url(${props => props.src});
+    background-size: cover;
+    background-position: center;
 `;
 
 const SliderComponent: React.FC<SliderComponentProps> = ({ schedule }) => {
@@ -70,21 +74,22 @@ const SliderComponent: React.FC<SliderComponentProps> = ({ schedule }) => {
     return (
         <Container>
             <div className='header'>경기일정</div>
-        <StyledSlider {...settings}>
-            {schedule.map((item, index) => (
-            <Card key={index}>
-                <div className='mt-5'>
-                <h3>Round {item.round}</h3>
-                <p>{item.date}</p>
-                <p>{item.country}</p>
-                <p>{item.title}</p>
-                <TrackImage/>
-                </div>
-            </Card>
-            ))}
-        </StyledSlider>
+            <StyledSlider {...settings}>
+                {schedule.map((item, index) => (
+                    <Card key={index}>
+                        <div className='mt-5'>
+                            <h3>Round {item.round}</h3>
+                            <p>{item.date}</p>
+                            <p>{item.country}</p>
+                            <p>{item.title}</p>
+                            <TrackImage src={item.trackImage}/>
+                        </div>
+                    </Card>
+                ))}
+            </StyledSlider>
         </Container>
     );
 };
 
 export default SliderComponent;
+
