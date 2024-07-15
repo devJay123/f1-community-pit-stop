@@ -6,6 +6,7 @@ import BoardReplyForm, { Reply } from "./BoardReplyForm";
 import BoardReplyEditForm from "./BoardReplyEditFrom";
 import axios from "../lib/axiosCreate";
 import { teamBorderColors } from "../color";
+import BoardListSide from "./BoardListSide";
 
 interface Post {
   userid: string;
@@ -142,6 +143,11 @@ export default function BoardView() {
 
   return (
     <Container className="py-13">
+      <Row>
+        <Col xs={7} sm={2} md={2} >
+          <BoardListSide/>
+        </Col>
+        <Col  xs={12} sm={5} md={8}>
       {
         <div className="text-end my-2">
           {loginUserId === post?.userid && (
@@ -242,6 +248,8 @@ export default function BoardView() {
           )}
         </Card.Body>
       </Card>
+      </Col>
+      </Row>
     </Container>
   );
 }

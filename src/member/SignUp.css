@@ -13,18 +13,19 @@
   top: 0;
   width: 100%;
   height: 100%;
+  margin-left: 440px;
 }
 .form-container .form-box {
   border-radius: 10px;
   color: white;
-  position: relative;
+  /* position: relative; */
 
-  animation-name: moveRight;
+  /* animation-name: moveRight;
   animation-duration: 0.3s;
-  animation-timing-function: linear; /* 'leaner'를 'linear'로 수정 */
+  animation-timing-function: linear; 'leaner'를 'linear'로 수정
   animation-iteration-count: 1;
   animation-direction: alternate;
-  animation-fill-mode: forwards;
+  animation-fill-mode: forwards; */
 }
 
 .form-container .form-box .duplicate_btn {

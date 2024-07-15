@@ -10,9 +10,8 @@ import {
   Button,
   Alert,
   Card,
-  InputGroup,
-  Form,
 } from "react-bootstrap";
+
 import axios from "../lib/axiosCreate";
 import teams from "../lib/teamInfo";
 
@@ -38,65 +37,86 @@ interface IBoardList {
   teamnum: number;
 }
 
+interface IStateType {
+  data: IBoardList[];
+  limit: number;
+  activePage: number;
+  listLength: number;
+}
+
 export default function BoardList() {
   const location = useLocation();
+
+  const [state, setState] = useState<IStateType>({
+    data: [],
+    limit: 10,
+    activePage: 1,
+    listLength: 0,
+  });
+
   const teamNum: number = location.state?.teamnum;
   const teams2: ITeam[] = teams;
 
-  const [boards, setBoards] = useState<IBoardList[]>([]);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const itemsPerPage = 10;
-
-  const fetchBoards = async () => {
+  const getList = async (page: number) => {
     try {
       const response = await axios.get<IBoardList[]>(
         `/api/boardlist/${teamNum}`
       );
-      setBoards(response.data);
-    } catch (error) {
-      console.error("Failed to fetch boards:", error);
+      const { data } = response;
+      const startIndex = (page - 1) * state.limit;
+      const endIndex = page * state.limit;
+      const paginatedData = data.slice(startIndex, endIndex);
+      console.log(data);
+
+      setState((prev) => ({
+        ...prev,
+        data: paginatedData,
+        listLength: data.length,
+        activePage: page,
+      }));
+    } catch (err: unknown) {
+      console.log(
+        "ERROR:",
+        err instanceof Error ? err : new Error(String(err))
+      );
     }
   };
 
-  useEffect(() => {
-    fetchBoards();
-  }, [teamNum]);
-
-  const filteredBoards = boards.filter((board) =>
-    board.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedBoards = filteredBoards.slice(
-    startIndex,
-    startIndex + itemsPerPage
-  );
-  const totalPages = Math.ceil(filteredBoards.length / itemsPerPage);
-
   const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
+    if (pageNumber < 1 || pageNumber > totalPages) return;
+    setState((prev) => ({ ...prev, activePage: pageNumber }));
   };
+
+  const totalPages = Math.ceil(state.listLength / state.limit);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await getList(state.activePage);
+    };
+    fetchData();
+  }, [teamNum, state.activePage]);
 
   const renderPaginationItems = () => {
     const items = [];
+    //const maxVisiblePages = 10;
+
     items.push(
       <Pagination.Item
         key={1}
-        active={1 === currentPage}
+        active={1 === state.activePage}
         onClick={() => handlePageChange(1)}
       >
         1
       </Pagination.Item>
     );
 
-    let startPage = Math.max(2, currentPage - 4);
-    let endPage = Math.min(totalPages - 1, currentPage + 4);
+    let startPage = Math.max(2, state.activePage - 9);
+    let endPage = Math.min(totalPages - 1, state.activePage + 9);
 
-    if (currentPage <= 5) {
-      endPage = Math.min(9, totalPages - 1);
-    } else if (currentPage >= totalPages - 4) {
-      startPage = Math.max(2, totalPages - 8);
+    if (state.activePage <= 5) {
+      endPage = Math.min(5, totalPages - 1);
+    } else if (state.activePage >= totalPages - 4) {
+      startPage = Math.max(5, totalPages - 8);
     }
 
     if (startPage > 2) {
@@ -107,7 +127,7 @@ export default function BoardList() {
       items.push(
         <Pagination.Item
           key={page}
-          active={page === currentPage}
+          active={page === state.activePage}
           onClick={() => handlePageChange(page)}
         >
           {page}
@@ -123,7 +143,7 @@ export default function BoardList() {
       items.push(
         <Pagination.Item
           key={totalPages}
-          active={totalPages === currentPage}
+          active={totalPages === state.activePage}
           onClick={() => handlePageChange(totalPages)}
         >
           {totalPages}
@@ -174,23 +194,10 @@ export default function BoardList() {
               <span style={{ display: "block" }}>글쓰기 권한 : 회원</span>
             </Alert>
           </div>
-        ) : null;
+        ) : (
+          <div key={i}></div>
+        );
       })}
-      <Row className="my-4">
-        <Col>
-          <InputGroup>
-            <Form.Control
-              type="text"
-              placeholder="제목으로 검색"
-              value={searchTerm}
-              onChange={(e) => {
-                setSearchTerm(e.target.value);
-                setCurrentPage(1);
-              }}
-            />
-          </InputGroup>
-        </Col>
-      </Row>
       <Row className="mt-2 mb-5">
         <Row className="mb-4">
           <div className="position-relative text-end mb-2">
@@ -237,40 +244,41 @@ export default function BoardList() {
           </ListGroup>
         </Row>
 
-        {paginatedBoards.length !== 0 ? (
+        {state.data.length !== 0 ? (
           <Row>
-            {paginatedBoards.map((list, i) => {
-              const reverseIndex =
-                filteredBoards.length - (currentPage - 1) * itemsPerPage - i;
-              return (
-                <ListGroup as="ul" key={list.id}>
-                  <ListGroup.Item
-                    as="li"
-                    className="d-flex justify-content-between align-items-start"
-                  >
-                    <Col md={1} className="text-center">
-                      <div>{reverseIndex}</div>
-                    </Col>
-                    <Col md={6} className="text-center">
-                      <Link to={`/boards/${teamNum}/${list.id}`}>
-                        <div className="fw-bold">{list.title}</div>
-                      </Link>
-                    </Col>
-                    <Col md={2} className="text-center">
-                      <div>{list.userid}</div>
-                    </Col>
-                    <Col md={2} className="text-center">
-                      <div>{list.wdate}</div>
-                    </Col>
-                    <Col md={1} className="text-center">
-                      <Badge bg="dark" className="rounded-1">
-                        {list.readnum}
-                      </Badge>
-                    </Col>
-                  </ListGroup.Item>
-                </ListGroup>
-              );
-            })}
+            {state.data.length > 0 &&
+              state.data.map((list, i) => {
+                const reverseIndex =
+                  state.listLength - (state.activePage - 1) * state.limit - i;
+                return (
+                  <ListGroup as="ul" key={i}>
+                    <ListGroup.Item
+                      as="li"
+                      className="d-flex justify-content-between align-items-start"
+                    >
+                      <Col md={1} className="text-center">
+                        <div>{reverseIndex}</div>
+                      </Col>
+                      <Col md={6} className="text-center">
+                        <Link to={`/boards/${teamNum}/${list.id}`}>
+                          <div className="fw-bold">{list.title}</div>
+                        </Link>
+                      </Col>
+                      <Col md={2} className="text-center">
+                        <div className="">{list.userid}</div>
+                      </Col>
+                      <Col md={2} className="text-center">
+                        <div className="">{list.wdate}</div>
+                      </Col>
+                      <Col md={1} className="text-center ">
+                        <Badge bg="dark" className="rounded-1">
+                          {list.readnum}
+                        </Badge>
+                      </Col>
+                    </ListGroup.Item>
+                  </ListGroup>
+                );
+              })}
           </Row>
         ) : (
           <Row>
@@ -283,13 +291,13 @@ export default function BoardList() {
 
       <Pagination className="d-flex justify-content-center my-5 mt-5">
         <Pagination.Prev
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
+          onClick={() => handlePageChange(state.activePage - 1)}
+          disabled={state.activePage === 1}
         />
         {renderPaginationItems()}
         <Pagination.Next
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
+          onClick={() => handlePageChange(state.activePage + 1)}
+          disabled={state.activePage === totalPages}
         />
       </Pagination>
     </Container>
